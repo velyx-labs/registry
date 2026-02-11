@@ -17,5 +17,3 @@ Route::prefix('components')->name('components.')->group(function () {
     Route::get('/{name}/{version}', [PreviewController::class, 'show'])->name('version');
     Route::get('/{name}/{version}/render', [PreviewController::class, 'render'])->name('render');
 });
-
-require __DIR__.'/settings.php';
