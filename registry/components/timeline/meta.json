@@ -1,0 +1,10 @@
+{
+    "name": "timeline",
+    "version": "1.0.0",
+    "description": "Timeline component with vertical/horizontal layouts, animations, and multiple event types.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

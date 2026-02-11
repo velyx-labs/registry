@@ -1,0 +1,10 @@
+{
+    "name": "avatar",
+    "version": "1.0.0",
+    "description": "User avatar with image fallback, initials, and status indicators.",
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

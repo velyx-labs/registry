@@ -1,0 +1,10 @@
+{
+    "name": "badge",
+    "version": "1.0.0",
+    "description": "Badge component with variants, sizes, and optional remove functionality.",
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

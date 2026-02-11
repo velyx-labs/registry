@@ -1,0 +1,10 @@
+{
+    "name": "carousel",
+    "version": "1.0.0",
+    "description": "Image carousel with autoplay, navigation arrows, dots indicator, and captions.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

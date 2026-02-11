@@ -1,0 +1,10 @@
+{
+    "name": "command-palette",
+    "version": "1.0.0",
+    "description": "Command palette with keyboard shortcuts, search, and command execution.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

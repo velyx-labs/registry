@@ -1,0 +1,10 @@
+{
+    "name": "data-table",
+    "version": "1.0.0",
+    "description": "Feature-rich data table with search, sorting, filtering, pagination, and loading states.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

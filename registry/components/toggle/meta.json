@@ -1,0 +1,10 @@
+{
+    "name": "toggle",
+    "version": "1.0.0",
+    "description": "Toggle switch component with multiple sizes and accessibility features.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "code-snippet",
+    "version": "1.0.0",
+    "description": "Code snippet component with syntax highlighting, line numbers, and copy functionality.",
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

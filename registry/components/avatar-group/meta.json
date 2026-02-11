@@ -1,0 +1,10 @@
+{
+    "name": "avatar-group",
+    "version": "1.0.0",
+    "description": "Stacked avatar group for displaying multiple users with overflow indicator.",
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

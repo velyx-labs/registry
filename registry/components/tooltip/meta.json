@@ -1,0 +1,10 @@
+{
+    "name": "tooltip",
+    "version": "1.0.0",
+    "description": "Tooltip component with configurable positioning and delay settings.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

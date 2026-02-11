@@ -1,0 +1,10 @@
+{
+    "name": "modal",
+    "version": "1.0.0",
+    "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

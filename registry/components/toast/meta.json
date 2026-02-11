@@ -1,0 +1,10 @@
+{
+    "name": "toast",
+    "version": "1.0.0",
+    "description": "Toast notification system with multiple variants, positions, and auto-dismissal.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

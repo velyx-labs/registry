@@ -1,0 +1,10 @@
+{
+    "name": "popover",
+    "version": "1.0.0",
+    "description": "Popover component with configurable positioning and trigger options.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "skeleton",
+    "version": "1.0.0",
+    "description": "Skeleton loading component with multiple variants and customizable shapes.",
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

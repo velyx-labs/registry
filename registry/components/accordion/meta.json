@@ -1,0 +1,10 @@
+{
+    "name": "accordion",
+    "version": "1.0.0",
+    "description": "Collapsible accordion component with smooth animations and multiple item support.",
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}
