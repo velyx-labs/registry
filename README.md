@@ -1,30 +1,43 @@
-# Laravel + Livewire Starter Kit
+# Velyx UI
+
+Beautifully designed components for Laravel, built with [Livewire](https://livewire.laravel.com), [Alpine.js](https://alpinejs.dev), and [Tailwind CSS](https://tailwindcss.com).
 
 ## Introduction
 
-Our Laravel + [Livewire](https://livewire.laravel.com) starter kit provides a robust, modern starting point for building Laravel applications with a Livewire frontend.
+Velyx delivers composable UI components that you can copy and paste into your Laravel applications. Inspired by [shadcn/ui](https://ui.shadcn.com), Velyx gives you complete control over your components - they're copied to your project, not installed as dependencies.
 
-Livewire is a powerful way of building dynamic, reactive, frontend UIs using just PHP. It's a great fit for teams that primarily use Blade templates and are looking for a simpler alternative to JavaScript-driven SPA frameworks like React and Vue.
+## Features
 
-This Livewire starter kit utilizes Livewire 4, TypeScript, Tailwind, and the [Flux UI](https://fluxui.dev) component library.
+- **Built for Laravel** - Native Blade components with Livewire integration
+- **Fully Customizable** - Components are copied to your project, modify them however you want
+- **Tailwind CSS v4** - Modern styling with dark mode support
+- **Accessible** - Components follow ARIA guidelines
+- **Zero Runtime** - No runtime dependencies once installed
 
-If you are looking for the alternate configurations of this starter kit, they can be found in the following branches:
+## Documentation
 
-- [components](https://github.com/laravel/livewire-starter-kit/tree/components) - if Volt is not selected
-- [workos](https://github.com/laravel/livewire-starter-kit/tree/workos) - if WorkOS is selected for authentication
+Visit [velyx.dev](https://velyx.dev) for full documentation and component examples.
 
-## Official Documentation
+## Quick Start
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+```bash
+# Install the CLI
+npm install -g velyx
+
+# Initialize your project
+cd your-laravel-project
+vely init
+
+# Add components
+vely add button
+vely add input
+vely add card
+```
 
 ## Contributing
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Contributions are welcome! Please read our contributing guidelines before submitting PRs.
 
 ## License
 
-The Laravel + Livewire starter kit is open-sourced software licensed under the MIT license.
+Velyx is open-sourced software licensed under the [MIT license](LICENSE).
