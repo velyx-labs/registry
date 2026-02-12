@@ -2,14 +2,14 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Layout;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-#[Layout('layouts.app', ['title' => 'Velyx - Build Laravel interfaces at velocity'])]
 class LandingPage extends Component
 {
-    public function render()
+    public function render(): View
     {
-        return view('livewire.landing-page');
+        return view('livewire.landing-page')
+            ->layout('layouts.app', ['title' => 'Velyx - The Foundation for your Design System']);
     }
 }

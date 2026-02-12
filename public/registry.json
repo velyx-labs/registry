@@ -769,6 +769,25 @@
         "npm": []
       },
       "path": "components/progress-bar/meta.json"
+    },
+    {
+      "name": "label",
+      "description": "Form label component with accessibility features and optional descriptions.",
+      "categories": [
+        "ui",
+        "forms"
+      ],
+      "files": [
+        {
+          "type": "blade",
+          "path": "label.blade.php"
+        }
+      ],
+      "dependencies": {
+        "composer": [],
+        "npm": []
+      },
+      "path": "components/label/meta.json"
     }
   ]
 }

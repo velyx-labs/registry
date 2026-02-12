@@ -4,6 +4,16 @@
     "description": "Drag-and-drop sortable list component with handles and animations.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "sortable-list.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "sortable-list.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

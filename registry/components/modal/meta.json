@@ -4,6 +4,16 @@
     "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "modal.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "modal.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

@@ -4,6 +4,16 @@
     "description": "Form input field with label, error handling, password toggle, and icons.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "input.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "input.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

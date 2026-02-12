@@ -1,0 +1,8 @@
+{
+  "1.0.0": {
+    "files": [
+      "label.blade.php"
+    ],
+    "description": "Initial release with basic form label functionality"
+  }
+}

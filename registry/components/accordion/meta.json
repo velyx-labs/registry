@@ -4,6 +4,16 @@
     "description": "Collapsible accordion component with smooth animations and multiple item support.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "accordion.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "accordion.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

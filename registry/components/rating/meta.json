@@ -4,6 +4,16 @@
     "description": "Star rating component with half-star support, hover effects, and value display.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "rating.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "rating.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

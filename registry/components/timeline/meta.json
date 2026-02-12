@@ -4,6 +4,16 @@
     "description": "Timeline component with vertical/horizontal layouts, animations, and multiple event types.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "timeline.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "timeline.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

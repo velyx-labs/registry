@@ -22,7 +22,3 @@ Route::prefix('v1')->group(function () {
     Route::get('/components/{name}', [ComponentController::class, 'show']);
     Route::get('/components/{name}/versions', [ComponentController::class, 'versions']);
 });
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');

@@ -4,6 +4,16 @@
     "description": "Dropdown select component with search, keyboard navigation, and multiple options.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "dropdown.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

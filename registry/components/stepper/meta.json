@@ -4,6 +4,16 @@
     "description": "Multi-step stepper component with horizontal and vertical layouts.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "stepper.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "stepper.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

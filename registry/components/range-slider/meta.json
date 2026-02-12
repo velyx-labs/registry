@@ -4,6 +4,16 @@
     "description": "Range slider component with single and double handle modes, custom styling.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "range-slider.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "range-slider.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

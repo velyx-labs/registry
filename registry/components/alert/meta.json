@@ -4,6 +4,16 @@
     "description": "Alert component with variants, icons, and optional dismissible functionality.",
     "laravel": ">=10",
     "requires_alpine": true,
+    "files": [
+        {
+            "path": "alert.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "alert.js",
+            "type": "js"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]
