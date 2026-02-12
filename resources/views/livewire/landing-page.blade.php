@@ -40,11 +40,11 @@
     <!-- Problem Section -->
     <section class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-semibold text-foreground">
+            <h2 class="text-3xl font-semibold">
                 Stop rewriting the same Blade components.
             </h2>
             
-            <ul class="mt-6 space-y-3 text-muted-foreground">
+            <ul class="mt-6 space-y-3">
                 <li class="flex items-center">
                     <x-lucide-x-circle class="w-5 h-5 mr-3 text-destructive" />
                     Repeated UI boilerplate
