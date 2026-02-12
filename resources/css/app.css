@@ -100,9 +100,6 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(0.275 0 0);
     --sidebar-ring: oklch(0.439 0 0);
-    --font-sans: Geist, ui-sans-serif, sans-serif, system-ui;
-    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --font-mono: JetBrains Mono, ui-monospace, monospace;
     --radius: 0.275rem;
     --shadow-x: 0;
     --shadow-y: 1px;
@@ -190,6 +187,7 @@
     body {
         @apply font-sans bg-background text-foreground;
     }
+
     h1,
     h2,
     h3,
@@ -198,8 +196,9 @@
     h6 {
         @apply font-sans text-foreground;
     }
-    span,
+
+
     p {
-        @apply text-muted-foreground;
+        @apply text-muted-foreground font-sans;
     }
 }
