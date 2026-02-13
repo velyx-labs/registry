@@ -10,6 +10,6 @@ class LandingPage extends Component
     public function render(): View
     {
         return view('livewire.landing-page')
-            ->layout('layouts.app', ['title' => 'Velyx - The Foundation for your Design System']);
+            ->layout('layouts.app', ['title' => 'Velyx - Beautiful UI Components for Laravel']);
     }
 }

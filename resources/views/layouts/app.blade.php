@@ -11,27 +11,7 @@
 
     <title>{{ $title ?? 'Velyx - Beautiful Design Systems' }}</title>
     @include('partials.head')
-
-{{--    <!-- Favicons -->--}}
-{{--    <link rel="icon" href="/favicon.ico" sizes="any">--}}
-{{--    <link rel="icon" href="/favicon.svg" type="image/svg+xml">--}}
-{{--    <link rel="apple-touch-icon" href="/apple-touch-icon.png">--}}
-
-{{--    <!-- Open Graph / Facebook -->--}}
-{{--    <meta property="og:type" content="website">--}}
-{{--    <meta property="og:url" content="{{ request()->url() }}">--}}
-{{--    <meta property="og:title" content="{{ $title ?? 'Velyx - Beautiful Design Systems' }}">--}}
-{{--    <meta property="og:description"--}}
-{{--          content="Build beautiful design systems with Velyx - a comprehensive collection of beautifully designed, accessible components.">--}}
-{{--    <meta property="og:image" content="/apple-touch-icon.png">--}}
-
-{{--    <!-- Twitter -->--}}
-{{--    <meta property="twitter:card" content="summary_large_image">--}}
-{{--    <meta property="twitter:url" content="{{ request()->url() }}">--}}
-{{--    <meta property="twitter:title" content="{{ $title ?? 'Velyx - Beautiful Design Systems' }}">--}}
-{{--    <meta property="twitter:description"--}}
-{{--          content="Build beautiful design systems with Velyx - a comprehensive collection of beautifully designed, accessible components.">--}}
-{{--    <meta property="twitter:image" content="/apple-touch-icon.png">--}}
+    @livewireStyles
 
     <!-- Custom CSS for animations -->
     <style>
@@ -84,8 +64,9 @@
     </style>
 </head>
 <body class="bg-background text-foreground min-h-screen antialiased">
+<livewire:partials.header />
 {{ $slot }}
-
+<livewire:partials.footer />
 <!-- Livewire Scripts -->
 @livewireScripts
 
