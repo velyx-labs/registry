@@ -20,7 +20,7 @@
         'primary' => 'bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 shadow-md',
         'secondary' => 'bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80 shadow-sm hover:shadow-md shadow-secondary/20 hover:shadow-secondary/30',
         'destructive' => 'bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80 shadow-md hover:shadow-lg shadow-destructive/20 hover:shadow-destructive/30 active:shadow-destructive/10',
-        'outline' => 'border-2 border-input bg-transparent hover:bg-accent/50 active:bg-accent/70 hover:text-accent-foreground ',
+        'outline' => 'bg-transparent hover:bg-accent/50 active:bg-accent/70 hover:text-accent-foreground ',
         'ghost' => 'hover:bg-accent/80 active:bg-accent hover:text-accent-foreground shadow-none',
         'link' => 'text-primary underline-offset-4 hover:underline hover:text-primary/80 active:text-primary/60 shadow-none',
         default => 'bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 shadow-md hover:shadow-lg',

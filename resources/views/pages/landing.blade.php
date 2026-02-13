@@ -1,5 +1,16 @@
+<?php
+
+use Livewire\Component;
+
+new class extends Component
+{
+    //
+};
+?>
+
+
 <div class="min-h-screen bg-background text-foreground">
-    
+
     <!-- Hero Section -->
     <section class="relative overflow-hidden">
         <!-- Background gradient -->
@@ -24,11 +35,11 @@
 
                     <!-- CTA Buttons -->
                     <div class="mt-12 flex flex-wrap items-center justify-center gap-6">
-                        <x-ui.button size="lg" variant="default">
-                            Get Started Free
+                        <x-ui.button size="sm" href="/docs"  variant="default">
+                            Get Started
                         </x-ui.button>
-                        <x-ui.button size="lg" variant="outline" @click="copyToClipboard('npm install velyx')">
-                            Copy Install Command
+                        <x-ui.button size="sm" href="/docs/components"  variant="outline">
+                            Browse Components
                         </x-ui.button>
                     </div>
                 </div>
@@ -44,20 +55,13 @@
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl">
                     <!-- Gradient overlay pour meilleure lisibilité -->
                     <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-black/20 z-10"></div>
-                    
+
                     <!-- Image principale -->
                     <div class="aspect-video md:aspect-[16/9] relative">
-                        <img src="https://images.unsplash.com/photo-1770885653473-ca48b4d69173?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                             alt="Interface de développement web moderne" 
+                        <img src="https://images.unsplash.com/photo-1770885653473-ca48b4d69173?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Interface de développement web moderne"
                              class="w-full h-full object-cover">
                     </div>
-                </div>
-                
-                <!-- Subtitle -->
-                <div class="text-center mt-8">
-                    <p class="text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto">
-                        Découvrez notre collection de composants élégants et intuitifs
-                    </p>
                 </div>
             </div>
         </div>
