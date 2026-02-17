@@ -41,7 +41,8 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    --font-sans: Geist, ui-sans-serif, sans-serif, system-ui;
+    --font-heading: Geist, ui-sans-serif, sans-serif, system-ui;
+    --font-sans: "Instrument Sans", sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: JetBrains Mono, ui-monospace, monospace;
     --radius: 0.5rem;
@@ -138,6 +139,7 @@
     --color-sidebar-ring: var(--sidebar-ring);
 
     --font-sans: var(--font-sans);
+    --font-heading: var(--font-heading);
     --font-mono: var(--font-mono);
     --font-serif: var(--font-serif);
 
@@ -175,7 +177,7 @@
     h4,
     h5,
     h6 {
-        @apply font-sans text-foreground;
+        @apply font-heading text-foreground;
     }
 
     p {

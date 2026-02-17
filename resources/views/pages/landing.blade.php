@@ -18,9 +18,9 @@ new class extends Component
 
         <div class="relative w-full py-32 md:py-40 lg:py-48">
             <div class="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
-                <div class="mx-auto flex max-w-6xl flex-col items-center text-center">
+                <div class="container flex flex-col items-center gap-2 px-6 py-8 text-center md:py-16 lg:py-20 xl:gap-4">
                     <!-- Title -->
-                    <h1 class="text-5xl font-bold tracking-tight text-foreground sm:text-6xl md:text-5xl lg:text-6xl xl:text-7xl leading-none">
+                    <h1 class="text-primary leading-tighter text-3xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter max-w-4xl">
                         Build Beautiful
                         <span class="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                             Design Systems
@@ -28,7 +28,7 @@ new class extends Component
                     </h1>
 
                     <!-- Description -->
-                    <p class="mt-8 max-w-4xl text-xl text-muted-foreground sm:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                    <p class="text-foreground max-w-4xl text-base text-balance sm:text-lg">
                         Craft stunning user interfaces with our comprehensive collection of beautifully designed,
                         accessible components. Built for developers, designed for users.
                     </p>
@@ -62,28 +62,6 @@ new class extends Component
                              alt="Interface de développement web moderne"
                              class="w-full h-full object-cover">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 bg-background">
-        <div class="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
-            <div class="mx-auto max-w-4xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl mb-4">
-                    Ready to build something amazing?
-                </h2>
-                <p class="text-lg lg:text-xl text-muted-foreground mb-8">
-                    Join thousands of developers building beautiful interfaces with Velyx
-                </p>
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    <x-ui.button size="lg" variant="default">
-                        Get Started
-                    </x-ui.button>
-                    <x-ui.button size="lg" variant="outline">
-                        View on GitHub
-                    </x-ui.button>
                 </div>
             </div>
         </div>
