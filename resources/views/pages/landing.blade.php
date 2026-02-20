@@ -35,10 +35,10 @@ new class extends Component
 
                     <!-- CTA Buttons -->
                     <div class="mt-12 flex flex-wrap items-center justify-center gap-6">
-                        <x-ui.button size="sm" href="/docs"  variant="default">
+                        <x-ui.button size="sm" href="/docs/installation" variant="default">
                             Get Started
                         </x-ui.button>
-                        <x-ui.button size="sm" href="/docs/components"  variant="outline">
+                        <x-ui.button size="sm" href="/docs/components/button" variant="outline">
                             Browse Components
                         </x-ui.button>
                     </div>

@@ -4,7 +4,7 @@ import tabs from './ui/tabs'
 import input from './ui/input'
 
 document.addEventListener('alpine:init', () => {
-    initDarkMode();
+    // initDarkMode();
     Alpine.data('input', input);
     Alpine.data('tabs', tabs);
     Alpine.data('accordion', accordion);

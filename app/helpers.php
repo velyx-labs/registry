@@ -36,7 +36,7 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
-        return (new LinkFinder([
+        return (new \App\Utilities\LinkFinder([
             'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
         ]))->processHtml($markdown);
     }
@@ -101,7 +101,36 @@ if (! function_exists('is_component_active')) {
      */
     function is_component_active(string $component): bool
     {
-        return request()->routeIs('components.show') && request()->route('component') === str($component)->slug()->value;
+        if (! request()->routeIs('components.show')) {
+            return false;
+        }
+
+        $routeComponent = request()->route('component');
+        // Normalize both for comparison (remove hyphens and compare lowercase)
+        $normalizedRoute = str_replace('-', '', $routeComponent);
+        $normalizedComponent = str_replace('-', '', $component);
+
+        return $normalizedRoute === $normalizedComponent;
+    }
+}
+
+if (! function_exists('is_docs_page')) {
+    /**
+     * Check if currently on any docs page
+     */
+    function is_docs_page(): bool
+    {
+        return request()->routeIs('docs.show') || request()->routeIs('docs.show.page');
+    }
+}
+
+if (! function_exists('is_component_page')) {
+    /**
+     * Check if currently on any component page
+     */
+    function is_component_page(): bool
+    {
+        return request()->routeIs('components.show');
     }
 }
 
