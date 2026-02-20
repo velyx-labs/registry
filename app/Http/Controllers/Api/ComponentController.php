@@ -3,141 +3,58 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ComponentShowRequest;
+use App\Http\Requests\ComponentVersionsRequest;
+use App\Http\Resources\ComponentCollection;
+use App\Http\Resources\ComponentResource;
+use App\Http\Resources\ComponentVersionResource;
 use App\Services\ComponentService;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ComponentController extends Controller
 {
-    protected ComponentService $componentService;
-
-    public function __construct(ComponentService $componentService)
-    {
-        $this->componentService = $componentService;
-    }
-
-    /**
-     * Format component data for API response
-     */
-    protected function formatComponentData(string $name, array $data): array
-    {
-        return [
-            'name' => $name,
-            'latest' => $data['latest'],
-            'versions' => $data['versions'],
-            'description' => $data['meta']['description'],
-            'requires_alpine' => $data['meta']['requires_alpine'],
-            'requires' => $data['meta']['requires'],
-            'categories' => $data['meta']['categories'],
-            'files' => $data['meta']['files'] ?? [],
-            'laravel' => $data['meta']['laravel'],
-        ];
-    }
+    public function __construct(
+        protected ComponentService $componentService,
+    ) {}
 
     /**
      * GET /api/v1/components
      * List all available components
      */
-    public function index(): JsonResponse
+    public function index(): ComponentCollection
     {
-        try {
-            $components = $this->componentService->getAllComponents();
+        $components = $this->componentService->getAllComponents();
 
-            // Return simplified list for index endpoint
-            $componentList = [];
-            foreach ($components as $name => $data) {
-                $componentList[] = $this->formatComponentData($name, $data);
-            }
-
-            return response()->json([
-                'data' => $componentList,
-                'count' => count($componentList),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Internal server error',
-                'message' => 'Failed to retrieve components list',
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        return new ComponentCollection(collect($components));
     }
 
     /**
      * GET /api/v1/components/{name}
      * Get detailed component information
+     *
+     * Query parameters:
+     * - version: Optional version to retrieve (default: latest)
+     * - include: Optional includes (e.g., ?include=files to load file contents)
      */
-    public function show(Request $request, string $name): JsonResponse
+    public function show(ComponentShowRequest $request, string $name): ComponentResource
     {
-        try {
-            // Validate component name
-            if (! $this->componentService->isValidComponentName($name)) {
-                return response()->json([
-                    'error' => 'Invalid component name',
-                    'message' => 'Component name must contain only lowercase letters, numbers, hyphens, and underscores',
-                ], Response::HTTP_BAD_REQUEST);
-            }
+        $version = $request->query('version');
+        $includeFiles = $request->query('include') === 'files';
 
-            // Get version from query parameter, default to latest
-            $version = $request->query('version');
+        $component = $includeFiles
+            ? $this->componentService->getComponentWithFiles($name, $version)
+            : $this->componentService->getComponent($name, $version);
 
-            if ($version && ! $this->componentService->isValidVersion($version)) {
-                return response()->json([
-                    'error' => 'Invalid version format',
-                    'message' => 'Version must follow semantic versioning format (e.g., 1.0.0)',
-                ], Response::HTTP_BAD_REQUEST);
-            }
-
-            $component = $this->componentService->getComponent($name, $version);
-
-            if (! $component) {
-                return response()->json([
-                    'error' => 'Component not found',
-                    'message' => "Component '{$name}' ".($version ? "version '{$version}' " : '').'does not exist',
-                ], Response::HTTP_NOT_FOUND);
-            }
-
-            return response()->json($this->formatComponentData($name, $component));
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Internal server error',
-                'message' => 'Failed to retrieve component',
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        return new ComponentResource($component);
     }
 
     /**
      * GET /api/v1/components/{name}/versions
      * Get available versions for a component
      */
-    public function versions(string $name): JsonResponse
+    public function versions(ComponentVersionsRequest $request, string $name): ComponentVersionResource
     {
-        try {
-            if (! $this->componentService->isValidComponentName($name)) {
-                return response()->json([
-                    'error' => 'Invalid component name',
-                    'message' => 'Component name must contain only lowercase letters, numbers, hyphens, and underscores',
-                ], Response::HTTP_BAD_REQUEST);
-            }
+        $versions = $this->componentService->getVersions($name);
 
-            if (! $this->componentService->componentExists($name)) {
-                return response()->json([
-                    'error' => 'Component not found',
-                    'message' => "Component '{$name}' does not exist",
-                ], Response::HTTP_NOT_FOUND);
-            }
-
-            $component = $this->componentService->getComponent($name);
-
-            return response()->json([
-                'name' => $name,
-                'latest' => $component['latest'],
-                'versions' => $component['versions'],
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Internal server error',
-                'message' => 'Failed to retrieve component versions',
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        return new ComponentVersionResource($versions);
     }
 }

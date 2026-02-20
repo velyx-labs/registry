@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Exceptions\ComponentNotFoundException;
+
 class ComponentService
 {
     protected string $componentsPath;
@@ -12,7 +14,7 @@ class ComponentService
     }
 
     /**
-     * Get all available components
+     * Get all available components (metadata only - no file contents loaded)
      */
     public function getAllComponents(): array
     {
@@ -26,7 +28,7 @@ class ComponentService
 
         foreach ($componentDirs as $dir) {
             $componentName = basename($dir);
-            $componentData = $this->getComponentData($componentName);
+            $componentData = $this->getComponentMetadata($componentName);
 
             if ($componentData) {
                 $components[$componentName] = $componentData;
@@ -37,34 +39,82 @@ class ComponentService
     }
 
     /**
-     * Get specific component data
+     * Get specific component metadata (without file contents)
      */
-    public function getComponent(string $name, ?string $version = null): ?array
+    public function getComponent(string $name, ?string $version = null): array
     {
         $componentPath = $this->componentsPath.'/'.$name;
 
         if (! is_dir($componentPath)) {
-            return null;
+            throw new ComponentNotFoundException("Component '{$name}' does not exist");
         }
 
-        // Get version data
         $versionsData = $this->getVersionsData($name);
         if (! $versionsData) {
-            return null;
+            throw new ComponentNotFoundException("Component '{$name}' versions data not found");
         }
 
         $targetVersion = $version ?? $versionsData['latest'];
 
-        // Validate version exists
         if (! in_array($targetVersion, $versionsData['versions'])) {
-            return null;
+            throw new ComponentNotFoundException(
+                "Component '{$name}' version '{$targetVersion}' does not exist"
+            );
         }
 
-        return $this->getComponentData($name, $targetVersion);
+        return $this->getComponentMetadata($name, $targetVersion);
+    }
+
+    /**
+     * Get component with file contents (for download endpoint)
+     */
+    public function getComponentWithFiles(string $name, ?string $version = null): array
+    {
+        $componentPath = $this->componentsPath.'/'.$name;
+
+        if (! is_dir($componentPath)) {
+            throw new ComponentNotFoundException("Component '{$name}' does not exist");
+        }
+
+        $versionsData = $this->getVersionsData($name);
+        if (! $versionsData) {
+            throw new ComponentNotFoundException("Component '{$name}' versions data not found");
+        }
+
+        $targetVersion = $version ?? $versionsData['latest'];
+
+        if (! in_array($targetVersion, $versionsData['versions'])) {
+            throw new ComponentNotFoundException(
+                "Component '{$name}' version '{$targetVersion}' does not exist"
+            );
+        }
+
+        return $this->getComponentDataWithFiles($name, $targetVersion);
     }
 
     /**
      * Get versions data for a component
+     */
+    public function getVersions(string $name): array
+    {
+        if (! $this->componentExists($name)) {
+            throw new ComponentNotFoundException("Component '{$name}' does not exist");
+        }
+
+        $versionsData = $this->getVersionsData($name);
+        if (! $versionsData) {
+            throw new ComponentNotFoundException("Component '{$name}' versions data not found");
+        }
+
+        return [
+            'name' => $name,
+            'latest' => $versionsData['latest'],
+            'versions' => $versionsData['versions'],
+        ];
+    }
+
+    /**
+     * Get versions data from versions.json file
      */
     protected function getVersionsData(string $name): ?array
     {
@@ -84,13 +134,12 @@ class ComponentService
     }
 
     /**
-     * Get component data including files
+     * Get component metadata only (no file contents loaded)
      */
-    protected function getComponentData(string $name, ?string $version = null): ?array
+    protected function getComponentMetadata(string $name, ?string $version = null): ?array
     {
         $componentPath = $this->componentsPath.'/'.$name;
 
-        // Get meta data
         $metaFile = $componentPath.'/meta.json';
         if (! file_exists($metaFile)) {
             return null;
@@ -101,7 +150,6 @@ class ComponentService
             return null;
         }
 
-        // Get version data
         $versionsData = $this->getVersionsData($name);
         if (! $versionsData) {
             return null;
@@ -109,20 +157,17 @@ class ComponentService
 
         $targetVersion = $version ?? $versionsData['latest'];
 
-        // Get files for the specified version
         $versionPath = $componentPath.'/'.$targetVersion;
         if (! is_dir($versionPath)) {
             return null;
         }
-
-        $files = $this->getComponentFiles($name, $versionPath);
 
         return [
             'name' => $name,
             'version' => $targetVersion,
             'latest' => $versionsData['latest'],
             'versions' => $versionsData['versions'],
-            'files' => $files,
+            'files' => [],
             'meta' => [
                 'requires' => $meta['requires'] ?? [],
                 'requires_alpine' => $meta['requires_alpine'] ?? false,
@@ -135,7 +180,25 @@ class ComponentService
     }
 
     /**
-     * Get component files mapped to user project structure
+     * Get component data including file contents
+     */
+    protected function getComponentDataWithFiles(string $name, string $version): array
+    {
+        $metadata = $this->getComponentMetadata($name, $version);
+        if (! $metadata) {
+            return [];
+        }
+
+        $versionPath = $this->componentsPath.'/'.$name.'/'.$version;
+        $files = $this->getComponentFiles($name, $versionPath);
+
+        $metadata['files'] = $files;
+
+        return $metadata;
+    }
+
+    /**
+     * Get component files with their full content
      */
     protected function getComponentFiles(string $name, string $versionPath): array
     {
@@ -146,31 +209,15 @@ class ComponentService
             $filename = basename($filePath);
 
             if (str_ends_with($filename, '.blade.php')) {
-                $files['resources/views/components/ui/'.$name.'.blade.php'] = file_get_contents($filePath);
+                $files['resources/views/components/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
             } elseif (str_ends_with($filename, '.js')) {
-                $files['resources/js/ui/'.$name.'.js'] = file_get_contents($filePath);
+                $files['resources/js/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
             } elseif (str_ends_with($filename, '.css')) {
-                $files['resources/css/ui/'.$name.'.css'] = file_get_contents($filePath);
+                $files['resources/css/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
             }
         }
 
         return $files;
-    }
-
-    /**
-     * Validate component name format
-     */
-    public function isValidComponentName(string $name): bool
-    {
-        return preg_match('/^[a-z][a-z0-9-_]*$/', $name) === 1;
-    }
-
-    /**
-     * Validate semantic version
-     */
-    public function isValidVersion(string $version): bool
-    {
-        return preg_match('/^\d+\.\d+\.\d+$/', $version) === 1;
     }
 
     /**
