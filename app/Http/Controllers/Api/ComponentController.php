@@ -31,11 +31,14 @@ class ComponentController extends Controller
             foreach ($components as $name => $data) {
                 $componentList[] = [
                     'name' => $name,
-                    'latest_version' => $data['latest'],
+                    'latest' => $data['latest'],
+                    'versions' => $data['versions'],
                     'description' => $data['meta']['description'],
                     'requires_alpine' => $data['meta']['requires_alpine'],
                     'requires' => $data['meta']['requires'],
                     'categories' => $data['meta']['categories'],
+                    'files' => $data['files'],
+                    'laravel' => $data['meta']['laravel'],
                 ];
             }
 
