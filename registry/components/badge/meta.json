@@ -2,6 +2,11 @@
     "name": "badge",
     "version": "1.0.0",
     "description": "Badge component with variants, sizes, and optional remove functionality.",
+    "categories": [
+        "ui",
+        "feedback",
+        "forms"
+    ],
     "laravel": ">=10",
     "requires_alpine": false,
     "requires": [

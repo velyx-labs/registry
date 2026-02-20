@@ -2,6 +2,11 @@
     "name": "code-snippet",
     "version": "1.0.0",
     "description": "Code snippet component with syntax highlighting, line numbers, and copy functionality.",
+    "categories": [
+        "ui",
+        "data",
+        "text"
+    ],
     "laravel": ">=10",
     "requires_alpine": false,
     "requires": [

@@ -2,6 +2,11 @@
     "name": "timeline",
     "version": "1.0.0",
     "description": "Timeline component with vertical/horizontal layouts, animations, and multiple event types.",
+    "categories": [
+        "ui",
+        "data",
+        "layout"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

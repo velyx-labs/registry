@@ -35,6 +35,7 @@ class ComponentController extends Controller
                     'description' => $data['meta']['description'],
                     'requires_alpine' => $data['meta']['requires_alpine'],
                     'requires' => $data['meta']['requires'],
+                    'categories' => $data['meta']['categories'],
                 ];
             }
 

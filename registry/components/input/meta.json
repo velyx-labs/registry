@@ -2,6 +2,11 @@
     "name": "input",
     "version": "1.0.0",
     "description": "Form input field with label, error handling, password toggle, and icons.",
+    "categories": [
+        "forms",
+        "ui",
+        "input"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

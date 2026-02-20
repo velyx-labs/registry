@@ -2,6 +2,11 @@
     "name": "tabs",
     "version": "1.0.0",
     "description": "A tabs component with main container and sub-components.",
+    "categories": [
+        "ui",
+        "interactive",
+        "layout"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

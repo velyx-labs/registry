@@ -2,6 +2,11 @@
     "name": "toast",
     "version": "1.0.0",
     "description": "Toast notification system with multiple variants, positions, and auto-dismissal.",
+    "categories": [
+        "ui",
+        "feedback",
+        "overlay"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

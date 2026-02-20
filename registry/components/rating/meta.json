@@ -2,6 +2,11 @@
     "name": "rating",
     "version": "1.0.0",
     "description": "Star rating component with half-star support, hover effects, and value display.",
+    "categories": [
+        "ui",
+        "forms",
+        "interactive"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

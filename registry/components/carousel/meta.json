@@ -2,6 +2,11 @@
     "name": "carousel",
     "version": "1.0.0",
     "description": "Image carousel with autoplay, navigation arrows, dots indicator, and captions.",
+    "categories": [
+        "ui",
+        "media",
+        "interactive"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

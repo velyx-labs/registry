@@ -2,6 +2,11 @@
     "name": "range-slider",
     "version": "1.0.0",
     "description": "Range slider component with single and double handle modes, custom styling.",
+    "categories": [
+        "ui",
+        "forms",
+        "input"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [

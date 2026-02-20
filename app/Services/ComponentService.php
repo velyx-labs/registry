@@ -128,6 +128,7 @@ class ComponentService
                 'requires_alpine' => $meta['requires_alpine'] ?? false,
                 'description' => $meta['description'] ?? '',
                 'laravel' => $meta['laravel'] ?? '>=10',
+                'categories' => $meta['categories'] ?? [],
             ],
         ];
     }

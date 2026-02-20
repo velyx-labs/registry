@@ -2,6 +2,11 @@
     "name": "alert",
     "version": "1.0.0",
     "description": "Alert component with variants, icons, and optional dismissible functionality.",
+    "categories": [
+        "ui",
+        "feedback",
+        "interactive"
+    ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
