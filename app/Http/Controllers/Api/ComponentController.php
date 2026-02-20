@@ -18,10 +18,28 @@ class ComponentController extends Controller
     }
 
     /**
+     * Format component data for API response
+     */
+    protected function formatComponentData(string $name, array $data): array
+    {
+        return [
+            'name' => $name,
+            'latest' => $data['latest'],
+            'versions' => $data['versions'],
+            'description' => $data['meta']['description'],
+            'requires_alpine' => $data['meta']['requires_alpine'],
+            'requires' => $data['meta']['requires'],
+            'categories' => $data['meta']['categories'],
+            'files' => $data['meta']['files'] ?? [],
+            'laravel' => $data['meta']['laravel'],
+        ];
+    }
+
+    /**
      * GET /api/v1/components
      * List all available components
      */
-    public function index(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
         try {
             $components = $this->componentService->getAllComponents();
@@ -29,17 +47,7 @@ class ComponentController extends Controller
             // Return simplified list for index endpoint
             $componentList = [];
             foreach ($components as $name => $data) {
-                $componentList[] = [
-                    'name' => $name,
-                    'latest' => $data['latest'],
-                    'versions' => $data['versions'],
-                    'description' => $data['meta']['description'],
-                    'requires_alpine' => $data['meta']['requires_alpine'],
-                    'requires' => $data['meta']['requires'],
-                    'categories' => $data['meta']['categories'],
-                    'files' => $data['files'],
-                    'laravel' => $data['meta']['laravel'],
-                ];
+                $componentList[] = $this->formatComponentData($name, $data);
             }
 
             return response()->json([
@@ -88,7 +96,7 @@ class ComponentController extends Controller
                 ], Response::HTTP_NOT_FOUND);
             }
 
-            return response()->json($component);
+            return response()->json($this->formatComponentData($name, $component));
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Internal server error',

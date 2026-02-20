@@ -129,6 +129,7 @@ class ComponentService
                 'description' => $meta['description'] ?? '',
                 'laravel' => $meta['laravel'] ?? '>=10',
                 'categories' => $meta['categories'] ?? [],
+                'files' => $meta['files'] ?? [],
             ],
         ];
     }
