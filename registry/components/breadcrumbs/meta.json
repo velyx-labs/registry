@@ -9,6 +9,12 @@
     ],
     "laravel": ">=10",
     "requires_alpine": false,
+    "files": [
+        {
+            "path": "breadcrumbs.blade.php",
+            "type": "blade"
+        }
+    ],
     "requires": [
         "mallardduck/blade-lucide-icons"
     ]

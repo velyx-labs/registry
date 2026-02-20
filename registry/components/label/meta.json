@@ -8,5 +8,11 @@
     ],
     "laravel": ">=10",
     "requires_alpine": false,
+    "files": [
+        {
+            "path": "label.blade.php",
+            "type": "blade"
+        }
+    ],
     "requires": []
 }
