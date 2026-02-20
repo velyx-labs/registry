@@ -48,7 +48,7 @@ class DocsController extends Controller
 
         // Find component by slug (case-insensitive, ignores hyphens)
         $componentKey = collect($validComponents)
-            ->first(fn(string $key) => str_replace('-', '', $key) === $slug);
+            ->first(fn (string $key) => str_replace('-', '', $key) === $slug);
 
         if (! $componentKey) {
             abort(404);
