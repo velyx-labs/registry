@@ -1,0 +1,21 @@
+{
+    "name": "breadcrumbs",
+    "version": "1.0.0",
+    "description": "Navigation breadcrumb component with customizable separators and links.",
+    "categories": [
+        "ui",
+        "navigation",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "breadcrumbs.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

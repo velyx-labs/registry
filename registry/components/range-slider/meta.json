@@ -1,0 +1,25 @@
+{
+    "name": "range-slider",
+    "version": "1.0.0",
+    "description": "Range slider component with single and double handle modes, custom styling.",
+    "categories": [
+        "ui",
+        "forms",
+        "input"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "range-slider.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "range-slider.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

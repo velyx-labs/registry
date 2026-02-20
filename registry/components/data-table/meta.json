@@ -1,0 +1,25 @@
+{
+    "name": "data-table",
+    "version": "1.0.0",
+    "description": "Feature-rich data table with search, sorting, filtering, pagination, and loading states.",
+    "categories": [
+        "ui",
+        "data",
+        "forms"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "data-table.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "data-table.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

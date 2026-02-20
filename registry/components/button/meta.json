@@ -1,0 +1,21 @@
+{
+    "name": "button",
+    "version": "1.0.0",
+    "description": "A versatile button component with variants, sizes, and icon support.",
+    "categories": [
+        "ui",
+        "forms",
+        "interactive"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "button.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

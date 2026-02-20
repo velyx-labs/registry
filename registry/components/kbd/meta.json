@@ -1,0 +1,21 @@
+{
+    "name": "kbd",
+    "version": "1.0.0",
+    "description": "Keyboard key component with icon support and multiple variants.",
+    "categories": [
+        "ui",
+        "feedback",
+        "text"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "kbd.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

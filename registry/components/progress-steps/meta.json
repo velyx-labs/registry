@@ -1,0 +1,21 @@
+{
+    "name": "progress-steps",
+    "version": "1.0.0",
+    "description": "Progress steps component with clickable steps, labels, and descriptions.",
+    "categories": [
+        "ui",
+        "navigation",
+        "feedback"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "progress-steps.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

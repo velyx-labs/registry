@@ -1,0 +1,25 @@
+{
+    "name": "popover",
+    "version": "1.0.0",
+    "description": "Popover component with configurable positioning and trigger options.",
+    "categories": [
+        "ui",
+        "overlay",
+        "interactive"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "popover.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "popover.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

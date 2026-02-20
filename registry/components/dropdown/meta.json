@@ -1,0 +1,25 @@
+{
+    "name": "dropdown",
+    "version": "1.0.0",
+    "description": "Dropdown select component with search, keyboard navigation, and multiple options.",
+    "categories": [
+        "ui",
+        "forms",
+        "interactive"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "dropdown.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

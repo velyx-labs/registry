@@ -1,0 +1,25 @@
+{
+    "name": "command-palette",
+    "version": "1.0.0",
+    "description": "Command palette with keyboard shortcuts, search, and command execution.",
+    "categories": [
+        "ui",
+        "interactive",
+        "navigation"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "command-palette.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "command-palette.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

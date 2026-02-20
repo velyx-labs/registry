@@ -1,0 +1,21 @@
+{
+    "name": "progress-bar",
+    "version": "1.0.0",
+    "description": "Progress bar component with variants, sizes, and percentage display.",
+    "categories": [
+        "ui",
+        "feedback",
+        "data"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "progress-bar.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

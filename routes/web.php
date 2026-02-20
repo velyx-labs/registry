@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::livewire('/', 'pages::landing')->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-require __DIR__.'/settings.php';
+// Documentation routes
+Route::prefix('docs')->group(function () {
+    Route::get('/', [DocsController::class, 'show'])->name('docs.show');
+    Route::get('/{page}', [DocsController::class, 'show'])->name('docs.show.page');
+    Route::get('/components/{component}', [DocsController::class, 'component'])->name('components.show');
+});

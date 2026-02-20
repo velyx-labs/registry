@@ -1,0 +1,21 @@
+{
+    "name": "stat-card",
+    "version": "1.0.0",
+    "description": "Statistics card component with trend indicators and customizable variants.",
+    "categories": [
+        "ui",
+        "data",
+        "feedback"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "stat-card.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

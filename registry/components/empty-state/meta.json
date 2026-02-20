@@ -1,0 +1,21 @@
+{
+    "name": "empty-state",
+    "version": "1.0.0",
+    "description": "Empty state component with icon, title, description, and optional action button.",
+    "categories": [
+        "ui",
+        "feedback",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "empty-state.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

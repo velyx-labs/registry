@@ -1,0 +1,37 @@
+{
+    "name": "tabs",
+    "version": "1.0.0",
+    "description": "A tabs component with main container and sub-components.",
+    "categories": [
+        "ui",
+        "interactive",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "list.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "tabs.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "tabs.js",
+            "type": "js"
+        },
+        {
+            "path": "trigger.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

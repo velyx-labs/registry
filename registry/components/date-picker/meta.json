@@ -1,0 +1,25 @@
+{
+    "name": "date-picker",
+    "version": "1.0.0",
+    "description": "Date picker with calendar interface, date formatting, and validation.",
+    "categories": [
+        "ui",
+        "forms",
+        "input"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "date-picker.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "date-picker.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

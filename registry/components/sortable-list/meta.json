@@ -1,0 +1,25 @@
+{
+    "name": "sortable-list",
+    "version": "1.0.0",
+    "description": "Drag-and-drop sortable list component with handles and animations.",
+    "categories": [
+        "ui",
+        "interactive",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "sortable-list.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "sortable-list.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

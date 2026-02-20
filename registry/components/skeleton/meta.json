@@ -1,0 +1,21 @@
+{
+    "name": "skeleton",
+    "version": "1.0.0",
+    "description": "Skeleton loading component with multiple variants and customizable shapes.",
+    "categories": [
+        "ui",
+        "feedback",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "skeleton.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

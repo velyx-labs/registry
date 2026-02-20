@@ -1,0 +1,21 @@
+{
+    "name": "avatar",
+    "version": "1.0.0",
+    "description": "User avatar with image fallback, initials, and status indicators.",
+    "categories": [
+        "ui",
+        "media",
+        "feedback"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "avatar.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}

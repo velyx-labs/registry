@@ -1,0 +1,25 @@
+{
+    "name": "accordion",
+    "version": "1.0.0",
+    "description": "Collapsible accordion component with smooth animations and multiple item support.",
+    "categories": [
+        "ui",
+        "interactive",
+        "layout"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "accordion.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "accordion.js",
+            "type": "js"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}
