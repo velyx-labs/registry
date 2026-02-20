@@ -67,6 +67,8 @@ class ComponentService
 
     /**
      * Get component with file contents (for download endpoint)
+     *
+     * @throws ComponentNotFoundException
      */
     public function getComponentWithFiles(string $name, ?string $version = null): array
     {
@@ -94,6 +96,8 @@ class ComponentService
 
     /**
      * Get versions data for a component
+     *
+     * @throws ComponentNotFoundException
      */
     public function getVersions(string $name): array
     {
@@ -204,16 +208,31 @@ class ComponentService
     {
         $files = [];
         $filesInDir = glob($versionPath.'/*');
+        $bladeFiles = [];
 
+        // First pass: collect all files and identify blade files
         foreach ($filesInDir as $filePath) {
             $filename = basename($filePath);
 
             if (str_ends_with($filename, '.blade.php')) {
-                $files['resources/views/components/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
+                $bladeFiles[] = $filename;
             } elseif (str_ends_with($filename, '.js')) {
-                $files['resources/js/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
+                $files['resources/js/ui'.'/'.$filename] = file_get_contents($filePath);
             } elseif (str_ends_with($filename, '.css')) {
-                $files['resources/css/ui/'.$name.'/'.$filename] = file_get_contents($filePath);
+                $files['resources/css/ui/'.'/'.$filename] = file_get_contents($filePath);
+            }
+        }
+
+        // Handle blade files based on component structure
+        if (count($bladeFiles) === 1) {
+            // Simple component: single file goes directly in ui/ folder
+            $filename = $bladeFiles[0];
+            $componentFileName = $name.'.blade.php';
+            $files['resources/views/components/ui/'.$componentFileName] = file_get_contents($versionPath.'/'.$filename);
+        } else {
+            // Complex component: multiple files go in a subfolder
+            foreach ($bladeFiles as $filename) {
+                $files['resources/views/components/ui/'.$name.'/'.$filename] = file_get_contents($versionPath.'/'.$filename);
             }
         }
 

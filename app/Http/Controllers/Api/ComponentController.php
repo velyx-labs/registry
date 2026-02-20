@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\ComponentNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ComponentShowRequest;
 use App\Http\Requests\ComponentVersionsRequest;
@@ -34,6 +35,8 @@ class ComponentController extends Controller
      * Query parameters:
      * - version: Optional version to retrieve (default: latest)
      * - include: Optional includes (e.g., ?include=files to load file contents)
+     *
+     * @throws ComponentNotFoundException
      */
     public function show(ComponentShowRequest $request, string $name): ComponentResource
     {
@@ -50,6 +53,8 @@ class ComponentController extends Controller
     /**
      * GET /api/v1/components/{name}/versions
      * Get available versions for a component
+     *
+     * @throws ComponentNotFoundException
      */
     public function versions(ComponentVersionsRequest $request, string $name): ComponentVersionResource
     {
