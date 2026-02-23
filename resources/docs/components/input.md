@@ -10,13 +10,13 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Basic Input
 
-```blade
+```php
 <x-ui.input type="text" placeholder="Enter your name" />
 ```
 
 ### With Label
 
-```blade
+```php
 <div>
     <x-ui.label for="email">Email</x-ui.label>
     <x-ui.input id="email" type="email" placeholder="you@example.com" />
@@ -25,7 +25,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Input Types
 
-```blade
+```php
 <!-- Text -->
 <x-ui.input type="text" />
 
@@ -53,7 +53,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### With Livewire
 
-```blade
+```php
 <x-ui.input
     type="text"
     wire:model="name"
@@ -63,13 +63,13 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Disabled State
 
-```blade
+```php
 <x-ui.input disabled placeholder="Disabled input" />
 ```
 
 ### With Helper Text
 
-```blade
+```php
 <div>
     <x-ui.label for="password">Password</x-ui.label>
     <x-ui.input id="password" type="password" />
@@ -81,7 +81,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### With Error State
 
-```blade
+```php
 <div>
     <x-ui.label for="email">Email</x-ui.label>
     <x-ui.input
@@ -112,7 +112,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Search Input
 
-```blade
+```php
 <div class="relative">
     <x-ui.input
         type="search"
@@ -127,7 +127,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Input with Icon
 
-```blade
+```php
 <div class="relative">
     <x-ui.input type="text" class="pr-10" placeholder="Username" />
     <div class="absolute right-3 top-1/2 -translate-y-1/2">
@@ -138,7 +138,7 @@ The input component is available at `resources/views/components/ui/input.blade.p
 
 ### Form Group
 
-```blade
+```php
 <div class="space-y-4">
     <div>
         <x-ui.label for="first-name">First Name</x-ui.label>
@@ -163,14 +163,14 @@ Inputs include built-in accessibility features:
 
 ### Proper Labeling
 
-```blade
+```php
 <label for="username">Username</label>
 <input id="username" type="text" aria-required="true">
 ```
 
 ### Error Announcements
 
-```blade
+```php
 <input
     id="email"
     type="email"
@@ -184,7 +184,7 @@ Inputs include built-in accessibility features:
 
 ### Descriptive Help
 
-```blade
+```php
 <input
     id="password"
     type="password"
@@ -208,7 +208,7 @@ public string $email = '';
 public string $password = '';
 ```
 
-```blade
+```php
 // In your view
 <x-ui.input
     wire:model="email"

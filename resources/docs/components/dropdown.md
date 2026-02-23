@@ -6,7 +6,7 @@ Dropdowns display a list of actions or options in a compact menu, triggered by a
 
 The dropdown component requires Alpine.js. Include Alpine in your layout:
 
-```blade
+```php
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
@@ -14,7 +14,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Basic Dropdown
 
-```blade
+```php
 <x-ui.dropdown>
     <x-slot:trigger>
         <x-ui.button>
@@ -33,7 +33,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Dropdown with Icon Trigger
 
-```blade
+```php
 <x-ui.dropdown align="end">
     <x-slot:trigger>
         <button class="p-2 hover:bg-accent rounded-md">
@@ -60,7 +60,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Split Button
 
-```blade
+```php
 <div class="flex -space-x-px">
     <x-ui.button rounded-r="none">Save</x-ui.button>
 
@@ -92,7 +92,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### User Menu
 
-```blade
+```php
 <x-ui.dropdown align="end">
     <x-slot:trigger>
         <button class="flex items-center gap-2">
@@ -137,7 +137,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Table Actions
 
-```blade
+```php
 <table>
     <tbody>
         @foreach($users as $user)
@@ -174,7 +174,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Share Menu
 
-```blade
+```php
 <x-ui.dropdown>
     <x-slot:trigger>
         <x-ui.button variant="outline" size="sm">
@@ -213,7 +213,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 ### Filter Dropdown
 
-```blade
+```php
 <x-ui.dropdown>
     <xslot:trigger>
         <x-ui.button variant="outline">
@@ -264,7 +264,7 @@ The dropdown component requires Alpine.js. Include Alpine in your layout:
 
 The dropdown uses Alpine.js for state management:
 
-```blade
+```php
 <div x-data="{ open: false }">
     <!-- Trigger -->
     <button @click="open = !open" @click.away="open = false">

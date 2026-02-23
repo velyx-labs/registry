@@ -32,7 +32,7 @@ All interactive components are fully keyboard accessible:
 
 Components automatically manage focus for better UX:
 
-```blade
+```php
 <!-- Focus is trapped in modal -->
 <dialog>
   <form method="dialog">
@@ -48,7 +48,7 @@ Velyx components use semantic ARIA attributes:
 
 ### Roles
 
-```blade
+```php
 <!-- Accordion with proper roles -->
 <div role="region" aria-labelledby="accordion-heading">
   <button aria-expanded="true" aria-controls="panel-1">
@@ -62,7 +62,7 @@ Velyx components use semantic ARIA attributes:
 
 ### Labels
 
-```blade
+```php
 <!-- Proper form labeling -->
 <label for="email">Email address</label>
 <input
@@ -77,7 +77,7 @@ Velyx components use semantic ARIA attributes:
 
 ### Live Regions
 
-```blade
+```php
 <!-- Toast announcements -->
 <div
   role="status"
@@ -94,7 +94,7 @@ All components provide screen reader-friendly text:
 
 ### Icon-Only Buttons
 
-```blade
+```php
 <button aria-label="Close modal">
   <x-icon.close />
 </button>
@@ -102,7 +102,7 @@ All components provide screen reader-friendly text:
 
 ### Hidden Visual Labels
 
-```blade
+```php
 <button>
   <x-icon.search />
   <span class="sr-only">Search</span>
@@ -111,7 +111,7 @@ All components provide screen reader-friendly text:
 
 ### Descriptive Links
 
-```blade
+```php
 <a href="/docs" aria-label="Read the documentation">
   <x-icon.book />
 </a>
@@ -136,7 +136,7 @@ Use tools to verify contrast:
 
 Velyx uses proper HTML5 semantic elements:
 
-```blade
+```php
 <!-- Use correct element types -->
 <nav aria-label="Main navigation">
   <ul>
@@ -165,7 +165,7 @@ Velyx uses proper HTML5 semantic elements:
 
 All form inputs have proper labeling:
 
-```blade
+```php
 <fieldset>
   <legend class="text-lg font-semibold">Notification Preferences</legend>
 
@@ -183,7 +183,7 @@ All form inputs have proper labeling:
 
 ### Error Messages
 
-```blade
+```php
 <div>
   <label for="password">Password</label>
   <input
@@ -204,7 +204,7 @@ All form inputs have proper labeling:
 
 Include skip links for keyboard users:
 
-```blade
+```php
 <a
   href="#main-content"
   class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"

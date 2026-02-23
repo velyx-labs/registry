@@ -1,7 +1,7 @@
 import './utils/clipboard'
 import accordion from './ui/accordion'
-import tabs from './ui/tabs'
 import input from './ui/input'
+import tabs from './ui/tabs'
 
 document.addEventListener('alpine:init', () => {
     // initDarkMode();

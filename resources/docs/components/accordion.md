@@ -6,7 +6,7 @@ Accordions allow users to expand and collapse content panels, useful for organiz
 
 The accordion component requires Alpine.js. Include Alpine in your layout:
 
-```blade
+```php
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
@@ -14,7 +14,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### Basic Accordion
 
-```blade
+```php
 <x-ui.accordion :items="[
     ['title' => 'What is Velyx?', 'content' => 'Velyx is a UI component library...'],
     ['title' => 'How do I install it?', 'content' => 'Run the installation command...'],
@@ -24,7 +24,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### With Rich Content
 
-```blade
+```php
 <x-ui.accordion :items="[
     [
         'title' => 'Getting Started',
@@ -39,7 +39,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### Multiple Open Panels
 
-```blade
+```php
 <x-ui.accordion
     :items="$items"
     :multiple="true"
@@ -48,7 +48,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### Default Open Panel
 
-```blade
+```php
 <x-ui.accordion
     :items="$items"
     defaultOpen="0"
@@ -67,7 +67,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### FAQ Section
 
-```blade
+```php
 <section class="max-w-2xl mx-auto">
     <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
 
@@ -94,7 +94,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### Documentation Sections
 
-```blade
+```php
 <div class="space-y-4">
     <x-ui.accordion :items="[
         [
@@ -115,7 +115,7 @@ The accordion component requires Alpine.js. Include Alpine in your layout:
 
 ### Nested Content
 
-```blade
+```php
 <x-ui.accordion :items="[
     [
         'title' => 'Product Features',

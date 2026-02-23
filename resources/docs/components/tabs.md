@@ -6,7 +6,7 @@ Tabs organize content into separate panels, allowing users to switch between dif
 
 The tabs component requires Alpine.js. Include Alpine in your layout:
 
-```blade
+```php
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
@@ -14,7 +14,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Basic Tabs
 
-```blade
+```php
 <x-ui.tabs>
     <x-ui.tabs.list>
         <x-ui.tabs.trigger value="overview">Overview</x-ui.tabs.trigger>
@@ -38,7 +38,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### With Icons
 
-```blade
+```php
 <x-ui.tabs>
     <x-ui.tabs.list>
         <x-ui.tabs.trigger value="home">
@@ -71,7 +71,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Vertical Tabs
 
-```blade
+```php
 <div class="flex gap-4">
     <x-ui.tabs orientation="vertical" class="w-48">
         <x-ui.tabs.list>
@@ -89,7 +89,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Default Active Tab
 
-```blade
+```php
 <x-ui.tabs default-value="features">
     <!-- ... -->
 </x-ui.tabs>
@@ -121,7 +121,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Product Details
 
-```blade
+```php
 <x-ui.tabs>
     <x-ui.tabs.list>
         <x-ui.tabs.trigger value="description">Description</x-ui.tabs.trigger>
@@ -164,7 +164,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Settings Panel
 
-```blade
+```php
 <div class="max-w-2xl">
     <h2 class="text-2xl font-bold mb-6">Settings</h2>
 
@@ -230,7 +230,7 @@ The tabs component requires Alpine.js. Include Alpine in your layout:
 
 ### Code Examples
 
-```blade
+```php
 <x-ui.tabs>
     <x-ui.tabs.list>
         <x-ui.tabs.trigger value="php">PHP</x-ui.tabs.trigger>
