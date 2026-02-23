@@ -10,7 +10,7 @@ The button component is available as a Blade component at `resources/views/compo
 
 ### Basic Button
 
-```blade
+```php
 <x-ui.button>Click me</x-ui.button>
 ```
 
@@ -18,7 +18,7 @@ The button component is available as a Blade component at `resources/views/compo
 
 Choose from multiple visual styles:
 
-```blade
+```php
 <x-ui.button variant="primary">Primary</x-ui.button>
 <x-ui.button variant="secondary">Secondary</x-ui.button>
 <x-ui.button variant="outline">Outline</x-ui.button>
@@ -31,7 +31,7 @@ Choose from multiple visual styles:
 
 Control the button size:
 
-```blade
+```php
 <x-ui.button size="xs">Extra Small</x-ui.button>
 <x-ui.button size="sm">Small</x-ui.button>
 <x-ui.button size="md">Medium</x-ui.button>
@@ -43,7 +43,7 @@ Control the button size:
 
 Add icons to buttons:
 
-```blade
+```php
 <!-- Left icon -->
 <x-ui.button icon="save">Save</x-ui.button>
 
@@ -58,7 +58,7 @@ Add icons to buttons:
 
 Make buttons fully rounded:
 
-```blade
+```php
 <x-ui.button pill>Sign Up</x-ui.button>
 ```
 
@@ -66,7 +66,7 @@ Make buttons fully rounded:
 
 Full-width buttons for mobile:
 
-```blade
+```php
 <x-ui.button block>Full Width</x-ui.button>
 ```
 
@@ -74,7 +74,7 @@ Full-width buttons for mobile:
 
 Render as an anchor tag:
 
-```blade
+```php
 <x-ui.button href="/docs" variant="outline">
   Read Docs
 </x-ui.button>
@@ -82,7 +82,7 @@ Render as an anchor tag:
 
 ### Disabled State
 
-```blade
+```php
 <x-ui.button disabled>Disabled</x-ui.button>
 ```
 
@@ -90,7 +90,7 @@ Render as an anchor tag:
 
 Works with Livewire loading states:
 
-```blade
+```php
 <x-ui.button action="save">
   Save Changes
 </x-ui.button>
@@ -122,7 +122,7 @@ Works with Livewire loading states:
 
 ### Button Group
 
-```blade
+```php
 <div class="flex gap-2">
   <x-ui.button>Cancel</x-ui.button>
   <x-ui.button variant="primary">Confirm</x-ui.button>
@@ -131,7 +131,7 @@ Works with Livewire loading states:
 
 ### Icon Actions
 
-```blade
+```php
 <div class="flex gap-2">
   <x-ui.button variant="ghost" icon="edit" iconOnly size="sm" title="Edit" />
   <x-ui.button variant="ghost" icon="trash-2" iconOnly size="sm" title="Delete" />
@@ -141,7 +141,7 @@ Works with Livewire loading states:
 
 ### Confirmation Actions
 
-```blade
+```php
 <div class="flex items-center justify-between p-4 border rounded-lg">
   <div>
     <h3 class="font-semibold">Delete account?</h3>
