@@ -10,13 +10,13 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Basic Badge
 
-```blade
+```php
 <x-ui.badge>Default</x-ui.badge>
 ```
 
 ### Variants
 
-```blade
+```php
 <x-ui.badge variant="default">Default</x-ui.badge>
 <x-ui.badge variant="primary">Primary</x-ui.badge>
 <x-ui.badge variant="secondary">Secondary</x-ui.badge>
@@ -26,7 +26,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### With Icons
 
-```blade
+```php
 <x-ui.badge>
     <x-icon.check class="w-3 h-3 mr-1" />
     Verified
@@ -35,7 +35,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Sizes
 
-```blade
+```php
 <x-ui.badge size="sm">Small</x-ui.badge>
 <x-ui.badge>Default</x-ui.badge>
 <x-ui.badge size="lg">Large</x-ui.badge>
@@ -43,7 +43,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Rounded/Pill
 
-```blade
+```php
 <x-ui.badge pill>Pill Badge</x-ui.badge>
 ```
 
@@ -59,7 +59,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Status Indicators
 
-```blade
+```php
 <div class="space-x-2">
     <x-ui.badge variant="destructive">Error</x-ui.badge>
     <x-ui.badge variant="default">Pending</x-ui.badge>
@@ -70,7 +70,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### User Status
 
-```blade
+```php
 <div class="flex items-center gap-2">
     <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
         <span class="text-sm font-medium">JD</span>
@@ -84,7 +84,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Notification Badge
 
-```blade
+```php
 <div class="relative">
     <x-icon.bell class="w-6 h-6" />
     <x-ui.badge
@@ -99,7 +99,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Feature Tags
 
-```blade
+```php
 <div class="space-y-4">
     <h3 class="font-semibold">Features</h3>
     <div class="flex flex-wrap gap-2">
@@ -113,7 +113,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Pricing Plans
 
-```blade
+```php
 <div class="border rounded-lg p-6">
     <div class="flex items-start justify-between mb-4">
         <div>
@@ -128,7 +128,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Version Numbers
 
-```blade
+```php
 <div class="flex items-center gap-2">
     <span class="font-semibold">Velyx</span>
     <x-ui.badge variant="secondary" size="sm">v1.0.0</x-ui.badge>
@@ -138,7 +138,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### Count Statistics
 
-```blade
+```php
 <div class="grid grid-cols-3 gap-4">
     <div class="text-center">
         <x-ui.badge variant="primary" size="lg" class="mb-2">1,234</x-ui.badge>
@@ -157,7 +157,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 ### With Links
 
-```blade
+```php
 <a href="/docs">
     <x-ui.badge variant="outline" class="hover:bg-accent cursor-pointer">
         Documentation
@@ -170,7 +170,7 @@ The badge component is available at `resources/views/components/ui/badge.blade.p
 
 Create custom status badges:
 
-```blade
+```php
 <!-- Success -->
 <x-ui.badge class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
     Success
@@ -215,7 +215,7 @@ Customize badge styles:
 
 Badges should be used for supplemental information:
 
-```blade
+```php
 <!-- Good - supplement content -->
 <div>
     <span>Status: </span>
