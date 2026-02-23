@@ -65,7 +65,7 @@ Dark mode is automatically supported. Define your dark theme colors in the `.dar
 
 ### Implementing Dark Mode Toggle
 
-```blade
+```php
 <button
     x-data="themeToggle"
     @click="toggleTheme"

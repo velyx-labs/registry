@@ -121,7 +121,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
 Add this to your layout file:
 
-```blade
+```php
 @livewireStyles
 </head>
 <body>
