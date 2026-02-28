@@ -5,7 +5,8 @@ Get started with Velyx in your Laravel project with a few simple steps.
 ## Requirements
 
 - PHP 8.2 or higher
-- Laravel 11 or higher
+- Laravel 10 or higher
+- Livewire 3 or higher
 - Composer
 - Node.js 18+ and NPM/PNPM
 
