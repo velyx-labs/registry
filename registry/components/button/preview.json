@@ -1,0 +1,86 @@
+{
+  "default": {
+    "variant": "primary",
+    "size": "md"
+  },
+  "variants": [
+    {
+      "name": "primary",
+      "props": {
+        "variant": "primary"
+      }
+    },
+    {
+      "name": "secondary",
+      "props": {
+        "variant": "secondary"
+      }
+    },
+    {
+      "name": "destructive",
+      "props": {
+        "variant": "destructive"
+      }
+    },
+    {
+      "name": "outline",
+      "props": {
+        "variant": "outline"
+      }
+    },
+    {
+      "name": "ghost",
+      "props": {
+        "variant": "ghost"
+      }
+    },
+    {
+      "name": "link",
+      "props": {
+        "variant": "link"
+      }
+    },
+    {
+      "name": "small",
+      "props": {
+        "variant": "primary",
+        "size": "sm"
+      }
+    },
+    {
+      "name": "large",
+      "props": {
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "name": "disabled",
+      "props": {
+        "variant": "primary",
+        "disabled": true
+      }
+    },
+    {
+      "name": "pill",
+      "props": {
+        "variant": "primary",
+        "pill": true
+      }
+    },
+    {
+      "name": "loading",
+      "props": {
+        "variant": "primary",
+        "loading": true
+      }
+    },
+    {
+      "name": "icon",
+      "props": {
+        "variant": "primary",
+        "icon": "arrow-right"
+      }
+    }
+  ]
+}

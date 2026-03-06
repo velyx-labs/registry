@@ -263,4 +263,61 @@ class ComponentService
 
         return in_array($version, $versionsData['versions']);
     }
+
+    /**
+     * Get the filesystem path for a component
+     */
+    public function getComponentPath(string $name): string
+    {
+        return $this->componentsPath.'/'.$name;
+    }
+
+    /**
+     * Get component metadata (alias for getComponentMetadata without version)
+     */
+    public function getMetadata(string $name): array
+    {
+        return $this->getComponentMetadata($name) ?? [];
+    }
+
+    /**
+     * Get preview configuration for a component
+     */
+    public function getPreviewConfig(string $name): array
+    {
+        $componentPath = $this->getComponentPath($name);
+        $previewFile = $componentPath.'/preview.json';
+
+        if (! file_exists($previewFile)) {
+            return [];
+        }
+
+        $content = file_get_contents($previewFile);
+        $config = json_decode($content, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return [];
+        }
+
+        return $config;
+    }
+
+    /**
+     * Check if component has preview configuration
+     */
+    public function hasPreviewConfig(string $name): bool
+    {
+        $componentPath = $this->getComponentPath($name);
+        $previewFile = $componentPath.'/preview.json';
+
+        return file_exists($previewFile);
+    }
+
+    /**
+     * Check if component exists (alias for componentExists)
+     */
+    public function exists(string $name): bool
+    {
+        return $this->componentExists($name);
+    }
 }
