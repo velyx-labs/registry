@@ -2,7 +2,7 @@
 /*@import "./velyx.css";*/
 
 @import "./torchlight.css";
-@import "./ui/code-snippet.css";
+@import "./ui/code-block.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

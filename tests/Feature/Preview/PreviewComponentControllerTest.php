@@ -72,6 +72,14 @@ test('it resolves code-snippet dedicated preview view when available', function 
         ->assertViewHas('previewView', 'preview.components.code-snippet.index');
 });
 
+test('it resolves code-block dedicated preview view when available', function () {
+    $response = $this->get('/preview/code-block');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.code-block.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
