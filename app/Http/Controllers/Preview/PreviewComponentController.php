@@ -29,32 +29,17 @@ class PreviewComponentController extends Controller
             abort(404, "Component '{$componentName}' not found.");
         }
 
-        // Get default props from preview.json
-        $defaultProps = $this->getDefaultProps($componentName);
-
         // Get override props from query parameters
-        $overrides = $request->except(['variant', 'colorScheme', 'theme']);
-        $props = array_merge($defaultProps, $overrides);
-
-        // Get available variants
-        $variants = $this->getVariants($componentName);
-
-        // Determine current variant
-        $variant = $request->query('variant', 'default');
-        if (isset($variants[$variant])) {
-            $props = array_merge($props, $variants[$variant]);
-        }
+        $props = $request->all();
 
         // Check if this is an interactive component
         $isInteractive = $this->isInteractiveComponent($componentName);
-        $previewView = $this->resolvePreviewView($componentName, (string) $variant, $isInteractive);
+        $previewView = $this->resolvePreviewView($componentName, $isInteractive);
         $colorScheme = $this->resolveColorScheme($request);
 
         return Response::view('preview.template', [
             'component' => $componentName,
             'props' => $props,
-            'variants' => $variants,
-            'currentVariant' => $variant,
             'isInteractive' => $isInteractive,
             'previewView' => $previewView,
             'colorScheme' => $colorScheme,
@@ -83,31 +68,6 @@ class PreviewComponentController extends Controller
             ->toString();
     }
 
-    /**
-     * Get default props from component's preview.json
-     */
-    protected function getDefaultProps(string $component): array
-    {
-        $previewConfig = $this->getPreviewConfig($component);
-
-        return $previewConfig['default'] ?? [];
-    }
-
-    /**
-     * Get available variants from component's preview.json
-     */
-    protected function getVariants(string $component): array
-    {
-        $previewConfig = $this->getPreviewConfig($component);
-
-        $variants = $this->normalizeVariants($previewConfig['variants'] ?? []);
-
-        // Always include default variant
-        return array_merge([
-            'default' => $previewConfig['default'] ?? [],
-        ], $variants);
-    }
-
     protected function normalizeVariants(array $variants): array
     {
         if (array_is_list($variants)) {
@@ -128,9 +88,9 @@ class PreviewComponentController extends Controller
         return $variants;
     }
 
-    protected function resolvePreviewView(string $component, string $variant, bool $isInteractive): string
+    protected function resolvePreviewView(string $component, bool $isInteractive): string
     {
-        $variantView = "preview.components.{$component}.{$variant}";
+        $variantView = "preview.components.{$component}";
         if (view()->exists($variantView)) {
             return $variantView;
         }
