@@ -11,7 +11,19 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "accordion.blade.php",
+            "path": "accordion/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "accordion/item.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "accordion/trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "accordion/content.blade.php",
             "type": "blade"
         },
         {

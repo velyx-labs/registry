@@ -24,3 +24,5 @@ yarn-error.log
 /.agents
 /.claude
 !/CLAUDE.md
+rr
+.rr.yaml

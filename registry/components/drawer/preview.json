@@ -1,0 +1,68 @@
+{
+  "default": {
+    "position": "right",
+    "width": "md",
+    "overlay": true,
+    "closeOnEscape": true,
+    "closeOnClickOutside": true
+  },
+  "variants": [
+    {
+      "name": "right",
+      "props": {
+        "position": "right",
+        "width": "md"
+      }
+    },
+    {
+      "name": "left",
+      "props": {
+        "position": "left",
+        "width": "md"
+      }
+    },
+    {
+      "name": "top",
+      "props": {
+        "position": "top",
+        "height": "md"
+      }
+    },
+    {
+      "name": "bottom",
+      "props": {
+        "position": "bottom",
+        "height": "md"
+      }
+    },
+    {
+      "name": "small-width",
+      "props": {
+        "position": "right",
+        "width": "sm"
+      }
+    },
+    {
+      "name": "large-width",
+      "props": {
+        "position": "right",
+        "width": "lg"
+      }
+    },
+    {
+      "name": "full-width",
+      "props": {
+        "position": "right",
+        "width": "full"
+      }
+    },
+    {
+      "name": "no-overlay",
+      "props": {
+        "position": "right",
+        "width": "md",
+        "overlay": false
+      }
+    }
+  ]
+}
