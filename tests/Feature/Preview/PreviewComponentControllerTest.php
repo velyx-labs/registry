@@ -42,8 +42,6 @@ test('it resolves avatar-group dedicated preview view when available', function 
 
 test('it resolves badge dedicated preview view when available', function () {
     $response = $this->get('/preview/badge');
-test('it resolves badge dedicated preview view when available', function () {
-    $response = $this->get('/preview/badge');
 
     $response->assertOk()
         ->assertViewIs('preview.template')
@@ -62,7 +60,7 @@ test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
     $response->assertOk()
-        ->assertViewHas('props', fn(array $props): bool => ($props['variant'] ?? null) === 'secondary');
+        ->assertViewHas('props', fn (array $props): bool => ($props['variant'] ?? null) === 'secondary');
 });
 
 test('it receives color scheme from webview query', function () {

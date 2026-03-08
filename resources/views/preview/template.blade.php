@@ -39,7 +39,15 @@
             padding: 0;
             min-height: 100vh;
         }
-
+ .preview-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
     </style>
 </head>
 <body>
