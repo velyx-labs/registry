@@ -8,11 +8,19 @@
         "text"
     ],
     "laravel": ">=10",
-    "requires_alpine": false,
+    "requires_alpine": true,
     "files": [
         {
             "path": "code-snippet.blade.php",
             "type": "blade"
+        },
+        {
+            "path": "code-snippet.js",
+            "type": "js"
+        },
+        {
+            "path": "code-snippet.css",
+            "type": "css"
         }
     ],
     "requires": [
