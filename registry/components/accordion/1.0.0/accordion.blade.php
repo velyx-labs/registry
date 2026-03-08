@@ -9,7 +9,7 @@
     {{ $attributes->merge(['class' => 'w-full divide-y divide-border rounded-lg border border-border bg-background']) }}
 >
     @foreach($items as $index => $item)
-        <div class="accordion-item w-full max-w-full">
+        <div class="w-full max-w-full">
             {{-- Accordion Header --}}
             <button
                 type="button"
