@@ -40,13 +40,13 @@ test('it resolves avatar-group dedicated preview view when available', function 
         ->assertViewHas('previewView', 'preview.components.avatar-group.index');
 });
 
-    test('it resolves badge dedicated preview view when available', function () {
-        $response = $this->get('/preview/badge');
+test('it resolves badge dedicated preview view when available', function () {
+    $response = $this->get('/preview/badge');
 
-        $response->assertOk()
+    $response->assertOk()
         ->assertViewIs('preview.template')
         ->assertViewHas('previewView', 'preview.components.badge.index');
-    });
+});
 
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
