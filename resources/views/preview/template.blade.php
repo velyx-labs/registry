@@ -9,7 +9,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<script>
+      window.addEventListener('message', (event) => {
+          // Allow messages from configured origins
+          const allowedOrigins = [
+              window.location.origin,
+              {{ Illuminate\Support\Js::from(env('PREVIEW_ALLOWED_ORIGINS', [])) }}
+          ].flat();
 
+          if (!allowedOrigins.includes(event.origin)) return;
+
+          if (event.data?.type === 'darkMode') {
+              const isDark = event.data.value;
+              document.documentElement.classList.toggle('dark', isDark);
+          }
+      });
+  </script>
     {{-- Tailwind & app assets --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -23,7 +38,6 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: transparent;
         }
 
         .preview-container {
@@ -166,14 +180,6 @@
                 }
             }
         }
-
-        // Listen for messages from parent
-        window.addEventListener('message', (event) => {
-            if (event.data.type === 'preview:updateProps') {
-                // Update props dynamically
-                console.log('Updating props:', event.data.props);
-            }
-        });
     </script>
 
     @stack('previewScripts')

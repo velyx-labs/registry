@@ -33,7 +33,7 @@ class PreviewComponentController extends Controller
         $defaultProps = $this->getDefaultProps($componentName);
 
         // Get override props from query parameters
-        $overrides = $request->except(['variant']);
+        $overrides = $request->except(['variant', 'colorScheme', 'theme']);
         $props = array_merge($defaultProps, $overrides);
 
         // Get available variants
@@ -48,6 +48,7 @@ class PreviewComponentController extends Controller
         // Check if this is an interactive component
         $isInteractive = $this->isInteractiveComponent($componentName);
         $previewView = $this->resolvePreviewView($componentName, (string) $variant, $isInteractive);
+        $colorScheme = $this->resolveColorScheme($request);
 
         return Response::view('preview.template', [
             'component' => $componentName,
@@ -56,9 +57,22 @@ class PreviewComponentController extends Controller
             'currentVariant' => $variant,
             'isInteractive' => $isInteractive,
             'previewView' => $previewView,
+            'colorScheme' => $colorScheme,
         ])
             ->header('Cache-Control', 'public, max-age=300')
             ->header('X-Preview-Component', $componentName);
+    }
+
+    protected function resolveColorScheme(Request $request): string
+    {
+        $colorScheme = (string) $request->query('colorScheme', $request->query('theme', 'system'));
+        $normalized = strtolower(trim($colorScheme));
+
+        if (! in_array($normalized, ['light', 'dark', 'system'], true)) {
+            return 'system';
+        }
+
+        return $normalized;
     }
 
     protected function normalizeComponentName(string $component): string
