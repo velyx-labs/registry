@@ -317,7 +317,7 @@ class ComponentService
      * Check if component exists (alias for componentExists)
      */
     public function exists(string $name): bool
-    { 
+    {
         return $this->componentExists($name);
     }
 }
