@@ -6,31 +6,46 @@
 
 <div
     x-data="accordion({ multiple: {{ $multiple ? 'true' : 'false' }}, defaultOpen: {{ json_encode($defaultOpen) }} })"
+    data-slot="accordion"
+    data-orientation="vertical"
     {{ $attributes->merge(['class' => 'w-full divide-y divide-border rounded-lg border border-border bg-background']) }}
 >
     @foreach($items as $index => $item)
-        <div class="w-full max-w-full">
+        <div
+            class="w-full max-w-full"
+            data-slot="accordion-item"
+            data-orientation="vertical"
+            :data-state="isOpen({{ $index }}) ? 'open' : 'closed'"
+        >
             {{-- Accordion Header --}}
-            <button
-                type="button"
-                @click="toggle({{ $index }})"
-                :aria-expanded="isOpen({{ $index }})"
-                class="flex w-full min-w-0 items-center justify-between gap-3 px-4 py-4 text-left font-medium text-foreground transition-colors hover:bg-accent"
-            >
-                <span class="min-w-0 flex-1 break-words">{{ $item['question'] ?? $item['title'] ?? 'Item ' . ($index + 1) }}</span>
-                <span
-                    :class="{ 'rotate-180': isOpen({{ $index }}) }"
-                    class="ml-2 shrink-0 text-muted-foreground transition-transform duration-200"
+            <h3 class="flex" data-orientation="vertical" :data-state="isOpen({{ $index }}) ? 'open' : 'closed'">
+                <button
+                    type="button"
+                    @click="toggle({{ $index }})"
+                    :aria-expanded="isOpen({{ $index }})"
+                    data-slot="accordion-trigger"
+                    data-orientation="vertical"
+                    :data-state="isOpen({{ $index }}) ? 'open' : 'closed'"
+                    class="group/accordion-trigger flex w-full min-w-0 items-center justify-between gap-3 px-4 py-4 text-left font-medium text-foreground transition-colors hover:bg-accent"
                 >
-                    <x-dynamic-component component="lucide-chevron-down" class="h-5 w-5" />
-                </span>
-            </button>
+                    <span class="min-w-0 flex-1 break-words">{{ $item['question'] ?? $item['title'] ?? 'Item ' . ($index + 1) }}</span>
+                    <span
+                        :class="{ 'rotate-180': isOpen({{ $index }}) }"
+                        class="ml-2 shrink-0 text-muted-foreground transition-transform duration-200"
+                    >
+                        <x-dynamic-component component="lucide-chevron-down" class="h-5 w-5" />
+                    </span>
+                </button>
+            </h3>
 
             {{-- Accordion Content --}}
             <div
                 x-show="isOpen({{ $index }})"
                 x-collapse
                 x-cloak
+                data-slot="accordion-content"
+                data-orientation="vertical"
+                :data-state="isOpen({{ $index }}) ? 'open' : 'closed'"
                 class="w-full max-w-full"
             >
                 <div class="border-t border-border bg-muted/40 px-4 py-4">
