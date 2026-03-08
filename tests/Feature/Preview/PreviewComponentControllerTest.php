@@ -56,6 +56,14 @@ test('it resolves breadcrumbs dedicated preview view when available', function (
         ->assertViewHas('previewView', 'preview.components.breadcrumbs.index');
 });
 
+test('it resolves card dedicated preview view when available', function () {
+    $response = $this->get('/preview/card');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.card.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 

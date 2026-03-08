@@ -1,0 +1,45 @@
+{
+    "name": "card",
+    "version": "1.0.0",
+    "description": "Composable card component with header, content, footer, action, title, and description slots.",
+    "categories": [
+        "ui",
+        "layout",
+        "forms"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "card/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/header.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/title.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/description.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/action.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "card/footer.blade.php",
+            "type": "blade"
+        }
+    ],
+    "requires": [
+        "mallardduck/blade-lucide-icons"
+    ]
+}
