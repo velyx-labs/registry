@@ -60,7 +60,7 @@ test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
     $response->assertOk()
-        ->assertViewHas('props', fn (array $props): bool => ($props['variant'] ?? null) === 'secondary');
+        ->assertViewHas('props', fn(array $props): bool => ($props['variant'] ?? null) === 'secondary');
 });
 
 test('it receives color scheme from webview query', function () {
