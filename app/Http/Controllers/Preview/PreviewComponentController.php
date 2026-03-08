@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ComponentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class PreviewComponentController extends Controller
@@ -21,8 +22,7 @@ class PreviewComponentController extends Controller
      */
     public function __invoke(Request $request, string $component): HttpResponse
     {
-        // Normalize component name (kebab-case to lowercase for directory lookup)
-        $componentName = strtolower(str_replace(['-', '_'], '', $component));
+        $componentName = $this->normalizeComponentName($component);
 
         // Validate component exists
         if (! $this->componentService->exists($componentName)) {
@@ -47,6 +47,7 @@ class PreviewComponentController extends Controller
 
         // Check if this is an interactive component
         $isInteractive = $this->isInteractiveComponent($componentName);
+        $previewView = $this->resolvePreviewView($componentName, (string) $variant, $isInteractive);
 
         return Response::view('preview.template', [
             'component' => $componentName,
@@ -54,9 +55,18 @@ class PreviewComponentController extends Controller
             'variants' => $variants,
             'currentVariant' => $variant,
             'isInteractive' => $isInteractive,
+            'previewView' => $previewView,
         ])
             ->header('Cache-Control', 'public, max-age=300')
             ->header('X-Preview-Component', $componentName);
+    }
+
+    protected function normalizeComponentName(string $component): string
+    {
+        return Str::of($component)
+            ->replace('_', '-')
+            ->kebab()
+            ->toString();
     }
 
     /**
@@ -76,12 +86,47 @@ class PreviewComponentController extends Controller
     {
         $previewConfig = $this->getPreviewConfig($component);
 
-        $variants = $previewConfig['variants'] ?? [];
+        $variants = $this->normalizeVariants($previewConfig['variants'] ?? []);
 
         // Always include default variant
         return array_merge([
             'default' => $previewConfig['default'] ?? [],
         ], $variants);
+    }
+
+    protected function normalizeVariants(array $variants): array
+    {
+        if (array_is_list($variants)) {
+            $normalized = [];
+
+            foreach ($variants as $variant) {
+                if (! is_array($variant) || ! isset($variant['name']) || ! isset($variant['props']) || ! is_array($variant['props'])) {
+                    continue;
+                }
+
+                $name = (string) $variant['name'];
+                $normalized[$name] = $variant['props'];
+            }
+
+            return $normalized;
+        }
+
+        return $variants;
+    }
+
+    protected function resolvePreviewView(string $component, string $variant, bool $isInteractive): string
+    {
+        $variantView = "preview.components.{$component}.{$variant}";
+        if (view()->exists($variantView)) {
+            return $variantView;
+        }
+
+        $componentView = "preview.components.{$component}.index";
+        if (view()->exists($componentView)) {
+            return $componentView;
+        }
+
+        return $isInteractive ? 'preview.interactive-wrapper' : 'preview.static-wrapper';
     }
 
     /**

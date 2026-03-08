@@ -126,24 +126,19 @@
 
         {{-- Component content --}}
         <div x-data="previewData()" x-init="initPreview()" x-show="loaded" x-cloak>
-            {{-- Render the component --}}
-            @if($isInteractive)
-                @include('preview.interactive-wrapper', [
-                    'component' => $component,
-                    'props' => $props,
-                    'variants' => $variants ?? [],
-                ])
-            @else
-                @include('preview.static-wrapper', [
-                    'component' => $component,
-                    'props' => $props,
-                ])
-            @endif
+            @include($previewView, [
+                'component' => $component,
+                'props' => $props,
+                'variants' => $variants ?? [],
+                'currentVariant' => $currentVariant ?? 'default',
+                'isInteractive' => $isInteractive ?? false,
+            ])
         </div>
 
         {{-- Preview controls for interactive components --}}
-        @if($isInteractive ?? false)
-            @include('preview.controls.' . strtolower($component))
+        @php($controlsView = 'preview.controls.' . strtolower($component))
+        @if(($isInteractive ?? false) && view()->exists($controlsView))
+            @include($controlsView)
         @endif
     </div>
 
