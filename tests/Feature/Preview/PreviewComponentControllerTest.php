@@ -42,6 +42,8 @@ test('it resolves avatar-group dedicated preview view when available', function 
 
 test('it resolves badge dedicated preview view when available', function () {
     $response = $this->get('/preview/badge');
+test('it resolves badge dedicated preview view when available', function () {
+    $response = $this->get('/preview/badge');
 
     $response->assertOk()
         ->assertViewIs('preview.template')
