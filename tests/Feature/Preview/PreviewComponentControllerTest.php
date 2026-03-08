@@ -16,6 +16,22 @@ test('it resolves accordion dedicated preview view when available', function () 
         ->assertViewHas('previewView', 'preview.components.accordion.index');
 });
 
+test('it resolves alert dedicated preview view when available', function () {
+    $response = $this->get('/preview/alert');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.alert.index');
+});
+
+test('it resolves avatar dedicated preview view when available', function () {
+    $response = $this->get('/preview/avatar');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.avatar.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 

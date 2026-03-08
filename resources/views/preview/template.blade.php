@@ -40,95 +40,6 @@
             min-height: 100vh;
         }
 
-        .preview-container {
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* For interactive components that need triggers */
-        .preview-with-trigger {
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* Preview controls panel */
-        .preview-controls {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            z-index: 9999;
-        }
-
-        .preview-controls-panel {
-            background: hsl(var(--background));
-            border: 1px solid hsl(var(--foreground));
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            padding: 0.75rem;
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            max-width: 300px;
-        }
-
-        .preview-button {
-            padding: 0.375rem 0.75rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .preview-button-primary {
-            background: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
-        }
-
-        .preview-button-primary:hover {
-            opacity: 0.9;
-        }
-
-        .preview-button-secondary {
-            background: hsl(var(--secondary));
-            color: hsl(var(--secondary-foreground));
-        }
-
-        .preview-button-secondary:hover {
-            opacity: 0.9;
-        }
-
-        /* Loading state */
-        .preview-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .preview-spinner {
-            width: 2rem;
-            height: 2rem;
-            border: 2px solid hsl(var(--border));
-            border-top-color: hsl(var(--primary));
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
     </style>
 </head>
 <body>
@@ -148,12 +59,6 @@
                 'isInteractive' => $isInteractive ?? false,
             ])
         </div>
-
-        {{-- Preview controls for interactive components --}}
-        @php($controlsView = 'preview.controls.' . strtolower($component))
-        @if(($isInteractive ?? false) && view()->exists($controlsView))
-            @include($controlsView)
-        @endif
     </div>
 
     {{-- Preview initialization script --}}
