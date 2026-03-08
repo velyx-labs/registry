@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
-Route::livewire('/', 'pages::landing')->name('home');
-
-// Documentation routes
-Route::prefix('docs')->group(function () {
-    Route::get('/', [DocsController::class, 'show'])->name('docs.show');
-    Route::get('/{page}', [DocsController::class, 'show'])->name('docs.show.page');
-    Route::get('/components/{component}', [DocsController::class, 'component'])->name('components.show');
-});
+Route::get('/', function (): array {
+    return [
+        'name' => config('app.name'),
+        'version' => config('app.version', app()->version()),
+    ];
+})->name('home');
