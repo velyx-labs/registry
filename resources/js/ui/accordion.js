@@ -1,21 +1,49 @@
 export default (options = {}) => ({
-  multiple: options.multiple || false,
-  openItems: options.defaultOpen !== null ? [options.defaultOpen] : [],
+  type: options.type === 'multiple' ? 'multiple' : 'single',
+  collapsible: options.collapsible !== false,
+  openItems: (() => {
+    const value = options.defaultValue ?? null;
 
-  toggle(index) {
-    if (this.multiple) {
-      const idx = this.openItems.indexOf(index);
+    if (Array.isArray(value)) {
+      return value.map(String);
+    }
+
+    if (value === null || value === undefined || value === '') {
+      return [];
+    }
+
+    return [String(value)];
+  })(),
+
+  toggle(value) {
+    const itemValue = String(value);
+
+    if (this.type === 'multiple') {
+      const idx = this.openItems.indexOf(itemValue);
+
       if (idx > -1) {
         this.openItems.splice(idx, 1);
-      } else {
-        this.openItems.push(index);
+
+        return;
       }
-    } else {
-      this.openItems = this.isOpen(index) ? [] : [index];
+
+      this.openItems.push(itemValue);
+
+      return;
     }
+
+    const isCurrentlyOpen = this.isOpen(itemValue);
+
+    if (isCurrentlyOpen && this.collapsible) {
+      this.openItems = [];
+
+      return;
+    }
+
+    this.openItems = isCurrentlyOpen ? this.openItems : [itemValue];
   },
 
-  isOpen(index) {
-    return this.openItems.includes(index);
+  isOpen(value) {
+    return this.openItems.includes(String(value));
   },
 });
