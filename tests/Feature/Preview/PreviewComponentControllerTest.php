@@ -112,6 +112,46 @@ test('it resolves dropdown-menu dedicated preview view when available', function
         ->assertViewHas('previewView', 'preview.components.dropdown-menu.index');
 });
 
+test('it resolves empty-state dedicated preview view when available', function () {
+    $response = $this->get('/preview/empty-state');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.empty-state.index');
+});
+
+test('it resolves file-upload dedicated preview view when available', function () {
+    $response = $this->get('/preview/file-upload');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.file-upload.index');
+});
+
+test('it resolves kbd dedicated preview view when available', function () {
+    $response = $this->get('/preview/kbd');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.kbd.index');
+});
+
+test('it resolves label dedicated preview view when available', function () {
+    $response = $this->get('/preview/label');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.label.index');
+});
+
+test('it resolves dialog dedicated preview view when available', function () {
+    $response = $this->get('/preview/dialog');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.dialog.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 

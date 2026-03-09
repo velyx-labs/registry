@@ -1,5 +1,5 @@
 {
-    "name": "modal",
+    "name": "dialog",
     "version": "1.0.0",
     "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
     "categories": [
@@ -11,11 +11,11 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "modal.blade.php",
+            "path": "dialog.blade.php",
             "type": "blade"
         },
         {
-            "path": "modal.js",
+            "path": "dialog.js",
             "type": "js"
         }
     ],

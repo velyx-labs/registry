@@ -1,5 +1,5 @@
 @props([
-    'id' => 'modal',
+    'id' => 'dialog',
     'size' => 'md',
     'closeable' => true,
     'title' => null,
@@ -22,19 +22,19 @@
 @endphp
 
 <div
-    x-data="modal({
+    x-data="dialog({
         id: '{{ $id }}',
         closeable: {{ $closeable ? 'true' : 'false' }}
     })"
-    x-on:open-modal-{{ $id }}.window="open = true"
-    x-on:close-modal-{{ $id }}.window="open = false"
+    x-on:open-dialog-{{ $id }}.window="open = true"
+    x-on:close-dialog-{{ $id }}.window="open = false"
     @if($closeable)
         x-on:keydown.escape.window="handleKeydown($event)"
     @endif
     x-show="open"
     class="fixed inset-0 z-50 overflow-y-auto"
     style="display: none;"
-    aria-labelledby="modal-title"
+    aria-labelledby="dialog-title"
     role="dialog"
     aria-modal="true"
 >
@@ -51,7 +51,6 @@
         @if($closeable) @click="close()" @endif
     ></div>
 
-    <!-- Modal Panel -->
     <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
         <div
             x-show="open"
@@ -63,10 +62,9 @@
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             class="relative transform overflow-hidden rounded-lg bg-background border border-border text-left shadow-xl transition-all sm:my-8 w-full {{ $sizeClasses }}"
         >
-            <!-- Header -->
             @if($title)
                 <div class="px-6 py-4 border-b border-border flex items-center justify-between">
-                    <h3 class="text-lg font-semibold leading-6 text-foreground" id="modal-title">
+                    <h3 class="text-lg font-semibold leading-6 text-foreground" id="dialog-title">
                         {{ $title }}
                     </h3>
                     @if($closeable)
@@ -77,12 +75,10 @@
                 </div>
             @endif
 
-            <!-- Body -->
             <div class="px-6 py-4">
                 {{ $slot }}
             </div>
 
-            <!-- Footer -->
             @if($footer)
                 <div class="bg-muted/50 px-6 py-4 flex flex-row-reverse gap-2 sm:px-6">
                     {{ $footer }}

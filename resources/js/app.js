@@ -7,6 +7,8 @@ import dropdownMenu from './ui/dropdown-menu'
 import commandPalette from './ui/command-palette'
 import drawer from './ui/drawer'
 import datePicker from './ui/date-picker'
+import fileUpload from './ui/file-upload'
+import dialog from './ui/dialog'
 import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
@@ -19,4 +21,6 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('commandPalette', commandPalette);
     Alpine.data('drawer', drawer);
     Alpine.data('datePicker', datePicker);
+    Alpine.data('fileUpload', fileUpload);
+    Alpine.data('dialog', dialog);
 });
