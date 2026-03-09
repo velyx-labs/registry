@@ -11,7 +11,19 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "data-table.blade.php",
+            "path": "data-table/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "data-table/toolbar.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "data-table/table.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "data-table/pagination.blade.php",
             "type": "blade"
         },
         {

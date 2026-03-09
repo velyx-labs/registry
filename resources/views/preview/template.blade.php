@@ -14,7 +14,7 @@
           // Allow messages from configured origins
           const allowedOrigins = [
               window.location.origin,
-              {{ Illuminate\Support\Js::from(env('PREVIEW_ALLOWED_ORIGINS', [])) }}
+              {{ Illuminate\Support\Js::from(env('DOC_URL', [])) }}
           ].flat();
           console.log('Allow', allowedOrigins)
 
