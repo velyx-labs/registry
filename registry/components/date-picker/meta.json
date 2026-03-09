@@ -11,7 +11,15 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "date-picker.blade.php",
+            "path": "date-picker/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "date-picker/input.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "date-picker/calendar.blade.php",
             "type": "blade"
         },
         {
