@@ -4,6 +4,7 @@ import alert from './ui/alert'
 import input from './ui/input'
 import tabs from './ui/tabs'
 import dropdown from './ui/dropdown'
+import commandPalette from './ui/command-palette'
 import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
@@ -13,4 +14,5 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('input', input);
     Alpine.data('tabs', tabs);
     Alpine.data('accordion', accordion);
+    Alpine.data('commandPalette', commandPalette);
 });

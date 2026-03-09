@@ -1,12 +1,21 @@
-export default () => ({
+export default (options = {}) => ({
+  open: options.open ?? false,
   selectedIndex: 0,
 
   init() {
-    this.$watch("$wire.showCommandPalette", (value) => {
+    this.$watch("open", (value) => {
       if (value) {
         this.selectedIndex = 0;
       }
     });
+  },
+
+  openPalette() {
+    this.open = true;
+  },
+
+  closePalette() {
+    this.open = false;
   },
 
   navigateUp() {

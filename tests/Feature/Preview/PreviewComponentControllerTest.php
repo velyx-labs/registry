@@ -64,6 +64,14 @@ test('it resolves card dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.card.index');
 });
 
+test('it resolves command-palette dedicated preview view when available', function () {
+    $response = $this->get('/preview/command-palette');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.command-palette.index');
+});
+
 test('it resolves markdown-viewer dedicated preview view when available', function () {
     $response = $this->get('/preview/markdown-viewer');
 
