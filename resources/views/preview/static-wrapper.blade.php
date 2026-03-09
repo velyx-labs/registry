@@ -17,7 +17,7 @@
         'badge' => ($props['label'] ?? 'Badge'),
         'input' => 'Input field',
         'textarea' => 'Textarea content',
-        'dropdown' => 'Dropdown content',
+        'dropdown-menu' => 'Dropdown content',
         default => ucfirst($componentView) . ' content',
     };
 @endphp
