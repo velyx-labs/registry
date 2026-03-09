@@ -3,14 +3,14 @@ import accordion from './ui/accordion'
 import alert from './ui/alert'
 import input from './ui/input'
 import tabs from './ui/tabs'
-import dropdown from './ui/dropdown'
+import dropdownMenu from './ui/dropdown-menu'
 import commandPalette from './ui/command-palette'
 import drawer from './ui/drawer'
 import datePicker from './ui/date-picker'
 import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('dropdown', dropdown);
+    Alpine.data('dropdownMenu', dropdownMenu);
     Alpine.data('alert', alert);
     // initDarkMode();
     Alpine.data('input', input);

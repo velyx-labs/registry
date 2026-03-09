@@ -15,51 +15,51 @@
         }
       ],
       "dependencies": {
-              "path": "dropdown/index.blade.php"
+              "path": "dropdown-menu/index.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/trigger.blade.php"
+              "path": "dropdown-menu/trigger.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/content.blade.php"
+              "path": "dropdown-menu/content.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/group.blade.php"
+              "path": "dropdown-menu/group.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/label.blade.php"
+              "path": "dropdown-menu/label.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/item.blade.php"
+              "path": "dropdown-menu/item.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/separator.blade.php"
+              "path": "dropdown-menu/separator.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/shortcut.blade.php"
+              "path": "dropdown-menu/shortcut.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/sub.blade.php"
+              "path": "dropdown-menu/sub.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/sub-trigger.blade.php"
+              "path": "dropdown-menu/sub-trigger.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/sub-content.blade.php"
+              "path": "dropdown-menu/sub-content.blade.php"
             },
             {
               "type": "blade",
-              "path": "dropdown/portal.blade.php"
+              "path": "dropdown-menu/portal.blade.php"
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": []
@@ -288,7 +288,7 @@
       "path": "components/table/meta.json"
     },
     {
-      "name": "dropdown",
+      "name": "dropdown-menu",
       "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
       "categories": [
         "ui",
@@ -298,55 +298,55 @@
       "files": [
         {
           "type": "blade",
-          "path": "dropdown/index.blade.php"
+          "path": "dropdown-menu/index.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/trigger.blade.php"
+          "path": "dropdown-menu/trigger.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/content.blade.php"
+          "path": "dropdown-menu/content.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/group.blade.php"
+          "path": "dropdown-menu/group.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/label.blade.php"
+          "path": "dropdown-menu/label.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/item.blade.php"
+          "path": "dropdown-menu/item.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/separator.blade.php"
+          "path": "dropdown-menu/separator.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/shortcut.blade.php"
+          "path": "dropdown-menu/shortcut.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/sub.blade.php"
+          "path": "dropdown-menu/sub.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/sub-trigger.blade.php"
+          "path": "dropdown-menu/sub-trigger.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/sub-content.blade.php"
+          "path": "dropdown-menu/sub-content.blade.php"
         },
         {
           "type": "blade",
-          "path": "dropdown/portal.blade.php"
+          "path": "dropdown-menu/portal.blade.php"
         },
         {
           "type": "js",
-          "path": "dropdown.js"
+          "path": "dropdown-menu.js"
         }
       ],
       "dependencies": {
@@ -355,7 +355,7 @@
         ],
         "npm": []
       },
-      "path": "components/dropdown/meta.json"
+      "path": "components/dropdown-menu/meta.json"
     },
     {
       "name": "alert",

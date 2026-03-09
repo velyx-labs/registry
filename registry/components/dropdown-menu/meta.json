@@ -1,5 +1,5 @@
 {
-    "name": "dropdown",
+    "name": "dropdown-menu",
     "version": "1.0.0",
     "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
     "categories": [
@@ -11,55 +11,55 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "dropdown/index.blade.php",
+            "path": "dropdown-menu/index.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/trigger.blade.php",
+            "path": "dropdown-menu/trigger.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/content.blade.php",
+            "path": "dropdown-menu/content.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/group.blade.php",
+            "path": "dropdown-menu/group.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/label.blade.php",
+            "path": "dropdown-menu/label.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/item.blade.php",
+            "path": "dropdown-menu/item.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/separator.blade.php",
+            "path": "dropdown-menu/separator.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/shortcut.blade.php",
+            "path": "dropdown-menu/shortcut.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/sub.blade.php",
+            "path": "dropdown-menu/sub.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/sub-trigger.blade.php",
+            "path": "dropdown-menu/sub-trigger.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/sub-content.blade.php",
+            "path": "dropdown-menu/sub-content.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown/portal.blade.php",
+            "path": "dropdown-menu/portal.blade.php",
             "type": "blade"
         },
         {
-            "path": "dropdown.js",
+            "path": "dropdown-menu.js",
             "type": "js"
         }
     ],
