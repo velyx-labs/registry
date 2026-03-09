@@ -16,6 +16,7 @@
               window.location.origin,
               {{ Illuminate\Support\Js::from(env('PREVIEW_ALLOWED_ORIGINS', [])) }}
           ].flat();
+          console.log('Allow', allowedOrigins)
 
           if (!allowedOrigins.includes(event.origin)) return;
 
