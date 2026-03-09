@@ -49,8 +49,8 @@
       "path": "components/range-slider/meta.json"
     },
     {
-      "name": "code-snippet",
-      "description": "Code snippet component with syntax highlighting, line numbers, and copy functionality.",
+      "name": "code-block",
+      "description": "Simple code block component with Prism highlighting and copy action.",
       "categories": [
         "ui",
         "data",
@@ -59,16 +59,27 @@
       "files": [
         {
           "type": "blade",
-          "path": "code-snippet.blade.php"
+          "path": "code-block.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "code-block.js"
+        },
+        {
+          "type": "css",
+          "path": "code-block.css"
         }
       ],
       "dependencies": {
         "composer": [
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
-        "npm": []
+        "npm": [
+          "prismjs@1.30.0",
+          "@tailwindcss/typography@0.5.19"
+        ]
       },
-      "path": "components/code-snippet/meta.json"
+      "path": "components/code-block/meta.json"
     },
     {
       "name": "kbd",

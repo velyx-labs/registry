@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="relative overflow-hidden" style="max-height: {{ $maxHeight }}">
+    <div class="relative overflow-auto" style="max-height: {{ $maxHeight }}">
         <div class="grid min-h-full grid-cols-[auto_1fr]">
             @if($showLineNumbers)
                 <div class="text-muted-foreground/70 border-r bg-muted/30 px-3 py-4 text-right">
@@ -47,10 +47,10 @@
                 </div>
             @endif
 
-            <pre class="overflow-x-auto px-4 py-4"><code
+            <pre class="overflow-auto px-4 py-4"><code
                 x-ref="codeContent"
                 x-html="highlightedCode"
-                class="language-{{ $language }} block font-mono text-[13px] leading-6"
+                class="language-{{ $language }} block w-max min-w-full font-mono text-[13px] leading-6"
             ></code></pre>
         </div>
     </div>
