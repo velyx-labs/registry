@@ -80,12 +80,12 @@ test('it resolves markdown-viewer dedicated preview view when available', functi
         ->assertViewHas('previewView', 'preview.components.markdown-viewer.index');
 });
 
-test('it resolves data-table dedicated preview view when available', function () {
-    $response = $this->get('/preview/data-table');
+test('it resolves table dedicated preview view when available', function () {
+    $response = $this->get('/preview/table');
 
     $response->assertOk()
         ->assertViewIs('preview.template')
-        ->assertViewHas('previewView', 'preview.components.data-table.index');
+        ->assertViewHas('previewView', 'preview.components.table.index');
 });
 
 test('it applies array based variants from preview json', function () {

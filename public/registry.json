@@ -196,8 +196,8 @@
       "path": "components/carousel/meta.json"
     },
     {
-      "name": "data-table",
-      "description": "Feature-rich data table with search, sorting, filtering, pagination, and loading states.",
+      "name": "table",
+      "description": "Composable table primitives with caption, header, body, footer, row, head, and cell.",
       "categories": [
         "ui",
         "data",
@@ -206,16 +206,42 @@
       "files": [
         {
           "type": "blade",
-          "path": "data-table.blade.php"
+          "path": "table/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/caption.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/header.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/body.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/footer.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/row.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/head.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/cell.blade.php"
         }
       ],
       "dependencies": {
-        "composer": [
-          "mallardduck/blade-lucide-icons@1.26.1"
-        ],
+        "composer": [],
         "npm": []
       },
-      "path": "components/data-table/meta.json"
+      "path": "components/table/meta.json"
     },
     {
       "name": "dropdown",
