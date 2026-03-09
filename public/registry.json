@@ -62,6 +62,10 @@
           "path": "markdown-viewer.blade.php"
         },
         {
+          "type": "js",
+          "path": "markdown-viewer.js"
+        },
+        {
           "type": "css",
           "path": "markdown-viewer.css"
         }
@@ -71,7 +75,8 @@
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": [
-          "@tailwindcss/typography@0.5.19"
+          "@tailwindcss/typography@0.5.19",
+          "prismjs@1.30.0"
         ]
       },
       "path": "components/markdown-viewer/meta.json"

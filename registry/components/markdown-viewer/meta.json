@@ -15,6 +15,10 @@
             "type": "blade"
         },
         {
+            "path": "markdown-viewer.js",
+            "type": "js"
+        },
+        {
             "path": "markdown-viewer.css",
             "type": "css"
         }
@@ -24,7 +28,8 @@
             "mallardduck/blade-lucide-icons"
         ],
         "npm": [
-            "@tailwindcss/typography"
+            "@tailwindcss/typography",
+            "prismjs"
         ]
     }
 }

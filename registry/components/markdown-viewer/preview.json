@@ -1,0 +1,49 @@
+{
+  "default": {
+    "content": "# Markdown Viewer\n\nThis is a **simple markdown viewer** component.\n\n## Features\n\n- Renders markdown headings and text\n- Supports lists and inline formatting\n- Displays code blocks cleanly\n\n```php\n$user = User::query()->first();\n```\n\n> Keep it minimal and readable."
+  },
+  "variants": [
+    {
+      "name": "default",
+      "props": {
+        "content": "# Markdown Viewer\n\nThis is a **simple markdown viewer** component.\n\n## Features\n\n- Renders markdown headings and text\n- Supports lists and inline formatting\n- Displays code blocks cleanly\n\n```php\n$user = User::query()->first();\n```\n\n> Keep it minimal and readable."
+      }
+    },
+    {
+      "name": "headings",
+      "props": {
+        "content": "# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6\n\nHeadings help structure your content and make it more readable."
+      }
+    },
+    {
+      "name": "formatting",
+      "props": {
+        "content": "# Text Formatting\n\nYou can write **bold text**, *italic text*, or ***both***.\n\nYou can also ~~strikethrough~~ text.\n\nYou can use `inline code` within sentences.\n\n## Emphasis\n\n- **Bold** for strong emphasis\n- *Italic* for subtle emphasis\n- ***Bold and italic*** for extra emphasis"
+      }
+    },
+    {
+      "name": "lists",
+      "props": {
+        "content": "# Lists\n\n## Unordered List\n\n- First item\n- Second item\n  - Nested item\n  - Another nested item\n- Third item\n\n## Ordered List\n\n1. First step\n2. Second step\n3. Third step\n\n## Task List\n\n- [x] Completed task\n- [ ] Incomplete task\n- [ ] Another task"
+      }
+    },
+    {
+      "name": "code",
+      "props": {
+        "content": "# Code Blocks\n\n## Inline Code\n\nYou can use `inline code` for small code snippets.\n\n## Code Blocks\n\n```php\nnamespace App\\Models;\n\nclass User extends Model\n{\n    protected $fillable = ['name', 'email'];\n\n    public function posts()\n    {\n        return $this->hasMany(Post::class);\n    }\n}\n```\n\n```javascript\nfunction greet(name) {\n    return `Hello, ${name}!`;\n}\n\nconsole.log(greet('World'));\n```"
+      }
+    },
+    {
+      "name": "quotes",
+      "props": {
+        "content": "# Blockquotes\n\n> This is a simple blockquote.\n\n> **Tip:** You can use markdown formatting inside blockquotes.\n\n> This is a longer blockquote that spans multiple lines.\n> It can contain **formatted text**, `code`, and other elements.\n\n> ## Even headings!\n>\n> Blockquotes are versatile.\n\n---\n\nRemember: Blockquotes are great for highlighting important information."
+      }
+    },
+    {
+      "name": "links",
+      "props": {
+        "content": "# Links\n\n## External Links\n\nVisit [Laravel](https://laravel.com) documentation.\n\nCheck out [Tailwind CSS](https://tailwindcss.com).\n\n## Reference-style Links\n\nI [love Laravel][1].\n\n[1]: https://laravel.com\n\n## Automatic Links\n\n<https://github.com>\n\n<user@example.com>"
+      }
+    }
+  ]
+}

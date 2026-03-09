@@ -1,4 +1,6 @@
 @plugin "@tailwindcss/typography";
+@import "prismjs/themes/prism.css" layer(base);
+@import "prismjs/plugins/line-numbers/prism-line-numbers.css" layer(base);
 
 .markdown-viewer .prose {
     @apply max-w-none;
@@ -34,6 +36,23 @@
 
 .markdown-viewer .prose pre code {
     @apply block bg-transparent p-4;
+}
+
+.markdown-viewer__code-block {
+    @apply relative;
+}
+
+.markdown-viewer__copy-btn {
+    @apply text-muted-foreground hover:text-foreground absolute top-2 right-2 rounded-md p-2 opacity-0 transition-opacity;
+}
+
+.markdown-viewer__code-block:hover .markdown-viewer__copy-btn,
+.markdown-viewer__copy-btn:focus-visible {
+    @apply opacity-100;
+}
+
+.markdown-viewer__copy-btn.is-copied {
+    @apply text-emerald-500;
 }
 
 .markdown-viewer .prose ul {

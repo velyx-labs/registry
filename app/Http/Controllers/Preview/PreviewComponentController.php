@@ -32,15 +32,12 @@ class PreviewComponentController extends Controller
         // Get override props from query parameters
         $props = $request->all();
 
-        // Check if this is an interactive component
-        $isInteractive = $this->isInteractiveComponent($componentName);
         $previewView = $this->resolvePreviewView($componentName, $isInteractive);
         $colorScheme = $this->resolveColorScheme($request);
 
         return Response::view('preview.template', [
             'component' => $componentName,
             'props' => $props,
-            'isInteractive' => $isInteractive,
             'previewView' => $previewView,
             'colorScheme' => $colorScheme,
         ])
@@ -103,23 +100,6 @@ class PreviewComponentController extends Controller
         return $isInteractive ? 'preview.interactive-wrapper' : 'preview.static-wrapper';
     }
 
-    /**
-     * Load preview.json configuration for a component
-     */
-    protected function getPreviewConfig(string $component): array
-    {
-        $componentPath = $this->componentService->getComponentPath($component);
-        $previewFile = "{$componentPath}/preview.json";
-
-        if (! file_exists($previewFile)) {
-            return [];
-        }
-
-        $content = file_get_contents($previewFile);
-        $config = json_decode($content, true);
-
-        return $config ?? [];
-    }
 
     /**
      * Check if component requires interactive preview handling

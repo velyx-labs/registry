@@ -4,6 +4,7 @@ import alert from './ui/alert'
 import input from './ui/input'
 import tabs from './ui/tabs'
 import dropdown from './ui/dropdown'
+import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('dropdown', dropdown);
