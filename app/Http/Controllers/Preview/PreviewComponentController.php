@@ -100,7 +100,6 @@ class PreviewComponentController extends Controller
         return $isInteractive ? 'preview.interactive-wrapper' : 'preview.static-wrapper';
     }
 
-
     /**
      * Check if component requires interactive preview handling
      */
