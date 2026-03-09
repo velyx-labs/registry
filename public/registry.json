@@ -137,6 +137,10 @@
         {
           "type": "blade",
           "path": "file-upload.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "file-upload.js"
         }
       ],
       "dependencies": {
@@ -744,7 +748,7 @@
       "path": "components/accordion/meta.json"
     },
     {
-      "name": "modal",
+      "name": "dialog",
       "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
       "categories": [
         "ui",
@@ -754,7 +758,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "modal.blade.php"
+          "path": "dialog.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "dialog.js"
         }
       ],
       "dependencies": {
@@ -763,7 +771,7 @@
         ],
         "npm": []
       },
-      "path": "components/modal/meta.json"
+      "path": "components/dialog/meta.json"
     },
     {
       "name": "rating",

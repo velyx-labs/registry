@@ -9,7 +9,6 @@
 ])
 
 @php
-    $id = 'file-upload-' . uniqid();
     $inputId = 'file-input-' . uniqid();
     $isImage = str_contains($accept, 'image');
 @endphp
@@ -102,15 +101,11 @@
             </div>
         </label>
 
-        <!-- Upload Progress -->
         <div x-show="isUploading" x-cloak class="px-6 pb-6" data-test="file-upload-progress">
-            <x-ui.progress-bar
-                :percentage="0"
-                x-bind:percentage="uploadProgress"
-                variant="primary"
-                size="md"
-                label="Uploading..."
-            />
+            <div class="mb-2 h-2 w-full rounded-full bg-muted">
+                <div class="bg-primary h-2 rounded-full transition-all duration-150" :style="`width: ${uploadProgress}%`"></div>
+            </div>
+            <p class="text-xs text-muted-foreground">Uploading... <span x-text="`${uploadProgress}%`"></span></p>
         </div>
 
         <!-- File Previews (Images) -->
@@ -187,7 +182,7 @@
         </div>
     </div>
 
-    @if($error || $errors->has($wireModel))
+    @if($error || ($wireModel && $errors->has($wireModel)))
         <p class="mt-2 text-sm text-red-500" data-test="file-upload-error">
             {{ $error ?? $errors->first($wireModel) }}
         </p>

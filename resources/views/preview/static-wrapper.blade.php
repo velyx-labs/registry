@@ -11,7 +11,7 @@
     $defaultSlot = match($componentView) {
         'button' => ($props['label'] ?? 'Button'),
         'alert' => ($props['title'] ?? 'Alert message') . '. ' . ($props['description'] ?? 'This is an alert message.'),
-        'modal' => 'Modal content goes here.',
+        'dialog' => 'Dialog content goes here.',
         'drawer' => 'Drawer content goes here.',
         'card' => 'Card content goes here.',
         'badge' => ($props['label'] ?? 'Badge'),
