@@ -6,16 +6,60 @@
       "categories": [
         "ui",
         "navigation",
-        "feedback"
+          "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
       ],
       "files": [
-        {
+            "overlay",
           "type": "blade",
           "path": "progress-steps.blade.php"
         }
       ],
       "dependencies": {
-        "composer": [
+              "path": "dropdown/index.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/trigger.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/content.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/group.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/label.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/item.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/separator.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/shortcut.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/sub.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/sub-trigger.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/sub-content.blade.php"
+            },
+            {
+              "type": "blade",
+              "path": "dropdown/portal.blade.php"
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": []
@@ -245,16 +289,64 @@
     },
     {
       "name": "dropdown",
-      "description": "Dropdown select component with search, keyboard navigation, and multiple options.",
+      "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
       "categories": [
         "ui",
-        "forms",
+        "overlay",
         "interactive"
       ],
       "files": [
         {
           "type": "blade",
-          "path": "dropdown.blade.php"
+          "path": "dropdown/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/trigger.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/content.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/group.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/label.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/item.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/separator.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/shortcut.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/sub.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/sub-trigger.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/sub-content.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown/portal.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "dropdown.js"
         }
       ],
       "dependencies": {

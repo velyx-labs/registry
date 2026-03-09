@@ -104,6 +104,14 @@ test('it resolves drawer dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.drawer.index');
 });
 
+test('it resolves dropdown dedicated preview view when available', function () {
+    $response = $this->get('/preview/dropdown');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.dropdown.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 

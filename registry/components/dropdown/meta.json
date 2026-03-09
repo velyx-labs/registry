@@ -1,17 +1,61 @@
 {
     "name": "dropdown",
     "version": "1.0.0",
-    "description": "Dropdown select component with search, keyboard navigation, and multiple options.",
+    "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
     "categories": [
         "ui",
-        "forms",
+        "overlay",
         "interactive"
     ],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
         {
-            "path": "dropdown.blade.php",
+            "path": "dropdown/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/group.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/label.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/item.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/separator.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/shortcut.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/sub.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/sub-trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/sub-content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown/portal.blade.php",
             "type": "blade"
         },
         {
