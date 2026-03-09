@@ -32,9 +32,8 @@
     class="relative"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
-    {{-- Input --}}
     <div class="relative">
-        <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+        <div class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground">
             <x-dynamic-component :component="'lucide-' . $icon" class="{{ $iconSize }}" />
         </div>
 
@@ -45,7 +44,7 @@
             placeholder="{{ $placeholder }}"
             readonly
             @disabled($disabled)
-            class="w-full rounded-lg border border-input bg-background text-foreground cursor-pointer placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed pl-10 pr-10 {{ $sizeClasses }}"
+            class="border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-ring focus:ring-offset-background w-full cursor-pointer rounded-lg border pr-10 pl-10 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 {{ $sizeClasses }}"
         />
 
         @if($clearable)
@@ -54,46 +53,40 @@
                 x-show="value"
                 x-cloak
                 @click.stop="clear()"
-                class="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+                class="text-muted-foreground hover:text-foreground hover:bg-accent absolute top-1/2 right-3 -translate-y-1/2 rounded p-1 transition-colors"
             >
                 <x-dynamic-component component="lucide-x" class="{{ $iconSize }}" />
             </button>
         @endif
     </div>
 
-    {{-- Calendar --}}
     <div
         x-show="open"
         x-cloak
         x-transition.opacity.duration.150ms
-        class="absolute z-50 mt-2 w-72 bg-popover border border-border rounded-xl shadow-lg p-4"
+        class="bg-popover border-border absolute z-50 mt-2 w-72 rounded-xl border p-4 shadow-lg"
     >
-        {{-- Header: navigation --}}
-        <div class="flex items-center justify-between mb-4">
-            <button type="button" @click.stop="prevMonth()" class="p-1.5 rounded-lg hover:bg-accent transition-colors">
-                <x-dynamic-component component="lucide-chevron-left" class="size-4 text-muted-foreground" />
+        <div class="mb-4 flex items-center justify-between">
+            <button type="button" @click.stop="prevMonth()" class="hover:bg-accent rounded-lg p-1.5 transition-colors">
+                <x-dynamic-component component="lucide-chevron-left" class="text-muted-foreground size-4" />
             </button>
-            <span class="text-sm font-semibold text-foreground" x-text="monthNames[viewMonth] + ' ' + viewYear"></span>
-            <button type="button" @click.stop="nextMonth()" class="p-1.5 rounded-lg hover:bg-accent transition-colors">
-                <x-dynamic-component component="lucide-chevron-right" class="size-4 text-muted-foreground" />
+            <span class="text-foreground text-sm font-semibold" x-text="monthNames[viewMonth] + ' ' + viewYear"></span>
+            <button type="button" @click.stop="nextMonth()" class="hover:bg-accent rounded-lg p-1.5 transition-colors">
+                <x-dynamic-component component="lucide-chevron-right" class="text-muted-foreground size-4" />
             </button>
         </div>
 
-        {{-- Jours de la semaine --}}
-        <div class="grid grid-cols-7 mb-2">
+        <div class="mb-2 grid grid-cols-7">
             <template x-for="day in ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']">
-                <div class="text-center text-xs font-medium text-muted-foreground py-1" x-text="day"></div>
+                <div class="text-muted-foreground py-1 text-center text-xs font-medium" x-text="day"></div>
             </template>
         </div>
 
-        {{-- Grille des jours --}}
         <div class="grid grid-cols-7 gap-0.5">
-            {{-- Cases vides avant le 1er jour --}}
             <template x-for="i in emptyDays">
                 <div class="h-8"></div>
             </template>
 
-            {{-- Jours du mois --}}
             <template x-for="day in daysInMonth">
                 <button
                     type="button"
@@ -111,12 +104,11 @@
             </template>
         </div>
 
-        {{-- Bouton Aujourd'hui --}}
-        <div class="mt-3 pt-3 border-t border-border">
+        <div class="border-border mt-3 border-t pt-3">
             <button
                 type="button"
                 @click.stop="goToday()"
-                class="w-full py-1.5 text-sm font-medium text-primary hover:bg-accent rounded-lg transition-colors"
+                class="text-primary hover:bg-accent w-full rounded-lg py-1.5 text-sm font-medium transition-colors"
             >
                 Today
             </button>

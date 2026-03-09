@@ -88,6 +88,14 @@ test('it resolves table dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.table.index');
 });
 
+test('it resolves date-picker dedicated preview view when available', function () {
+    $response = $this->get('/preview/date-picker');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.date-picker.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
