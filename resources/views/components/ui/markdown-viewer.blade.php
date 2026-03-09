@@ -1,6 +1,6 @@
 @props([
     'content' => '',
-    'maxHeight' => '420px',
+    'maxHeight' => '200px',
 ])
 
 @php

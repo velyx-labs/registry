@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Preview;
 
 use App\Http\Controllers\Controller;
 use App\Services\ComponentService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
@@ -32,7 +33,7 @@ class PreviewComponentController extends Controller
         // Get override props from query parameters
         $props = $request->all();
 
-        $previewView = $this->resolvePreviewView($componentName, $isInteractive);
+        $previewView = $this->resolvePreviewView($componentName);
         $colorScheme = $this->resolveColorScheme($request);
 
         return Response::view('preview.template', [
@@ -85,7 +86,7 @@ class PreviewComponentController extends Controller
         return $variants;
     }
 
-    protected function resolvePreviewView(string $component, bool $isInteractive): string
+    protected function resolvePreviewView(string $component): string
     {
         $variantView = "preview.components.{$component}";
         if (view()->exists($variantView)) {
@@ -97,7 +98,7 @@ class PreviewComponentController extends Controller
             return $componentView;
         }
 
-        return $isInteractive ? 'preview.interactive-wrapper' : 'preview.static-wrapper';
+        throw new Exception("Preview view not found for component '{$component}'");
     }
 
     /**
