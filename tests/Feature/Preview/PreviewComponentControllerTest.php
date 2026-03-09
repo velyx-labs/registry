@@ -96,6 +96,14 @@ test('it resolves date-picker dedicated preview view when available', function (
         ->assertViewHas('previewView', 'preview.components.date-picker.index');
 });
 
+test('it resolves drawer dedicated preview view when available', function () {
+    $response = $this->get('/preview/drawer');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.drawer.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
