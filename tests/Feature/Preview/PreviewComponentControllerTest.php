@@ -64,12 +64,12 @@ test('it resolves card dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.card.index');
 });
 
-test('it resolves code-block dedicated preview view when available', function () {
-    $response = $this->get('/preview/code-block');
+test('it resolves markdown-viewer dedicated preview view when available', function () {
+    $response = $this->get('/preview/markdown-viewer');
 
     $response->assertOk()
         ->assertViewIs('preview.template')
-        ->assertViewHas('previewView', 'preview.components.code-block.index');
+        ->assertViewHas('previewView', 'preview.components.markdown-viewer.index');
 });
 
 test('it applies array based variants from preview json', function () {

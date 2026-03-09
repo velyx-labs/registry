@@ -14,5 +14,8 @@
             "type": "blade"
         }
     ],
-    "requires": []
+    "requires": {
+        "composer": [],
+        "npm": []
+    }
 }

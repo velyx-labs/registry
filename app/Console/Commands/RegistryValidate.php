@@ -138,6 +138,20 @@ class RegistryValidate extends Command
             }
         }
 
+        if (isset($meta['requires']) && is_array($meta['requires'])) {
+            if (array_is_list($meta['requires'])) {
+                $warnings[] = "{$name}: 'requires' should use object format with 'composer' and 'npm' arrays";
+            } else {
+                if (! array_key_exists('composer', $meta['requires']) || ! is_array($meta['requires']['composer'])) {
+                    $errors[] = "{$name}: 'requires.composer' must be an array in meta.json";
+                }
+
+                if (! array_key_exists('npm', $meta['requires']) || ! is_array($meta['requires']['npm'])) {
+                    $errors[] = "{$name}: 'requires.npm' must be an array in meta.json";
+                }
+            }
+        }
+
         // Check versions.json
         $versionsFile = $componentPath.'/versions.json';
         if (! file_exists($versionsFile)) {
@@ -175,10 +189,40 @@ class RegistryValidate extends Command
             if (! is_dir($versionPath)) {
                 $errors[] = "{$name}: Latest version directory '{$latestVersion}' does not exist";
             } else {
-                // Check for expected files in version directory
-                $expectedBlade = $versionPath.'/'.$name.'.blade.php';
-                if (! file_exists($expectedBlade)) {
-                    $warnings[] = "{$name}: Missing {$name}.blade.php in version {$latestVersion}";
+                $declaredFiles = $meta['files'] ?? [];
+
+                if (! is_array($declaredFiles) || empty($declaredFiles)) {
+                    $warnings[] = "{$name}: No files declared in meta.json";
+                } else {
+                    $hasBladeFile = false;
+
+                    foreach ($declaredFiles as $file) {
+                        if (! is_array($file)) {
+                            continue;
+                        }
+
+                        $relativePath = ltrim((string) ($file['path'] ?? ''), '/');
+                        $fileType = (string) ($file['type'] ?? '');
+
+                        if ($relativePath === '') {
+                            $errors[] = "{$name}: One file entry in meta.json is missing a path";
+
+                            continue;
+                        }
+
+                        if ($fileType === 'blade') {
+                            $hasBladeFile = true;
+                        }
+
+                        $expectedFile = $versionPath.'/'.$relativePath;
+                        if (! file_exists($expectedFile)) {
+                            $errors[] = "{$name}: Missing declared file '{$relativePath}' in version {$latestVersion}";
+                        }
+                    }
+
+                    if (! $hasBladeFile) {
+                        $warnings[] = "{$name}: No Blade file declared in meta.json";
+                    }
                 }
             }
         }

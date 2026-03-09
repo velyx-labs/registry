@@ -31,7 +31,12 @@
             "type": "blade"
         }
     ],
-    "requires": [
-        "mallardduck/blade-lucide-icons"
-    ]
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons"
+        ],
+        "npm": [
+            "alpinejs"
+        ]
+    }
 }

@@ -4,7 +4,6 @@ import alert from './ui/alert'
 import input from './ui/input'
 import tabs from './ui/tabs'
 import dropdown from './ui/dropdown'
-import codeBlock from './ui/code-block'
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('dropdown', dropdown);
@@ -13,5 +12,4 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('input', input);
     Alpine.data('tabs', tabs);
     Alpine.data('accordion', accordion);
-    Alpine.data('codeBlock', codeBlock);
 });

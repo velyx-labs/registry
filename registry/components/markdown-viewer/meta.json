@@ -1,22 +1,22 @@
 {
-    "name": "timeline",
+    "name": "markdown-viewer",
     "version": "1.0.0",
-    "description": "Timeline component with vertical/horizontal layouts, animations, and multiple event types.",
+    "description": "Markdown viewer component rendered as rich prose content.",
     "categories": [
         "ui",
         "data",
-        "layout"
+        "text"
     ],
     "laravel": ">=10",
-    "requires_alpine": true,
+    "requires_alpine": false,
     "files": [
         {
-            "path": "timeline.blade.php",
+            "path": "markdown-viewer.blade.php",
             "type": "blade"
         },
         {
-            "path": "timeline.js",
-            "type": "js"
+            "path": "markdown-viewer.css",
+            "type": "css"
         }
     ],
     "requires": {
@@ -24,7 +24,7 @@
             "mallardduck/blade-lucide-icons"
         ],
         "npm": [
-            "alpinejs"
+            "@tailwindcss/typography"
         ]
     }
 }

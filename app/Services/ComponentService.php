@@ -173,13 +173,32 @@ class ComponentService
             'versions' => $versionsData['versions'],
             'files' => [],
             'meta' => [
-                'requires' => $meta['requires'] ?? [],
+                'requires' => $this->normalizeRequires($meta['requires'] ?? []),
                 'requires_alpine' => $meta['requires_alpine'] ?? false,
                 'description' => $meta['description'] ?? '',
                 'laravel' => $meta['laravel'] ?? '>=10',
                 'categories' => $meta['categories'] ?? [],
                 'files' => $meta['files'] ?? [],
             ],
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>|array<int, string>  $requires
+     * @return array{composer: array<int, string>, npm: array<int, string>}
+     */
+    protected function normalizeRequires(array $requires): array
+    {
+        if (array_is_list($requires)) {
+            return [
+                'composer' => $requires,
+                'npm' => [],
+            ];
+        }
+
+        return [
+            'composer' => array_values(array_filter($requires['composer'] ?? [], 'is_string')),
+            'npm' => array_values(array_filter($requires['npm'] ?? [], 'is_string')),
         ];
     }
 

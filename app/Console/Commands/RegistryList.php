@@ -124,8 +124,27 @@ class RegistryList extends Command
             'versions' => $versions['versions'] ?? [],
             'description' => $meta['description'] ?? '',
             'requires_alpine' => $meta['requires_alpine'] ?? false,
-            'requires' => $meta['requires'] ?? [],
+            'requires' => $this->normalizeRequires($meta['requires'] ?? []),
             'laravel' => $meta['laravel'] ?? '>=10',
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>|array<int, string>  $requires
+     * @return array{composer: array<int, string>, npm: array<int, string>}
+     */
+    private function normalizeRequires(array $requires): array
+    {
+        if (array_is_list($requires)) {
+            return [
+                'composer' => $requires,
+                'npm' => [],
+            ];
+        }
+
+        return [
+            'composer' => array_values(array_filter($requires['composer'] ?? [], 'is_string')),
+            'npm' => array_values(array_filter($requires['npm'] ?? [], 'is_string')),
         ];
     }
 

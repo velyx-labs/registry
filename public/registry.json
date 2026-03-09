@@ -49,8 +49,8 @@
       "path": "components/range-slider/meta.json"
     },
     {
-      "name": "code-block",
-      "description": "Simple code block component with Prism highlighting and copy action.",
+      "name": "markdown-viewer",
+      "description": "Markdown viewer component rendered as rich prose content.",
       "categories": [
         "ui",
         "data",
@@ -59,15 +59,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "code-block.blade.php"
-        },
-        {
-          "type": "js",
-          "path": "code-block.js"
+          "path": "markdown-viewer.blade.php"
         },
         {
           "type": "css",
-          "path": "code-block.css"
+          "path": "markdown-viewer.css"
         }
       ],
       "dependencies": {
@@ -75,11 +71,10 @@
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": [
-          "prismjs@1.30.0",
           "@tailwindcss/typography@0.5.19"
         ]
       },
-      "path": "components/code-block/meta.json"
+      "path": "components/markdown-viewer/meta.json"
     },
     {
       "name": "kbd",
