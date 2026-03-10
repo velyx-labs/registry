@@ -22,7 +22,7 @@
     x-data="toast({ duration: {{ $duration }}, maxToasts: {{ $maxToasts }} })"
     x-on:toast.window="add(Array.isArray($event.detail) ? $event.detail[0] : $event.detail)"
     x-on:notify.window="add(Array.isArray($event.detail) ? $event.detail[0] : $event.detail)"
-    class="pointer-events-none fixed z-[100] flex flex-col gap-2 {{ $positionClasses }}"
+    class="pointer-events-none fixed z-100 flex flex-col gap-2 {{ $positionClasses }}"
     data-test="toast-container"
 >
     <template x-for="toast in toasts" :key="toast.id">

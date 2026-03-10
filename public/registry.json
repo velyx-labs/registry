@@ -328,7 +328,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "alert.blade.php"
+          "path": "alert/index.blade.php"
         }
       ],
       "dependencies": {
@@ -350,7 +350,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "popover.blade.php"
+          "path": "popover/index.blade.php"
         }
       ],
       "dependencies": {
@@ -375,7 +375,7 @@
           "path": "avatar-group.blade.php"
         }
       ],
-      "dependencies": {
+          "path": "input/index.blade.php"
         "composer": [
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
@@ -784,7 +784,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "rating.blade.php"
+          "path": "rating/index.blade.php"
         },
         {
           "type": "js",
@@ -916,7 +916,7 @@
           "path": "label/index.blade.php"
         }
       ],
-          "path": "rating/index.blade.php"
+      "dependencies": {
         "composer": [],
         "npm": []
       },
