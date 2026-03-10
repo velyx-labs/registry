@@ -266,16 +266,24 @@ class ComponentService
             }
         }
 
+        $hasAssetFiles = count($files) > 0;
+
         // Handle blade files based on component structure
-        if (count($bladeFiles) === 1) {
-            // Simple component: single file goes directly in ui/ folder
+        if (count($bladeFiles) === 1 && ! $hasAssetFiles) {
+            // Simple component: single Blade file with no assets goes directly in ui/
             $filename = $bladeFiles[0];
             $componentFileName = $name.'.blade.php';
             $files['resources/views/components/ui/'.$componentFileName] = file_get_contents($versionPath.'/'.$filename);
         } else {
-            // Complex component: multiple files go in a subfolder
+            // Components with assets or multiple Blade files live in a dedicated subfolder
             foreach ($bladeFiles as $filename) {
-                $files['resources/views/components/ui/'.$name.'/'.$filename] = file_get_contents($versionPath.'/'.$filename);
+                $targetFile = $filename;
+
+                if (count($bladeFiles) === 1 || $filename === $name.'.blade.php') {
+                    $targetFile = 'index.blade.php';
+                }
+
+                $files['resources/views/components/ui/'.$name.'/'.$targetFile] = file_get_contents($versionPath.'/'.$filename);
             }
         }
 

@@ -98,3 +98,56 @@ test('returns validation error for invalid include parameter', function () {
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['include']);
 });
+
+
+test('components with assets expose blade views inside a component folder', function () {
+    $components = [
+        'accordion',
+        'alert',
+        'carousel',
+        'command-palette',
+        'date-picker',
+        'dialog',
+        'drawer',
+        'dropdown-menu',
+        'file-upload',
+        'input',
+        'markdown-viewer',
+        'popover',
+        'range-slider',
+        'rating',
+        'sortable-list',
+        'stepper',
+        'tabs',
+        'timeline',
+        'toast',
+        'toggle',
+        'tooltip',
+    ];
+
+    foreach ($components as $component) {
+        $response = $this->getJson('/api/v1/components/'.$component.'?include=files');
+
+        $response->assertOk();
+
+        $files = $response->json('data.files');
+
+        expect($files)->toHaveKey('resources/views/components/ui/'.$component.'/index.blade.php');
+        expect(array_keys($files))->toContain(fn (string $path) => str_contains($path, 'resources/js/ui/') || str_contains($path, 'resources/css/ui/'));
+    }
+});
+
+
+test('multi-blade components expose their root view as index.blade.php', function () {
+    $response = $this->getJson('/api/v1/components/tabs?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/index.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/list.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/content.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/trigger.blade.php');
+    expect($files)->not->toHaveKey('resources/views/components/ui/tabs/tabs.blade.php');
+});
