@@ -11,7 +11,7 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "alert.blade.php",
+            "path": "alert/index.blade.php",
             "type": "blade"
         },
         {

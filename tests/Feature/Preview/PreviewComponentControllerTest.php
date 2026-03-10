@@ -176,6 +176,22 @@ test('it resolves toast dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.toast.index');
 });
 
+test('it resolves popover dedicated preview view when available', function () {
+    $response = $this->get('/preview/popover');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.popover.index');
+});
+
+test('it resolves input dedicated preview view when available', function () {
+    $response = $this->get('/preview/input');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.input.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 

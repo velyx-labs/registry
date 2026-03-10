@@ -1,6 +1,6 @@
 @props([
     'percentage' => 0,
-    'variant' => 'primary',
+    'variant' => 'default',
     'size' => 'md',
     'label' => null,
 ])
@@ -8,13 +8,15 @@
 @php
     $percentage = max(0, min(100, $percentage));
 
-    $variants = [
+    $variantClasses = match ($variant) {
         'primary' => 'bg-primary',
-        'success' => 'bg-green-500',
-        'warning' => 'bg-yellow-500',
-        'danger' => 'bg-red-500',
-        'info' => 'bg-blue-500',
-    ];
+        'secondary' => 'bg-secondary',
+        'destructive' => 'bg-destructive',
+        'outline' => 'bg-border',
+        'ghost' => 'bg-muted-foreground/30',
+        'default' => 'bg-primary',
+        default => 'bg-primary',
+    };
 
     $sizes = [
         'sm' => 'h-1',
@@ -23,7 +25,7 @@
         'xl' => 'h-4',
     ];
 
-    $barColor = $variants[$variant] ?? $variants['primary'];
+    $barColor = $variantClasses;
     $barHeight = $sizes[$size] ?? $sizes['md'];
 @endphp
 

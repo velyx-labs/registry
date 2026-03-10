@@ -11,6 +11,7 @@ import fileUpload from './ui/file-upload'
 import dialog from './ui/dialog'
 import rating from './ui/rating'
 import toast from './ui/toast'
+import popover from './ui/popover'
 import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
@@ -27,4 +28,5 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('dialog', dialog);
     Alpine.data('rating', rating);
     Alpine.data('toast', toast);
+    Alpine.data('popover', popover);
 });

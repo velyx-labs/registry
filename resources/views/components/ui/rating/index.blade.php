@@ -22,8 +22,12 @@
 
     $colors = match ($variant) {
         'primary' => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
-        'red' => ['empty' => 'text-muted', 'filled' => 'text-red-500', 'hover' => 'group-hover:text-red-400'],
-        default => ['empty' => 'text-muted', 'filled' => 'text-yellow-400', 'hover' => 'group-hover:text-yellow-300'],
+        'secondary' => ['empty' => 'text-muted', 'filled' => 'text-secondary-foreground', 'hover' => 'group-hover:text-secondary-foreground/80'],
+        'destructive', 'red' => ['empty' => 'text-muted', 'filled' => 'text-destructive', 'hover' => 'group-hover:text-destructive/80'],
+        'outline' => ['empty' => 'text-border', 'filled' => 'text-foreground', 'hover' => 'group-hover:text-foreground/80'],
+        'ghost' => ['empty' => 'text-muted', 'filled' => 'text-muted-foreground', 'hover' => 'group-hover:text-foreground/80'],
+        'default' => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
+        default => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
     };
 
     $wireModel = $attributes->wire('model')->value();

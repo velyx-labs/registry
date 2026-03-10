@@ -8,35 +8,43 @@
 @php
     $defaultIcons = [
         'default' => 'info',
-        'success' => 'check-circle',
+        'primary' => 'info',
+        'secondary' => 'circle-alert',
         'destructive' => 'alert-circle',
-        'warning' => 'alert-triangle',
+        'outline' => 'info',
+        'ghost' => 'info',
+        'success' => 'info',
+        'warning' => 'circle-alert',
         'info' => 'info',
     ];
 
     $iconName = $icon ?? ($defaultIcons[$variant] ?? 'info');
 
     $variantClasses = match ($variant) {
-        'success' => 'bg-emerald-50 border-emerald-200 text-emerald-900',
+        'primary', 'success', 'info' => 'bg-primary/10 border-primary/20 text-foreground',
+        'secondary', 'warning' => 'bg-secondary/20 border-secondary/40 text-secondary-foreground',
         'destructive' => 'bg-destructive/10 border-destructive/20 text-destructive',
-        'warning' => 'bg-amber-50 border-amber-200 text-amber-900',
-        'info' => 'bg-blue-50 border-blue-200 text-blue-900',
+        'outline' => 'bg-transparent border-border text-foreground',
+        'ghost' => 'bg-transparent border-transparent text-foreground',
+        'default' => 'bg-muted border-border text-foreground',
         default => 'bg-muted border-border text-foreground',
     };
 
     $iconClasses = match ($variant) {
-        'success' => 'text-emerald-600',
+        'primary', 'success', 'info' => 'text-primary',
+        'secondary', 'warning' => 'text-secondary-foreground',
         'destructive' => 'text-destructive',
-        'warning' => 'text-amber-600',
-        'info' => 'text-blue-600',
+        'outline', 'ghost' => 'text-muted-foreground',
+        'default' => 'text-foreground',
         default => 'text-foreground',
     };
 
     $closeButtonClasses = match ($variant) {
-        'success' => 'text-emerald-600 hover:text-emerald-800 hover:bg-emerald-100',
+        'primary', 'success', 'info' => 'text-primary hover:text-primary/80 hover:bg-primary/10',
+        'secondary', 'warning' => 'text-secondary-foreground hover:text-secondary-foreground/80 hover:bg-secondary/30',
         'destructive' => 'text-destructive hover:text-destructive/80 hover:bg-destructive/10',
-        'warning' => 'text-amber-600 hover:text-amber-800 hover:bg-amber-100',
-        'info' => 'text-blue-600 hover:text-blue-800 hover:bg-blue-100',
+        'outline', 'ghost' => 'text-muted-foreground hover:text-foreground hover:bg-accent',
+        'default' => 'text-muted-foreground hover:text-foreground hover:bg-accent',
         default => 'text-muted-foreground hover:text-foreground hover:bg-accent',
     };
 @endphp

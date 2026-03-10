@@ -14,7 +14,7 @@
     'showPasswordToggle' => false,
     'helperText' => null,
     'size' => 'md', // sm, md, lg
-    'variant' => 'default', // default, filled, outlined
+    'variant' => 'default',
 ])
 
 @php
@@ -29,10 +29,14 @@
         default => 'py-3 text-sm',
     };
 
-    // Variant classes
     $variantClasses = match($variant) {
+        'primary' => 'bg-background border border-input focus:border-transparent',
+        'secondary' => 'bg-secondary/15 border border-secondary/40 focus:border-secondary',
+        'destructive' => 'bg-background border border-destructive/60 focus:border-destructive',
+        'outline', 'outlined' => 'bg-transparent border-2 border-input focus:border-ring',
+        'ghost' => 'bg-transparent border-transparent focus:border-ring',
         'filled' => 'bg-muted border-transparent focus:border-ring',
-        'outlined' => 'bg-transparent border-2 border-input focus:border-ring',
+        'default' => 'bg-background border border-input focus:border-transparent',
         default => 'bg-background border border-input focus:border-transparent',
     };
 
@@ -138,7 +142,7 @@
     <!-- Error message -->
     @if($hasError)
         <p class="text-sm text-destructive flex items-center space-x-1 animate-in fade-in slide-in-from-top-1 duration-200">
-            <x-lucide-alert-circle class="w-4 h-4 flex-shrink-0" />
+            <x-lucide-alert-circle class="h-4 w-4 shrink-0" />
             <span>{{ $errorMessage }}</span>
         </p>
     @endif

@@ -4,7 +4,7 @@
     'size' => 'md',
     'showValue' => false,
     'allowHalf' => false,
-    'variant' => 'default', // default, primary, red
+    'variant' => 'default',
 ])
 
 @php
@@ -22,8 +22,12 @@
 
     $colors = match($variant) {
         'primary' => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
-        'red' => ['empty' => 'text-muted', 'filled' => 'text-red-500', 'hover' => 'group-hover:text-red-400'],
-        default => ['empty' => 'text-muted', 'filled' => 'text-yellow-400', 'hover' => 'group-hover:text-yellow-300'],
+        'secondary' => ['empty' => 'text-muted', 'filled' => 'text-secondary-foreground', 'hover' => 'group-hover:text-secondary-foreground/80'],
+        'destructive', 'red' => ['empty' => 'text-muted', 'filled' => 'text-destructive', 'hover' => 'group-hover:text-destructive/80'],
+        'outline' => ['empty' => 'text-border', 'filled' => 'text-foreground', 'hover' => 'group-hover:text-foreground/80'],
+        'ghost' => ['empty' => 'text-muted', 'filled' => 'text-muted-foreground', 'hover' => 'group-hover:text-foreground/80'],
+        'default' => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
+        default => ['empty' => 'text-muted', 'filled' => 'text-primary', 'hover' => 'group-hover:text-primary/70'],
     };
 
     $wireModel = $attributes->wire('model')->value();
@@ -38,7 +42,6 @@
     class="inline-flex items-center gap-2"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
-    {{-- Stars --}}
     <div class="flex items-center gap-0.5">
         <template x-for="star in {{ $max }}" :key="star">
             <button
@@ -49,12 +52,10 @@
                 :disabled="readonly"
                 class="group relative focus:outline-none transition-transform hover:scale-110 disabled:cursor-default disabled:hover:scale-100"
             >
-                {{-- Empty star --}}
                 <x-lucide-star
                     class="{{ $starSize }} {{ $colors['empty'] }} transition-colors {{ $readonly ? '' : $colors['hover'] }}"
                 />
 
-                {{-- Filled star overlay --}}
                 <div
                     class="absolute inset-0 overflow-hidden transition-all"
                     :style="`width: ${getStarFillWidth(star)}%`"
@@ -68,7 +69,6 @@
         </template>
     </div>
 
-    {{-- Value display --}}
     @if($showValue)
         <span class="font-medium text-muted-foreground {{ $textSize }}" x-text="value.toFixed(1)"></span>
     @endif
