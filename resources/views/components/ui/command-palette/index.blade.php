@@ -14,7 +14,6 @@
     role="dialog"
     aria-modal="true"
 >
-    {{-- Backdrop --}}
     <div
         x-show="open"
         x-transition:enter="ease-out duration-200"
@@ -27,7 +26,6 @@
         @click="closePalette()"
     ></div>
 
-    {{-- Modal --}}
     <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
         <div
             x-show="open"
@@ -39,7 +37,6 @@
             x-transition:leave-end="opacity-0 scale-95"
             class="bg-background text-foreground ring-border mx-auto max-w-2xl transform overflow-hidden rounded-xl border shadow-2xl ring-1"
         >
-            {{-- Search Input --}}
             <div class="relative">
                 <x-lucide-search class="text-muted-foreground pointer-events-none absolute left-4 top-3.5 h-5 w-5" />
                 <input
@@ -56,12 +53,10 @@
                 </kbd>
             </div>
 
-            {{-- Results --}}
             <div class="border-border max-h-80 scroll-py-2 overflow-y-auto border-t">
                 {{ $slot }}
             </div>
 
-            {{-- Footer --}}
             <div class="border-border bg-muted/40 text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-2 border-t px-4 py-2.5 text-xs">
                 <span class="flex items-center gap-1">
                     <kbd class="bg-muted border-border rounded border px-1.5 py-0.5 font-mono">↑↓</kbd>

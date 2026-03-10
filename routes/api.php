@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ComponentController;
+use App\Http\Controllers\Api\PreviewSourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,5 @@ Route::prefix('v1')->group(function () {
     Route::get('/components', [ComponentController::class, 'index']);
     Route::get('/components/{name}', [ComponentController::class, 'show']);
     Route::get('/components/{name}/versions', [ComponentController::class, 'versions']);
+    Route::get('/previews/{component}/source', PreviewSourceController::class);
 });
