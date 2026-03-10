@@ -11,7 +11,7 @@
     "requires_alpine": false,
     "files": [
         {
-            "path": "kbd.blade.php",
+            "path": "kbd/index.blade.php",
             "type": "blade"
         }
     ],

@@ -11,7 +11,7 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "file-upload.blade.php",
+            "path": "file-upload/index.blade.php",
             "type": "blade"
         },
         {

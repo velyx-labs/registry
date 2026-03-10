@@ -10,7 +10,7 @@
     "requires_alpine": false,
     "files": [
         {
-            "path": "label.blade.php",
+            "path": "label/index.blade.php",
             "type": "blade"
         }
     ],

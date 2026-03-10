@@ -92,7 +92,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "kbd.blade.php"
+          "path": "kbd/index.blade.php"
         }
       ],
       "dependencies": {
@@ -136,7 +136,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "file-upload.blade.php"
+          "path": "file-upload/index.blade.php"
         },
         {
           "type": "js",
@@ -586,7 +586,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "empty-state.blade.php"
+          "path": "empty-state/index.blade.php"
         }
       ],
       "dependencies": {
@@ -913,7 +913,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "label.blade.php"
+          "path": "label/index.blade.php"
         }
       ],
       "dependencies": {
