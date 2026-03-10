@@ -11,7 +11,7 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "rating.blade.php",
+            "path": "rating/index.blade.php",
             "type": "blade"
         },
         {

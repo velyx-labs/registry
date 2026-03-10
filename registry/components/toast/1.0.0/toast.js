@@ -8,16 +8,24 @@ export default (options = {}) => ({
     const id = ++this.counter;
     const newToast = {
       id,
-      ...toast,
-      timeout: setTimeout(() => this.remove(id), this.duration),
+      type: toast?.type || 'info',
+      title: toast?.title || '',
+      message: toast?.message || '',
+      duration: toast?.duration ?? this.duration,
+      timeout: null,
     };
+
+    if (newToast.duration > 0) {
+      newToast.timeout = setTimeout(() => this.remove(id), newToast.duration);
+    }
 
     this.toasts.push(newToast);
 
-    // Remove oldest toast if maxToasts exceeded
     if (this.toasts.length > this.maxToasts) {
       const oldest = this.toasts.shift();
-      clearTimeout(oldest.timeout);
+      if (oldest?.timeout) {
+        clearTimeout(oldest.timeout);
+      }
     }
   },
 
@@ -25,13 +33,32 @@ export default (options = {}) => ({
     const index = this.toasts.findIndex((toast) => toast.id === id);
     if (index > -1) {
       const toast = this.toasts[index];
-      clearTimeout(toast.timeout);
+      if (toast.timeout) {
+        clearTimeout(toast.timeout);
+      }
       this.toasts.splice(index, 1);
     }
   },
 
-  clear() {
-    this.toasts.forEach((toast) => clearTimeout(toast.timeout));
-    this.toasts = [];
+  getClasses(type) {
+    const classes = {
+      success: 'bg-green-500/10 border-green-500/50 text-green-600 dark:text-green-400',
+      error: 'bg-destructive/10 border-destructive/50 text-destructive',
+      warning: 'bg-yellow-500/10 border-yellow-500/50 text-yellow-600 dark:text-yellow-400',
+      info: 'bg-primary/10 border-primary/50 text-primary',
+    };
+
+    return classes[type] || classes.info;
+  },
+
+  getIconClasses(type) {
+    const classes = {
+      success: 'text-green-500',
+      error: 'text-destructive',
+      warning: 'text-yellow-500',
+      info: 'text-primary',
+    };
+
+    return classes[type] || classes.info;
   },
 });

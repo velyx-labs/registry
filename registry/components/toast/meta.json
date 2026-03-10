@@ -11,7 +11,7 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "toast.blade.php",
+            "path": "toast/index.blade.php",
             "type": "blade"
         },
         {

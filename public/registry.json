@@ -162,7 +162,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "toast.blade.php"
+          "path": "toast/index.blade.php"
         }
       ],
       "dependencies": {
@@ -892,7 +892,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "progress-bar.blade.php"
+          "path": "progress-bar/index.blade.php"
         }
       ],
       "dependencies": {
@@ -916,7 +916,7 @@
           "path": "label/index.blade.php"
         }
       ],
-      "dependencies": {
+          "path": "rating/index.blade.php"
         "composer": [],
         "npm": []
       },

@@ -11,7 +11,7 @@
     "requires_alpine": false,
     "files": [
         {
-            "path": "progress-bar.blade.php",
+            "path": "progress-bar/index.blade.php",
             "type": "blade"
         }
     ],

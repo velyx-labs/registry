@@ -9,6 +9,8 @@ import drawer from './ui/drawer'
 import datePicker from './ui/date-picker'
 import fileUpload from './ui/file-upload'
 import dialog from './ui/dialog'
+import rating from './ui/rating'
+import toast from './ui/toast'
 import './ui/markdown-viewer'
 
 document.addEventListener('alpine:init', () => {
@@ -23,4 +25,6 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('datePicker', datePicker);
     Alpine.data('fileUpload', fileUpload);
     Alpine.data('dialog', dialog);
+    Alpine.data('rating', rating);
+    Alpine.data('toast', toast);
 });

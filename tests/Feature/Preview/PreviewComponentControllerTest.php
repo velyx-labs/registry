@@ -152,6 +152,30 @@ test('it resolves dialog dedicated preview view when available', function () {
         ->assertViewHas('previewView', 'preview.components.dialog.index');
 });
 
+test('it resolves progress-bar dedicated preview view when available', function () {
+    $response = $this->get('/preview/progress-bar');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.progress-bar.index');
+});
+
+test('it resolves rating dedicated preview view when available', function () {
+    $response = $this->get('/preview/rating');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.rating.index');
+});
+
+test('it resolves toast dedicated preview view when available', function () {
+    $response = $this->get('/preview/toast');
+
+    $response->assertOk()
+        ->assertViewIs('preview.template')
+        ->assertViewHas('previewView', 'preview.components.toast.index');
+});
+
 test('it applies array based variants from preview json', function () {
     $response = $this->get('/preview/button?variant=secondary');
 
