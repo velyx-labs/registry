@@ -161,11 +161,6 @@ class ComponentService
 
         $targetVersion = $version ?? $versionsData['latest'];
 
-        $versionPath = $componentPath.'/'.$targetVersion;
-        if (! is_dir($versionPath)) {
-            return null;
-        }
-
         return [
             'name' => $name,
             'version' => $targetVersion,
@@ -212,12 +207,41 @@ class ComponentService
             return [];
         }
 
-        $versionPath = $this->componentsPath.'/'.$name.'/'.$version;
+        $sourceVersion = $this->resolveSourceVersion($name, $version);
+        if ($sourceVersion === null) {
+            $metadata['files'] = [];
+
+            return $metadata;
+        }
+
+        $versionPath = $this->componentsPath.'/'.$name.'/'.$sourceVersion;
         $files = $this->getComponentFiles($name, $versionPath);
 
         $metadata['files'] = $files;
 
         return $metadata;
+    }
+
+    protected function resolveSourceVersion(string $name, string $requestedVersion): ?string
+    {
+        $requestedPath = $this->componentsPath.'/'.$name.'/'.$requestedVersion;
+        if (is_dir($requestedPath)) {
+            return $requestedVersion;
+        }
+
+        $versionsData = $this->getVersionsData($name);
+        if (! $versionsData) {
+            return null;
+        }
+
+        foreach ($versionsData['versions'] as $candidateVersion) {
+            $candidatePath = $this->componentsPath.'/'.$name.'/'.$candidateVersion;
+            if (is_dir($candidatePath)) {
+                return $candidateVersion;
+            }
+        }
+
+        return null;
     }
 
     /**
