@@ -250,44 +250,78 @@ class ComponentService
     protected function getComponentFiles(string $name, string $versionPath): array
     {
         $files = [];
-        $filesInDir = glob($versionPath.'/*');
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($versionPath, \FilesystemIterator::SKIP_DOTS)
+        );
+
         $bladeFiles = [];
+        $assetFiles = [];
 
-        // First pass: collect all files and identify blade files
-        foreach ($filesInDir as $filePath) {
-            $filename = basename($filePath);
+        foreach ($iterator as $file) {
+            if (! $file->isFile()) {
+                continue;
+            }
 
-            if (str_ends_with($filename, '.blade.php')) {
-                $bladeFiles[] = $filename;
-            } elseif (str_ends_with($filename, '.js')) {
-                $files['resources/js/ui'.'/'.$filename] = file_get_contents($filePath);
-            } elseif (str_ends_with($filename, '.css')) {
-                $files['resources/css/ui/'.'/'.$filename] = file_get_contents($filePath);
+            $relativePath = str_replace('\\', '/', substr($file->getPathname(), strlen($versionPath) + 1));
+
+            if (str_ends_with($relativePath, '.blade.php')) {
+                $bladeFiles[] = $relativePath;
+                continue;
+            }
+
+            if (str_ends_with($relativePath, '.js') || str_ends_with($relativePath, '.css')) {
+                $assetFiles[] = $relativePath;
             }
         }
 
-        $hasAssetFiles = count($files) > 0;
+        foreach ($assetFiles as $relativePath) {
+            $filename = basename($relativePath);
 
-        // Handle blade files based on component structure
-        if (count($bladeFiles) === 1 && ! $hasAssetFiles) {
-            // Simple component: single Blade file with no assets goes directly in ui/
-            $filename = $bladeFiles[0];
-            $componentFileName = $name.'.blade.php';
-            $files['resources/views/components/ui/'.$componentFileName] = file_get_contents($versionPath.'/'.$filename);
-        } else {
-            // Components with assets or multiple Blade files live in a dedicated subfolder
-            foreach ($bladeFiles as $filename) {
-                $targetFile = $filename;
-
-                if (count($bladeFiles) === 1 || $filename === $name.'.blade.php') {
-                    $targetFile = 'index.blade.php';
-                }
-
-                $files['resources/views/components/ui/'.$name.'/'.$targetFile] = file_get_contents($versionPath.'/'.$filename);
+            if (str_ends_with($relativePath, '.js')) {
+                $files['resources/js/ui/'.$filename] = file_get_contents($versionPath.'/'.$relativePath);
+            } elseif (str_ends_with($relativePath, '.css')) {
+                $files['resources/css/ui/'.$filename] = file_get_contents($versionPath.'/'.$relativePath);
             }
+        }
+
+        $hasAssetFiles = count($assetFiles) > 0;
+
+        if (count($bladeFiles) === 1 && ! $hasAssetFiles && dirname($bladeFiles[0]) === '.') {
+            $files['resources/views/components/ui/'.$name.'.blade.php'] = file_get_contents($versionPath.'/'.$bladeFiles[0]);
+
+            return $files;
+        }
+
+        foreach ($bladeFiles as $relativePath) {
+            $targetPath = $this->mapBladeDestinationPath($name, $relativePath, count($bladeFiles) === 1);
+            $files['resources/views/components/ui/'.$name.'/'.$targetPath] = file_get_contents($versionPath.'/'.$relativePath);
         }
 
         return $files;
+    }
+
+    protected function mapBladeDestinationPath(string $name, string $relativePath, bool $singleBlade): string
+    {
+        $normalizedPath = str_replace('\\', '/', $relativePath);
+        $segments = array_values(array_filter(explode('/', $normalizedPath), fn (string $segment) => $segment !== ''));
+
+        if ($segments !== [] && $segments[0] === $name) {
+            array_shift($segments);
+        }
+
+        if ($segments === []) {
+            return 'index.blade.php';
+        }
+
+        $filename = array_pop($segments);
+
+        if ($singleBlade || $filename === $name.'.blade.php' || $filename === 'index.blade.php') {
+            $filename = 'index.blade.php';
+        }
+
+        $segments[] = $filename;
+
+        return implode('/', $segments);
     }
 
     /**

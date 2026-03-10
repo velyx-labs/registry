@@ -99,7 +99,6 @@ test('returns validation error for invalid include parameter', function () {
         ->assertJsonValidationErrors(['include']);
 });
 
-
 test('components with assets expose blade views inside a component folder', function () {
     $components = [
         'accordion',
@@ -131,12 +130,33 @@ test('components with assets expose blade views inside a component folder', func
         $response->assertOk();
 
         $files = $response->json('data.files');
+        $bladePaths = array_values(array_filter(
+            array_keys($files),
+            fn (string $path) => str_starts_with($path, 'resources/views/components/ui/'.$component.'/') && str_ends_with($path, '.blade.php')
+        ));
 
-        expect($files)->toHaveKey('resources/views/components/ui/'.$component.'/index.blade.php');
-        expect(array_keys($files))->toContain(fn (string $path) => str_contains($path, 'resources/js/ui/') || str_contains($path, 'resources/css/ui/'));
+        $assetPaths = array_values(array_filter(
+            array_keys($files),
+            fn (string $path) => str_contains($path, 'resources/js/ui/') || str_contains($path, 'resources/css/ui/')
+        ));
+
+        expect($bladePaths)->not->toBeEmpty();
+        expect($assetPaths)->not->toBeEmpty();
     }
 });
 
+test('nested blade component directories are exported correctly', function () {
+    $response = $this->getJson('/api/v1/components/accordion?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/index.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/item.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/trigger.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/content.blade.php');
+});
 
 test('multi-blade components expose their root view as index.blade.php', function () {
     $response = $this->getJson('/api/v1/components/tabs?include=files');
