@@ -1,7 +1,6 @@
 @props([
     'variant' => 'default',
     'rounded' => 'md',
-    'class' => '',
     'count' => 1,
     'gap' => '2',
 ])
@@ -40,14 +39,17 @@
         default => 'gap-2',
     };
 
-    $classes = "bg-muted animate-pulse {$roundedClasses} {$variantClasses}";
+    $baseClasses = 'bg-muted rounded-md animate-pulse';
+    $classes = trim("{$baseClasses} {$roundedClasses} {$variantClasses}");
+    $items = max(1, (int) $count);
 @endphp
 
-@if($count > 1)
-    <div class="flex flex-col {{ $gapClasses }}" data-test="skeleton-group">
-        @for($i = 0; $i < $count; $i++)
+@if($items > 1)
+    <div class="flex flex-col {{ $gapClasses }}" data-slot="skeleton-group" data-test="skeleton-group">
+        @for($i = 0; $i < $items; $i++)
             <div
                 {{ $attributes->merge(['class' => $classes]) }}
+                data-slot="skeleton"
                 aria-hidden="true"
                 data-test="skeleton-item"
             ></div>
@@ -56,6 +58,7 @@
 @else
     <div
         {{ $attributes->merge(['class' => $classes]) }}
+        data-slot="skeleton"
         aria-hidden="true"
         data-test="skeleton-item"
     ></div>

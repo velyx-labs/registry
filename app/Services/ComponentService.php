@@ -266,6 +266,7 @@ class ComponentService
 
             if (str_ends_with($relativePath, '.blade.php')) {
                 $bladeFiles[] = $relativePath;
+
                 continue;
             }
 
@@ -282,14 +283,6 @@ class ComponentService
             } elseif (str_ends_with($relativePath, '.css')) {
                 $files['resources/css/ui/'.$filename] = file_get_contents($versionPath.'/'.$relativePath);
             }
-        }
-
-        $hasAssetFiles = count($assetFiles) > 0;
-
-        if (count($bladeFiles) === 1 && ! $hasAssetFiles && dirname($bladeFiles[0]) === '.') {
-            $files['resources/views/components/ui/'.$name.'.blade.php'] = file_get_contents($versionPath.'/'.$bladeFiles[0]);
-
-            return $files;
         }
 
         foreach ($bladeFiles as $relativePath) {

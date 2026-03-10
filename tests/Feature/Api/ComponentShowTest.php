@@ -171,3 +171,14 @@ test('multi-blade components expose their root view as index.blade.php', functio
     expect($files)->toHaveKey('resources/views/components/ui/tabs/trigger.blade.php');
     expect($files)->not->toHaveKey('resources/views/components/ui/tabs/tabs.blade.php');
 });
+
+test('simple components expose their root view as index.blade.php', function () {
+    $response = $this->getJson('/api/v1/components/button?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/button/index.blade.php');
+    expect($files)->not->toHaveKey('resources/views/components/ui/button.blade.php');
+});

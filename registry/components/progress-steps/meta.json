@@ -11,7 +11,11 @@
     "requires_alpine": false,
     "files": [
         {
-            "path": "progress-steps.blade.php",
+            "path": "progress-steps/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "progress-steps/step.blade.php",
             "type": "blade"
         }
     ],
