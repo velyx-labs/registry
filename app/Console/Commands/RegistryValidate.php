@@ -37,6 +37,8 @@ class RegistryValidate extends Command
         $errors = [];
         $warnings = [];
         $validatedCount = 0;
+        $composerRequirements = $this->loadComposerRequirements();
+        $npmRequirements = $this->loadNpmRequirements();
 
         $components = glob($componentsPath.'/*', GLOB_ONLYDIR);
 
@@ -62,8 +64,12 @@ class RegistryValidate extends Command
             $this->line("  Validating component: {$componentName}");
             $validatedCount++;
 
-            // Validate component structure
-            $componentErrors = $this->validateComponent($componentName, $componentPath);
+            $componentErrors = $this->validateComponent(
+                $componentName,
+                $componentPath,
+                $composerRequirements,
+                $npmRequirements,
+            );
 
             if (! empty($componentErrors['errors'])) {
                 $errors = array_merge($errors, $componentErrors['errors']);
@@ -74,7 +80,6 @@ class RegistryValidate extends Command
             }
         }
 
-        // Report results
         $this->newLine();
         $this->info('📊 Validation Results:');
         $this->info("  Components validated: {$validatedCount}");
@@ -108,14 +113,18 @@ class RegistryValidate extends Command
     }
 
     /**
-     * Validate individual component structure
+     * @param  array<string, string>  $composerRequirements
+     * @param  array<string, string>  $npmRequirements
      */
-    private function validateComponent(string $name, string $componentPath): array
-    {
+    private function validateComponent(
+        string $name,
+        string $componentPath,
+        array $composerRequirements,
+        array $npmRequirements,
+    ): array {
         $errors = [];
         $warnings = [];
 
-        // Check meta.json
         $metaFile = $componentPath.'/meta.json';
         if (! file_exists($metaFile)) {
             $errors[] = "{$name}: Missing meta.json";
@@ -130,7 +139,6 @@ class RegistryValidate extends Command
             return ['errors' => $errors, 'warnings' => $warnings];
         }
 
-        // Validate required meta fields
         $requiredFields = ['name', 'version', 'description', 'laravel', 'requires_alpine', 'requires'];
         foreach ($requiredFields as $field) {
             if (! isset($meta[$field])) {
@@ -152,7 +160,18 @@ class RegistryValidate extends Command
             }
         }
 
-        // Check versions.json
+        if (! empty($meta['requires']['composer']) && is_array($meta['requires']['composer'])) {
+            $this->validateComposerDependencies($name, $meta['requires']['composer'], $composerRequirements, $errors);
+        }
+
+        if (! empty($meta['requires']['npm']) && is_array($meta['requires']['npm'])) {
+            $this->validateNpmDependencies($name, $meta['requires']['npm'], $npmRequirements, $errors);
+        }
+
+        if (($meta['requires_alpine'] ?? false) && ! $this->hasVersionedDependency($meta['requires']['npm'] ?? [], 'alpinejs')) {
+            $errors[] = "{$name}: 'requires_alpine' is true, but 'requires.npm' does not declare alpinejs with a version";
+        }
+
         $versionsFile = $componentPath.'/versions.json';
         if (! file_exists($versionsFile)) {
             $errors[] = "{$name}: Missing versions.json";
@@ -167,7 +186,6 @@ class RegistryValidate extends Command
             return ['errors' => $errors, 'warnings' => $warnings];
         }
 
-        // Validate versions.json structure
         if (! isset($versions['latest'])) {
             $errors[] = "{$name}: Missing 'latest' field in versions.json";
         }
@@ -183,7 +201,6 @@ class RegistryValidate extends Command
             $errors[] = "{$name}: Latest version '{$latestVersion}' not listed in versions array";
         }
 
-        // Check if latest version directory exists
         if ($latestVersion) {
             $versionPath = $componentPath.'/'.$latestVersion;
             if (! is_dir($versionPath)) {
@@ -227,7 +244,6 @@ class RegistryValidate extends Command
             }
         }
 
-        // Validate semantic versioning
         foreach ($allVersions as $version) {
             if (! preg_match('/^\d+\.\d+\.\d+$/', $version)) {
                 $errors[] = "{$name}: Invalid version format '{$version}' (use semantic versioning)";
@@ -235,5 +251,162 @@ class RegistryValidate extends Command
         }
 
         return ['errors' => $errors, 'warnings' => $warnings];
+    }
+
+    /**
+     * @param  array<int, string>  $dependencies
+     * @param  array<string, string>  $requirements
+     * @param  array<int, string>  $errors
+     */
+    private function validateComposerDependencies(string $name, array $dependencies, array $requirements, array &$errors): void
+    {
+        foreach ($dependencies as $dependency) {
+            [$package, $version] = $this->parseComposerDependency($dependency);
+
+            if ($package === null || $version === null) {
+                $errors[] = "{$name}: Composer dependency '{$dependency}' must include a version using vendor/package@constraint or vendor/package:constraint";
+
+                continue;
+            }
+
+            if (! array_key_exists($package, $requirements)) {
+                $errors[] = "{$name}: Composer dependency '{$package}' is not declared in registry composer.json";
+
+                continue;
+            }
+
+            if ($requirements[$package] !== $version) {
+                $errors[] = "{$name}: Composer dependency '{$package}' must use version '{$requirements[$package]}' in meta.json";
+            }
+        }
+    }
+
+    /**
+     * @param  array<int, string>  $dependencies
+     * @param  array<string, string>  $requirements
+     * @param  array<int, string>  $errors
+     */
+    private function validateNpmDependencies(string $name, array $dependencies, array $requirements, array &$errors): void
+    {
+        foreach ($dependencies as $dependency) {
+            [$package, $version] = $this->parseNpmDependency($dependency);
+
+            if ($package === null || $version === null) {
+                $errors[] = "{$name}: npm dependency '{$dependency}' must include a version using package@constraint";
+
+                continue;
+            }
+
+            if (! array_key_exists($package, $requirements)) {
+                $errors[] = "{$name}: npm dependency '{$package}' is not declared in registry package.json";
+
+                continue;
+            }
+
+            if ($requirements[$package] !== $version) {
+                $errors[] = "{$name}: npm dependency '{$package}' must use version '{$requirements[$package]}' in meta.json";
+            }
+        }
+    }
+
+    /**
+     * @param  array<int, string>  $dependencies
+     */
+    private function hasVersionedDependency(array $dependencies, string $package): bool
+    {
+        foreach ($dependencies as $dependency) {
+            [$candidate, $version] = $this->parseNpmDependency($dependency);
+            if ($candidate === $package && $version !== null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array{0: string|null, 1: string|null}
+     */
+    private function parseComposerDependency(string $dependency): array
+    {
+        if (str_contains($dependency, ':')) {
+            [$package, $version] = explode(':', $dependency, 2);
+
+            return [$package !== '' ? $package : null, $version !== '' ? $version : null];
+        }
+
+        if (str_contains($dependency, '@')) {
+            $parts = explode('@', $dependency, 2);
+
+            return [$parts[0] !== '' ? $parts[0] : null, $parts[1] !== '' ? $parts[1] : null];
+        }
+
+        return [null, null];
+    }
+
+    /**
+     * @return array{0: string|null, 1: string|null}
+     */
+    private function parseNpmDependency(string $dependency): array
+    {
+        if (str_starts_with($dependency, '@')) {
+            $separator = strrpos($dependency, '@');
+            $slash = strpos($dependency, '/');
+
+            if ($separator !== false && $slash !== false && $separator > $slash) {
+                $package = substr($dependency, 0, $separator);
+                $version = substr($dependency, $separator + 1);
+
+                return [$package !== '' ? $package : null, $version !== '' ? $version : null];
+            }
+
+            return [null, null];
+        }
+
+        if (str_contains($dependency, '@')) {
+            [$package, $version] = explode('@', $dependency, 2);
+
+            return [$package !== '' ? $package : null, $version !== '' ? $version : null];
+        }
+
+        return [null, null];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function loadComposerRequirements(): array
+    {
+        $composerFile = base_path('composer.json');
+
+        if (! file_exists($composerFile)) {
+            return [];
+        }
+
+        $composer = json_decode(file_get_contents($composerFile), true);
+        if (json_last_error() !== JSON_ERROR_NONE || ! is_array($composer)) {
+            return [];
+        }
+
+        return array_merge($composer['require'] ?? [], $composer['require-dev'] ?? []);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function loadNpmRequirements(): array
+    {
+        $packageFile = base_path('package.json');
+
+        if (! file_exists($packageFile)) {
+            return [];
+        }
+
+        $package = json_decode(file_get_contents($packageFile), true);
+        if (json_last_error() !== JSON_ERROR_NONE || ! is_array($package)) {
+            return [];
+        }
+
+        return array_merge($package['dependencies'] ?? [], $package['devDependencies'] ?? []);
     }
 }

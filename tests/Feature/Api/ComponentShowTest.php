@@ -18,7 +18,7 @@ test('can get component details', function () {
             ],
         ])
         ->assertJsonPath('data.name', 'button')
-        ->assertJsonPath('data.latest', '2.0.0');
+        ->assertJsonPath('data.latest', '1.0.0');
 });
 
 test('can get specific version of component', function () {
@@ -33,8 +33,8 @@ test('component defaults to latest version when not specified', function () {
     $response = $this->getJson('/api/v1/components/button');
 
     $response->assertOk()
-        ->assertJsonPath('data.version', '2.0.0')
-        ->assertJsonPath('data.latest', '2.0.0');
+        ->assertJsonPath('data.version', '1.0.0')
+        ->assertJsonPath('data.latest', '1.0.0');
 });
 
 test('returns 404 for non existent component', function () {

@@ -1,0 +1,20 @@
+title: "Show and tell"
+labels:
+  - showcase
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share components, preview work, validation patterns, or contributor workflow improvements built around the registry.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What you built or learned
+      description: Describe the result directly.
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Share screenshots, payloads, implementation notes, or lessons learned.

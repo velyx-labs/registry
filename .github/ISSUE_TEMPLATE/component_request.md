@@ -1,78 +1,80 @@
 ---
 name: Component request
-about: Request a new component to be added to the registry
+about: Request a new component for the registry with enough detail to implement and validate it
 title: '[COMPONENT] '
-labels: enhancement, component
+labels: enhancement, component, needs-triage
 assignees: ''
 ---
 
-## Component Name
+## Summary
 
-What should the component be called?
+Name the component and describe its purpose.
 
-## Component Description
+## Problem / Use Case
 
-A clear description of what the component should do and how it should be used.
-
-## Use Cases
-
-Describe the typical use cases for this component. When would developers use it?
+Explain where this component is needed and what workflow it improves.
 
 ## Proposed API
 
-Describe how the component should be used:
+Show the expected usage.
 
-```blade
-{{-- Example usage --}}
-<x-{{ component-name }} />
+```php
+<x-component-name />
 ```
 
-## Requirements
+## Required Behavior
 
-List the key features and requirements for this component:
+List the minimum behavior this component must support.
 
-- [ ] Requirement 1
-- [ ] Requirement 2
-- [ ] Requirement 3
+- [ ] Default state
+- [ ] Variants or sizes
+- [ ] Disabled or empty state
+- [ ] Form integration
+- [ ] Alpine behavior
+- [ ] Livewire compatibility
 
-## Variants
+## Structure Expectations
 
-Should this component have variants? If so, describe them:
+Describe the expected files or delivery constraints if relevant.
 
-- Variant 1: description
-- Variant 2: description
+- Blade structure:
+- JavaScript requirement:
+- CSS requirement:
+- External dependencies:
 
-## Accessibility
+## Accessibility Requirements
 
-What accessibility features should this component have?
+Describe the accessibility expectations.
 
-- [ ] Keyboard navigation
-- [ ] ARIA labels
+- [ ] Keyboard support
+- [ ] Focus management
+- [ ] ARIA semantics
 - [ ] Screen reader support
-- [ ] High contrast mode support
+- [ ] Reduced motion considerations
 
-## Dependencies
+## References
 
-Are there any dependencies required for this component?
+Link similar components or design references.
 
-- Alpine.js components
-- Livewire components
-- External libraries
-- Icon set (HugeIcons, etc.)
+- shadcn/ui:
+- Tailwind UI:
+- Other:
 
-## Examples
+## Validation Plan
 
-Provide links to similar components from other libraries that we can use as reference:
+How should we verify the component once implemented?
 
-- shadcn/ui: [link]
-- Tailwind UI: [link]
-- Other: [link]
+- [ ] Registry preview required
+- [ ] Docs page required
+- [ ] CLI install path required
+- [ ] Tests required
 
-## Additional Notes
+## Scope Check
 
-Any other information that would help understand or implement this component.
+- [ ] I checked that this component is not already in the registry
+- [ ] I described the API and expected behavior clearly
+- [ ] I included references or concrete examples
 
-## Would you like to implement this?
+## Additional Context
 
-- [ ] Yes, I'd like to implement this component
-- [ ] No, I'm just proposing the idea
+Anything else that would reduce ambiguity for implementation.

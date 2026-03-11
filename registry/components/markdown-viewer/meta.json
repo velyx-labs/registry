@@ -25,11 +25,11 @@
     ],
     "requires": {
         "composer": [
-            "mallardduck/blade-lucide-icons"
+            "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": [
-            "@tailwindcss/typography",
-            "prismjs"
+            "@tailwindcss/typography@^0.5.19",
+            "prismjs@^1.30.0"
         ]
     }
 }

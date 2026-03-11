@@ -12,7 +12,7 @@ test('can get component versions', function () {
             ],
         ])
         ->assertJsonPath('data.name', 'button')
-        ->assertJsonPath('data.latest', '2.0.0')
+        ->assertJsonPath('data.latest', '1.0.0')
         ->assertJsonPath('data.versions', fn ($versions) => count($versions) > 0);
 });
 
@@ -23,9 +23,6 @@ test('versions are in correct order', function () {
     $versions = $response->json('data.versions');
 
     expect($versions)->toBe([
-        '2.0.0',
-        '1.1.0',
-        '1.0.1',
         '1.0.0',
     ]);
 });

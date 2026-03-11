@@ -1,48 +1,63 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a reproducible problem in the registry, API, previews, or component delivery flow
 title: '[BUG] '
 labels: bug, needs-triage
 assignees: ''
 ---
 
-## Bug Description
+## Summary
 
-A clear and concise description of what the bug is.
+Describe the bug clearly and directly.
 
-## Steps to Reproduce
+## Impact
 
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Explain what is broken and who it affects.
+
+- [ ] Blocks using the registry API
+- [ ] Breaks component download or install
+- [ ] Breaks component preview rendering
+- [ ] Breaks documentation or examples
+- [ ] Other impact
+
+## Steps To Reproduce
+
+1. Go to `...`
+2. Run `...`
+3. Open `...`
+4. Observe `...`
 
 ## Expected Behavior
 
-A clear and concise description of what you expected to happen.
+Describe what should happen.
 
 ## Actual Behavior
 
-A clear and concise description of what actually happened.
+Describe what actually happens.
 
-## Stack Trace / Error Messages
+## Evidence
 
-```
-Paste error messages or stack traces here
+Include the most relevant output.
+
+```text
+Paste error messages, logs, or failing responses here.
 ```
 
 ## Environment
 
-- PHP Version: [e.g. 8.4.0]
-- Laravel Version: [e.g. 12.0.0]
-- Velyx Registry Version: [e.g. 1.0.0]
-- Database: [e.g. MySQL 8.0, SQLite 3, PostgreSQL 14]
-- OS: [e.g. Ubuntu 22.04, macOS 14, Windows 11]
+- PHP version:
+- Laravel version:
+- Registry version or branch:
+- Database:
+- Browser (if UI related):
+- OS:
+
+## Scope Check
+
+- [ ] I confirmed this is reproducible on a clean pull of the current branch
+- [ ] I checked for an existing issue covering the same problem
+- [ ] I included exact commands, URLs, or payloads where relevant
 
 ## Additional Context
 
-Add any other context about the problem here.
-
-## Possible Solution (Optional)
-
-If you have an idea of how to fix this, please describe it here.
+Add screenshots, links, or implementation notes if they help.

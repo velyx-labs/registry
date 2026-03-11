@@ -1,44 +1,59 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Propose a concrete improvement to the registry platform or contributor workflow
 title: '[FEATURE] '
-labels: enhancement
+labels: enhancement, needs-triage
 assignees: ''
 ---
 
-## Feature Description
+## Summary
 
-A clear and concise description of the feature you'd like to see added to the Velyx Registry.
+Describe the feature in one or two direct sentences.
 
-## Problem Statement
+## Problem
 
-What problem does this feature solve? What pain point does it address?
+Explain the current limitation or pain point.
 
-## Proposed Solution
+## Proposed Change
 
-Describe the solution you'd like. Include:
+Describe the change you want.
 
-- API endpoints if applicable
-- Database changes if needed
-- UI/UX changes
-- Backward compatibility considerations
+- API or contract changes:
+- Preview or UI changes:
+- Registry data or validation changes:
+- Contributor workflow changes:
+
+## Expected Outcome
+
+Describe how the project or users benefit if this is implemented.
 
 ## Alternatives Considered
 
-Describe any alternative solutions or features you've considered.
+List other approaches you considered and why they are less suitable.
 
-## Impact
+## Delivery Impact
 
 - [ ] Breaking change
-- [ ] Requires database migration
-- [ ] Requires API version change
+- [ ] Requires data or contract migration
+- [ ] Requires docs update
+- [ ] Requires preview/template changes
 - [ ] Backward compatible
+
+## Validation Plan
+
+How should this be tested or reviewed?
+
+```text
+Example: php artisan test
+Example: php artisan registry:validate
+```
+
+## Scope Check
+
+- [ ] I checked for an existing request covering the same idea
+- [ ] I described the affected area precisely
+- [ ] I included technical constraints or tradeoffs where relevant
 
 ## Additional Context
 
-Add any other context, mockups, or examples about the feature request here.
-
-## Would you like to implement this?
-
-- [ ] Yes, I'd like to implement this feature
-- [ ] No, I'm just proposing the idea
+Add references, screenshots, mockups, or related issues.

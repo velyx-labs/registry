@@ -41,7 +41,7 @@
     ],
     "requires": {
         "composer": [
-            "mallardduck/blade-lucide-icons"
+            "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": []
     }
