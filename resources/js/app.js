@@ -16,8 +16,10 @@ import './ui/markdown-viewer'
 import rangeSlider from './ui/range-slider'
 import stepper from './ui/stepper'
 import timeline from './ui/timeline'
+import tooltip from './ui/tooltip'
 
 document.addEventListener('alpine:init', () => {
+    Alpine.data('tooltip', tooltip);
     Alpine.data('timeline', timeline);
     Alpine.data('stepper', stepper);
     Alpine.data('rangeSlider', rangeSlider);
