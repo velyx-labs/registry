@@ -14,8 +14,10 @@ import toast from './ui/toast'
 import popover from './ui/popover'
 import './ui/markdown-viewer'
 import rangeSlider from './ui/range-slider'
+import stepper from './ui/stepper'
 
 document.addEventListener('alpine:init', () => {
+    Alpine.data('stepper', stepper);
     Alpine.data('rangeSlider', rangeSlider);
     Alpine.data('dropdownMenu', dropdownMenu);
     Alpine.data('alert', alert);
