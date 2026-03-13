@@ -18,8 +18,10 @@ import stepper from './ui/stepper'
 import timeline from './ui/timeline'
 import tooltip from './ui/tooltip'
 import toggle from './ui/toggle'
+import sortableList from './ui/sortable-list'
 
 document.addEventListener('alpine:init', () => {
+    Alpine.data('sortableList', sortableList);
     Alpine.data('toggle', toggle);
     Alpine.data('tooltip', tooltip);
     Alpine.data('timeline', timeline);
