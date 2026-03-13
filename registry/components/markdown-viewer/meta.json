@@ -1,0 +1,35 @@
+{
+    "name": "markdown-viewer",
+    "version": "1.0.0",
+    "description": "Markdown viewer component rendered as rich prose content.",
+    "categories": [
+        "ui",
+        "data",
+        "text"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": false,
+    "files": [
+        {
+            "path": "markdown-viewer.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "markdown-viewer.js",
+            "type": "js"
+        },
+        {
+            "path": "markdown-viewer.css",
+            "type": "css"
+        }
+    ],
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": [
+            "@tailwindcss/typography@^0.5.19",
+            "prismjs@^1.30.0"
+        ]
+    }
+}

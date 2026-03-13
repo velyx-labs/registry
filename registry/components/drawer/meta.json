@@ -11,7 +11,35 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "drawer.blade.php",
+            "path": "drawer/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/header.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/title.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/description.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/footer.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "drawer/close.blade.php",
             "type": "blade"
         },
         {
@@ -19,7 +47,12 @@
             "type": "js"
         }
     ],
-    "requires": [
-        "mallardduck/blade-lucide-icons"
-    ]
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": [
+            "alpinejs@^3.15.8"
+        ]
+    }
 }

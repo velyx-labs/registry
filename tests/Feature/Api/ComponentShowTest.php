@@ -18,7 +18,7 @@ test('can get component details', function () {
             ],
         ])
         ->assertJsonPath('data.name', 'button')
-        ->assertJsonPath('data.latest', '2.0.0');
+        ->assertJsonPath('data.latest', '1.0.0');
 });
 
 test('can get specific version of component', function () {
@@ -33,8 +33,8 @@ test('component defaults to latest version when not specified', function () {
     $response = $this->getJson('/api/v1/components/button');
 
     $response->assertOk()
-        ->assertJsonPath('data.version', '2.0.0')
-        ->assertJsonPath('data.latest', '2.0.0');
+        ->assertJsonPath('data.version', '1.0.0')
+        ->assertJsonPath('data.latest', '1.0.0');
 });
 
 test('returns 404 for non existent component', function () {
@@ -97,4 +97,88 @@ test('returns validation error for invalid include parameter', function () {
 
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['include']);
+});
+
+test('components with assets expose blade views inside a component folder', function () {
+    $components = [
+        'accordion',
+        'alert',
+        'carousel',
+        'command-palette',
+        'date-picker',
+        'dialog',
+        'drawer',
+        'dropdown-menu',
+        'file-upload',
+        'input',
+        'markdown-viewer',
+        'popover',
+        'range-slider',
+        'rating',
+        'sortable-list',
+        'stepper',
+        'tabs',
+        'timeline',
+        'toast',
+        'toggle',
+        'tooltip',
+    ];
+
+    foreach ($components as $component) {
+        $response = $this->getJson('/api/v1/components/'.$component.'?include=files');
+
+        $response->assertOk();
+
+        $files = $response->json('data.files');
+        $bladePaths = array_values(array_filter(
+            array_keys($files),
+            fn (string $path) => str_starts_with($path, 'resources/views/components/ui/'.$component.'/') && str_ends_with($path, '.blade.php')
+        ));
+
+        $assetPaths = array_values(array_filter(
+            array_keys($files),
+            fn (string $path) => str_contains($path, 'resources/js/ui/') || str_contains($path, 'resources/css/ui/')
+        ));
+
+        expect($bladePaths)->not->toBeEmpty();
+        expect($assetPaths)->not->toBeEmpty();
+    }
+});
+
+test('nested blade component directories are exported correctly', function () {
+    $response = $this->getJson('/api/v1/components/accordion?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/index.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/item.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/trigger.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/accordion/content.blade.php');
+});
+
+test('multi-blade components expose their root view as index.blade.php', function () {
+    $response = $this->getJson('/api/v1/components/tabs?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/index.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/list.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/content.blade.php');
+    expect($files)->toHaveKey('resources/views/components/ui/tabs/trigger.blade.php');
+    expect($files)->not->toHaveKey('resources/views/components/ui/tabs/tabs.blade.php');
+});
+
+test('simple components expose their root view as index.blade.php', function () {
+    $response = $this->getJson('/api/v1/components/button?include=files');
+
+    $response->assertOk();
+
+    $files = $response->json('data.files');
+
+    expect($files)->toHaveKey('resources/views/components/ui/button/index.blade.php');
+    expect($files)->not->toHaveKey('resources/views/components/ui/button.blade.php');
 });

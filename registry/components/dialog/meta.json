@@ -1,0 +1,30 @@
+{
+    "name": "dialog",
+    "version": "1.0.0",
+    "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
+    "categories": [
+        "ui",
+        "overlay",
+        "interactive"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "dialog.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dialog.js",
+            "type": "js"
+        }
+    ],
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": [
+            "alpinejs@^3.15.8"
+        ]
+    }
+}

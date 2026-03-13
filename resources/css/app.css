@@ -2,6 +2,7 @@
 /*@import "./velyx.css";*/
 
 @import "./torchlight.css";
+@import "./ui/markdown-viewer.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

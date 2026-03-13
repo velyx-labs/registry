@@ -1,0 +1,68 @@
+@plugin "@tailwindcss/typography";
+@import "prismjs/themes/prism.css" layer(base);
+@import "prismjs/plugins/line-numbers/prism-line-numbers.css" layer(base);
+
+.markdown-viewer .prose {
+    @apply max-w-none;
+}
+
+.markdown-viewer .prose h1 {
+    @apply mt-0 mb-4 text-3xl font-bold tracking-tight;
+}
+
+.markdown-viewer .prose h2 {
+    @apply mt-8 mb-3 text-2xl font-semibold tracking-tight;
+}
+
+.markdown-viewer .prose h3 {
+    @apply mt-6 mb-2 text-xl font-semibold;
+}
+
+.markdown-viewer .prose p {
+    @apply my-4 leading-7 text-muted-foreground;
+}
+
+.markdown-viewer .prose a {
+    @apply text-primary underline underline-offset-4 hover:text-primary/80;
+}
+
+.markdown-viewer .prose code {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground;
+}
+
+.markdown-viewer .prose pre {
+    @apply my-4 overflow-auto rounded-lg border bg-muted/50;
+}
+
+.markdown-viewer .prose pre code {
+    @apply block bg-transparent p-4;
+}
+
+.markdown-viewer__code-block {
+    @apply relative;
+}
+
+.markdown-viewer__copy-btn {
+    @apply text-muted-foreground hover:text-foreground absolute top-2 right-2 rounded-md p-2 opacity-0 transition-opacity;
+}
+
+.markdown-viewer__code-block:hover .markdown-viewer__copy-btn,
+.markdown-viewer__copy-btn:focus-visible {
+    @apply opacity-100;
+}
+
+.markdown-viewer__copy-btn.is-copied {
+    @apply text-emerald-500;
+}
+
+.markdown-viewer .prose ul {
+    @apply my-4 list-disc space-y-2 pl-6;
+}
+
+.markdown-viewer .prose ol {
+    @apply my-4 list-decimal space-y-2 pl-6;
+}
+
+.markdown-viewer .prose blockquote {
+    @apply my-4 border-l-4 border-primary/30 pl-4 italic text-muted-foreground;
+}

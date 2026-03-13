@@ -1,0 +1,74 @@
+{
+    "name": "dropdown-menu",
+    "version": "1.0.0",
+    "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
+    "categories": [
+        "ui",
+        "overlay",
+        "interactive"
+    ],
+    "laravel": ">=10",
+    "requires_alpine": true,
+    "files": [
+        {
+            "path": "dropdown-menu/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/group.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/label.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/item.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/separator.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/shortcut.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/sub.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/sub-trigger.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/sub-content.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu/portal.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "dropdown-menu.js",
+            "type": "js"
+        }
+    ],
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": [
+            "alpinejs@^3.15.8"
+        ]
+    }
+}

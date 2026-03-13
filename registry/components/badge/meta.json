@@ -15,7 +15,10 @@
             "type": "blade"
         }
     ],
-    "requires": [
-        "mallardduck/blade-lucide-icons"
-    ]
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": []
+    }
 }

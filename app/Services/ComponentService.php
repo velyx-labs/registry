@@ -161,11 +161,6 @@ class ComponentService
 
         $targetVersion = $version ?? $versionsData['latest'];
 
-        $versionPath = $componentPath.'/'.$targetVersion;
-        if (! is_dir($versionPath)) {
-            return null;
-        }
-
         return [
             'name' => $name,
             'version' => $targetVersion,
@@ -173,13 +168,32 @@ class ComponentService
             'versions' => $versionsData['versions'],
             'files' => [],
             'meta' => [
-                'requires' => $meta['requires'] ?? [],
+                'requires' => $this->normalizeRequires($meta['requires'] ?? []),
                 'requires_alpine' => $meta['requires_alpine'] ?? false,
                 'description' => $meta['description'] ?? '',
                 'laravel' => $meta['laravel'] ?? '>=10',
                 'categories' => $meta['categories'] ?? [],
                 'files' => $meta['files'] ?? [],
             ],
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>|array<int, string>  $requires
+     * @return array{composer: array<int, string>, npm: array<int, string>}
+     */
+    protected function normalizeRequires(array $requires): array
+    {
+        if (array_is_list($requires)) {
+            return [
+                'composer' => $requires,
+                'npm' => [],
+            ];
+        }
+
+        return [
+            'composer' => array_values(array_filter($requires['composer'] ?? [], 'is_string')),
+            'npm' => array_values(array_filter($requires['npm'] ?? [], 'is_string')),
         ];
     }
 
@@ -193,12 +207,41 @@ class ComponentService
             return [];
         }
 
-        $versionPath = $this->componentsPath.'/'.$name.'/'.$version;
+        $sourceVersion = $this->resolveSourceVersion($name, $version);
+        if ($sourceVersion === null) {
+            $metadata['files'] = [];
+
+            return $metadata;
+        }
+
+        $versionPath = $this->componentsPath.'/'.$name.'/'.$sourceVersion;
         $files = $this->getComponentFiles($name, $versionPath);
 
         $metadata['files'] = $files;
 
         return $metadata;
+    }
+
+    protected function resolveSourceVersion(string $name, string $requestedVersion): ?string
+    {
+        $requestedPath = $this->componentsPath.'/'.$name.'/'.$requestedVersion;
+        if (is_dir($requestedPath)) {
+            return $requestedVersion;
+        }
+
+        $versionsData = $this->getVersionsData($name);
+        if (! $versionsData) {
+            return null;
+        }
+
+        foreach ($versionsData['versions'] as $candidateVersion) {
+            $candidatePath = $this->componentsPath.'/'.$name.'/'.$candidateVersion;
+            if (is_dir($candidatePath)) {
+                return $candidateVersion;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -207,36 +250,71 @@ class ComponentService
     protected function getComponentFiles(string $name, string $versionPath): array
     {
         $files = [];
-        $filesInDir = glob($versionPath.'/*');
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($versionPath, \FilesystemIterator::SKIP_DOTS)
+        );
+
         $bladeFiles = [];
+        $assetFiles = [];
 
-        // First pass: collect all files and identify blade files
-        foreach ($filesInDir as $filePath) {
-            $filename = basename($filePath);
+        foreach ($iterator as $file) {
+            if (! $file->isFile()) {
+                continue;
+            }
 
-            if (str_ends_with($filename, '.blade.php')) {
-                $bladeFiles[] = $filename;
-            } elseif (str_ends_with($filename, '.js')) {
-                $files['resources/js/ui'.'/'.$filename] = file_get_contents($filePath);
-            } elseif (str_ends_with($filename, '.css')) {
-                $files['resources/css/ui/'.'/'.$filename] = file_get_contents($filePath);
+            $relativePath = str_replace('\\', '/', substr($file->getPathname(), strlen($versionPath) + 1));
+
+            if (str_ends_with($relativePath, '.blade.php')) {
+                $bladeFiles[] = $relativePath;
+
+                continue;
+            }
+
+            if (str_ends_with($relativePath, '.js') || str_ends_with($relativePath, '.css')) {
+                $assetFiles[] = $relativePath;
             }
         }
 
-        // Handle blade files based on component structure
-        if (count($bladeFiles) === 1) {
-            // Simple component: single file goes directly in ui/ folder
-            $filename = $bladeFiles[0];
-            $componentFileName = $name.'.blade.php';
-            $files['resources/views/components/ui/'.$componentFileName] = file_get_contents($versionPath.'/'.$filename);
-        } else {
-            // Complex component: multiple files go in a subfolder
-            foreach ($bladeFiles as $filename) {
-                $files['resources/views/components/ui/'.$name.'/'.$filename] = file_get_contents($versionPath.'/'.$filename);
+        foreach ($assetFiles as $relativePath) {
+            $filename = basename($relativePath);
+
+            if (str_ends_with($relativePath, '.js')) {
+                $files['resources/js/ui/'.$filename] = file_get_contents($versionPath.'/'.$relativePath);
+            } elseif (str_ends_with($relativePath, '.css')) {
+                $files['resources/css/ui/'.$filename] = file_get_contents($versionPath.'/'.$relativePath);
             }
+        }
+
+        foreach ($bladeFiles as $relativePath) {
+            $targetPath = $this->mapBladeDestinationPath($name, $relativePath, count($bladeFiles) === 1);
+            $files['resources/views/components/ui/'.$name.'/'.$targetPath] = file_get_contents($versionPath.'/'.$relativePath);
         }
 
         return $files;
+    }
+
+    protected function mapBladeDestinationPath(string $name, string $relativePath, bool $singleBlade): string
+    {
+        $normalizedPath = str_replace('\\', '/', $relativePath);
+        $segments = array_values(array_filter(explode('/', $normalizedPath), fn (string $segment) => $segment !== ''));
+
+        if ($segments !== [] && $segments[0] === $name) {
+            array_shift($segments);
+        }
+
+        if ($segments === []) {
+            return 'index.blade.php';
+        }
+
+        $filename = array_pop($segments);
+
+        if ($singleBlade || $filename === $name.'.blade.php' || $filename === 'index.blade.php') {
+            $filename = 'index.blade.php';
+        }
+
+        $segments[] = $filename;
+
+        return implode('/', $segments);
     }
 
     /**
@@ -278,39 +356,6 @@ class ComponentService
     public function getMetadata(string $name): array
     {
         return $this->getComponentMetadata($name) ?? [];
-    }
-
-    /**
-     * Get preview configuration for a component
-     */
-    public function getPreviewConfig(string $name): array
-    {
-        $componentPath = $this->getComponentPath($name);
-        $previewFile = $componentPath.'/preview.json';
-
-        if (! file_exists($previewFile)) {
-            return [];
-        }
-
-        $content = file_get_contents($previewFile);
-        $config = json_decode($content, true);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return [];
-        }
-
-        return $config;
-    }
-
-    /**
-     * Check if component has preview configuration
-     */
-    public function hasPreviewConfig(string $name): bool
-    {
-        $componentPath = $this->getComponentPath($name);
-        $previewFile = $componentPath.'/preview.json';
-
-        return file_exists($previewFile);
     }
 
     /**

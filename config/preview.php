@@ -60,48 +60,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Interactive Components
-    |--------------------------------------------------------------------------
-    |--------------------------------------------------------------------------
-    |
-    | Components that require special interactive handling. These components
-    | will use the interactive preview template with trigger buttons and
-    | Alpine.js integration.
-    |
-    */
-
-    'interactive_components' => [
-        'modal',
-        'drawer',
-        'dropdown',
-        'alert',
-        'tooltip',
-        'popover',
-        'dialog',
-        'confirmation-dialog',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Preview Variants
-    |--------------------------------------------------------------------------
-    |
-    | Default variants that can be used across components. Components can
-    | override these in their preview.json file.
-    |
-    */
-
-    'default_variants' => [
-        'default' => [],
-        'primary' => ['variant' => 'primary'],
-        'secondary' => ['variant' => 'secondary'],
-        'destructive' => ['variant' => 'destructive'],
-        'outline' => ['variant' => 'outline'],
-        'ghost' => ['variant' => 'ghost'],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Cache Settings
     |--------------------------------------------------------------------------
     |
@@ -112,24 +70,6 @@ return [
     'cache' => [
         'enabled' => env('PREVIEW_CACHE_ENABLED', true),
         'ttl' => env('PREVIEW_CACHE_TTL', 300), // 5 minutes
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Allowed Props
-    |--------------------------------------------------------------------------
-    |
-    | When generating preview tokens without explicit allowed props, these
-    | props will be allowed by default. Set to empty array to allow all props.
-    |
-    */
-
-    'default_allowed_props' => [
-        'variant',
-        'size',
-        'color',
-        'disabled',
-        'class',
     ],
 
     /*

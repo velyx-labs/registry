@@ -1,0 +1,25 @@
+title: "Q&A"
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this discussion for registry questions, metadata clarifications, preview behavior, or contributor guidance that is not yet a confirmed bug.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Ask the question directly.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Include component names, endpoints, previews, or validation details.
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you already checked
+      description: Mention commands like `php artisan registry:validate` or API routes you inspected.

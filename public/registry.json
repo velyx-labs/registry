@@ -49,8 +49,8 @@
       "path": "components/range-slider/meta.json"
     },
     {
-      "name": "code-snippet",
-      "description": "Code snippet component with syntax highlighting, line numbers, and copy functionality.",
+      "name": "markdown-viewer",
+      "description": "Markdown viewer component rendered as rich prose content.",
       "categories": [
         "ui",
         "data",
@@ -59,16 +59,27 @@
       "files": [
         {
           "type": "blade",
-          "path": "code-snippet.blade.php"
+          "path": "markdown-viewer.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "markdown-viewer.js"
+        },
+        {
+          "type": "css",
+          "path": "markdown-viewer.css"
         }
       ],
       "dependencies": {
         "composer": [
           "mallardduck/blade-lucide-icons@1.26.1"
         ],
-        "npm": []
+        "npm": [
+          "@tailwindcss/typography@0.5.19",
+          "prismjs@1.30.0"
+        ]
       },
-      "path": "components/code-snippet/meta.json"
+      "path": "components/markdown-viewer/meta.json"
     },
     {
       "name": "kbd",
@@ -81,7 +92,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "kbd.blade.php"
+          "path": "kbd/index.blade.php"
         }
       ],
       "dependencies": {
@@ -125,7 +136,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "file-upload.blade.php"
+          "path": "file-upload/index.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "file-upload.js"
         }
       ],
       "dependencies": {
@@ -147,7 +162,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "toast.blade.php"
+          "path": "toast/index.blade.php"
         }
       ],
       "dependencies": {
@@ -185,8 +200,8 @@
       "path": "components/carousel/meta.json"
     },
     {
-      "name": "data-table",
-      "description": "Feature-rich data table with search, sorting, filtering, pagination, and loading states.",
+      "name": "table",
+      "description": "Composable table primitives with caption, header, body, footer, row, head, and cell.",
       "categories": [
         "ui",
         "data",
@@ -195,29 +210,103 @@
       "files": [
         {
           "type": "blade",
-          "path": "data-table.blade.php"
+          "path": "table/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/caption.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/header.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/body.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/footer.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/row.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/head.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "table/cell.blade.php"
         }
       ],
       "dependencies": {
-        "composer": [
-          "mallardduck/blade-lucide-icons@1.26.1"
-        ],
+        "composer": [],
         "npm": []
       },
-      "path": "components/data-table/meta.json"
+      "path": "components/table/meta.json"
     },
     {
-      "name": "dropdown",
-      "description": "Dropdown select component with search, keyboard navigation, and multiple options.",
+      "name": "dropdown-menu",
+      "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
       "categories": [
         "ui",
-        "forms",
+        "overlay",
         "interactive"
       ],
       "files": [
         {
           "type": "blade",
-          "path": "dropdown.blade.php"
+          "path": "dropdown-menu/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/trigger.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/content.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/group.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/label.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/item.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/separator.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/shortcut.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/sub.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/sub-trigger.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/sub-content.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "dropdown-menu/portal.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "dropdown-menu.js"
         }
       ],
       "dependencies": {
@@ -226,7 +315,7 @@
         ],
         "npm": []
       },
-      "path": "components/dropdown/meta.json"
+      "path": "components/dropdown-menu/meta.json"
     },
     {
       "name": "alert",
@@ -239,7 +328,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "alert.blade.php"
+          "path": "alert/index.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "alert.js"
         }
       ],
       "dependencies": {
@@ -261,7 +354,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "popover.blade.php"
+          "path": "popover/index.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "popover.js"
         }
       ],
       "dependencies": {
@@ -497,7 +594,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "empty-state.blade.php"
+          "path": "empty-state/index.blade.php"
         }
       ],
       "dependencies": {
@@ -545,7 +642,39 @@
       "files": [
         {
           "type": "blade",
-          "path": "drawer.blade.php"
+          "path": "drawer/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/trigger.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/content.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/header.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/title.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/description.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/footer.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "drawer/close.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "drawer.js"
         }
       ],
       "dependencies": {
@@ -627,7 +756,7 @@
       "path": "components/accordion/meta.json"
     },
     {
-      "name": "modal",
+      "name": "dialog",
       "description": "Accessible modal dialog with backdrop, transition animations, and size options.",
       "categories": [
         "ui",
@@ -637,7 +766,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "modal.blade.php"
+          "path": "dialog.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "dialog.js"
         }
       ],
       "dependencies": {
@@ -646,7 +779,7 @@
         ],
         "npm": []
       },
-      "path": "components/modal/meta.json"
+      "path": "components/dialog/meta.json"
     },
     {
       "name": "rating",
@@ -659,7 +792,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "rating.blade.php"
+          "path": "rating/index.blade.php"
         },
         {
           "type": "js",
@@ -685,7 +818,11 @@
       "files": [
         {
           "type": "blade",
-          "path": "input.blade.php"
+          "path": "input/index.blade.php"
+        },
+        {
+          "type": "js",
+          "path": "input.js"
         }
       ],
       "dependencies": {
@@ -707,7 +844,15 @@
       "files": [
         {
           "type": "blade",
-          "path": "date-picker.blade.php"
+          "path": "date-picker/index.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "date-picker/input.blade.php"
+        },
+        {
+          "type": "blade",
+          "path": "date-picker/calendar.blade.php"
         },
         {
           "type": "js",
@@ -759,7 +904,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "progress-bar.blade.php"
+          "path": "progress-bar/index.blade.php"
         }
       ],
       "dependencies": {
@@ -780,7 +925,7 @@
       "files": [
         {
           "type": "blade",
-          "path": "label.blade.php"
+          "path": "label/index.blade.php"
         }
       ],
       "dependencies": {

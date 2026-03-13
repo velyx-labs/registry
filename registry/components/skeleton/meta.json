@@ -11,11 +11,14 @@
     "requires_alpine": false,
     "files": [
         {
-            "path": "skeleton.blade.php",
+            "path": "skeleton/index.blade.php",
             "type": "blade"
         }
     ],
-    "requires": [
-        "mallardduck/blade-lucide-icons"
-    ]
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": []
+    }
 }

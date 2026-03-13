@@ -11,7 +11,15 @@
     "requires_alpine": true,
     "files": [
         {
-            "path": "date-picker.blade.php",
+            "path": "date-picker/index.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "date-picker/input.blade.php",
+            "type": "blade"
+        },
+        {
+            "path": "date-picker/calendar.blade.php",
             "type": "blade"
         },
         {
@@ -19,7 +27,12 @@
             "type": "js"
         }
     ],
-    "requires": [
-        "mallardduck/blade-lucide-icons"
-    ]
+    "requires": {
+        "composer": [
+            "mallardduck/blade-lucide-icons@1.26.1"
+        ],
+        "npm": [
+            "alpinejs@^3.15.8"
+        ]
+    }
 }
