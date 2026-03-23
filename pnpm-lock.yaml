@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@alpinejs/collapse':
+        specifier: ^3.15.8
+        version: 3.15.8
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.1.18)
@@ -32,6 +35,9 @@ importers:
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
+      sortablejs:
+        specifier: ^1.15.7
+        version: 1.15.7
       tailwindcss:
         specifier: ^4.0.7
         version: 4.1.18
@@ -50,6 +56,9 @@ importers:
         version: 1.31.1
 
 packages:
+
+  '@alpinejs/collapse@3.15.8':
+    resolution: {integrity: sha512-zZhD8DHdHuzGFe8+cHNH99K//oFutzKwcy6vagydb3KFlTzmqxTnHZo5sSV81lAazhV7qKsYCKtNV14tR9QkJw==}
 
   '@esbuild/aix-ppc64@0.27.3':
     resolution: {integrity: sha512-9fJMTNFTWZMh5qwrBItuziu834eOCUcEqymSH7pY+zoMVEZg3gcPuBNxH1EvfVYe9h0x/Ptw8KBzv7qxb7l8dg==}
@@ -823,6 +832,9 @@ packages:
     resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
     engines: {node: '>= 0.4'}
 
+  sortablejs@1.15.7:
+    resolution: {integrity: sha512-Kk8wLQPlS+yi1ZEf48a4+fzHa4yxjC30M/Sr2AnQu+f/MPwvvX9XjZ6OWejiz8crBsLwSq8GHqaxaET7u6ux0A==}
+
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -930,6 +942,8 @@ packages:
     engines: {node: '>=12'}
 
 snapshots:
+
+  '@alpinejs/collapse@3.15.8': {}
 
   '@esbuild/aix-ppc64@0.27.3':
     optional: true
@@ -1526,6 +1540,8 @@ snapshots:
       tslib: 2.8.1
 
   shell-quote@1.8.3: {}
+
+  sortablejs@1.15.7: {}
 
   source-map-js@1.2.1: {}
 

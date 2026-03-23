@@ -14,12 +14,32 @@
 <div class="preview w-full p-6">
     <div class="mx-auto w-full max-w-xl rounded-xl border border-border bg-card p-5">
         <x-ui.sortable-list :items="$items" :handle="$handle">
-            <template x-if="item">
-                <div class="min-w-0">
-                    <p class="truncate text-sm font-medium text-foreground" x-text="item.title"></p>
-                    <p class="text-xs text-muted-foreground" x-text="item.meta"></p>
-                </div>
-            </template>
+            <x-ui.sortable-list.item :value="1">
+                <x-ui.sortable-list.trigger>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-foreground" x-text="item.title"></p>
+                        <p class="text-xs text-muted-foreground" x-text="item.meta"></p>
+                    </div>
+                </x-ui.sortable-list.trigger>
+            </x-ui.sortable-list.item>
+
+            <x-ui.sortable-list.item :value="2">
+                <x-ui.sortable-list.trigger>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-foreground" x-text="item.title"></p>
+                        <p class="text-xs text-muted-foreground" x-text="item.meta"></p>
+                    </div>
+                </x-ui.sortable-list.trigger>
+            </x-ui.sortable-list.item>
+
+            <x-ui.sortable-list.item :value="3">
+                <x-ui.sortable-list.trigger>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-foreground" x-text="item.title"></p>
+                        <p class="text-xs text-muted-foreground" x-text="item.meta"></p>
+                    </div>
+                </x-ui.sortable-list.trigger>
+            </x-ui.sortable-list.item>
         </x-ui.sortable-list>
     </div>
 </div>

@@ -1,44 +1,50 @@
-import './utils/clipboard'
-import accordion from './ui/accordion'
-import alert from './ui/alert'
-import input from './ui/input'
-import tabs from './ui/tabs'
-import dropdownMenu from './ui/dropdown-menu'
-import commandPalette from './ui/command-palette'
-import drawer from './ui/drawer'
-import datePicker from './ui/date-picker'
-import fileUpload from './ui/file-upload'
-import dialog from './ui/dialog'
-import rating from './ui/rating'
-import toast from './ui/toast'
-import popover from './ui/popover'
-import './ui/markdown-viewer'
-import rangeSlider from './ui/range-slider'
-import stepper from './ui/stepper'
-import timeline from './ui/timeline'
-import tooltip from './ui/tooltip'
-import toggle from './ui/toggle'
-import sortableList from './ui/sortable-list'
+import "./utils/clipboard";
+import accordion from "./ui/accordion";
+import alert from "./ui/alert";
+import input from "./ui/input";
+import tabs from "./ui/tabs";
+import dropdownMenu from "./ui/dropdown-menu";
+import commandPalette from "./ui/command-palette";
+import drawer from "./ui/drawer";
+import datePicker from "./ui/date-picker";
+import fileUpload from "./ui/file-upload";
+import dialog from "./ui/dialog";
+import rating from "./ui/rating";
+import toast from "./ui/toast";
+import popover from "./ui/popover";
+import "./ui/markdown-viewer";
+import rangeSlider from "./ui/range-slider";
+import stepper from "./ui/stepper";
+import timeline from "./ui/timeline";
+import tooltip from "./ui/tooltip";
+import toggle from "./ui/toggle";
+import sortableList from "./ui/sortable-list/list";
+import sortableListItem from "./ui/sortable-list/item";
+import Alpine from "alpinejs";
 
-document.addEventListener('alpine:init', () => {
-    Alpine.data('sortableList', sortableList);
-    Alpine.data('toggle', toggle);
-    Alpine.data('tooltip', tooltip);
-    Alpine.data('timeline', timeline);
-    Alpine.data('stepper', stepper);
-    Alpine.data('rangeSlider', rangeSlider);
-    Alpine.data('dropdownMenu', dropdownMenu);
-    Alpine.data('alert', alert);
+document.addEventListener("alpine:init", () => {
+    Alpine.data("sortableList", sortableList);
+    Alpine.data("sortableListItem", sortableListItem);
+    Alpine.data("toggle", toggle);
+    Alpine.data("tooltip", tooltip);
+    Alpine.data("timeline", timeline);
+    Alpine.data("stepper", stepper);
+    Alpine.data("rangeSlider", rangeSlider);
+    Alpine.data("dropdownMenu", dropdownMenu);
+    Alpine.data("alert", alert);
     // initDarkMode();
-    Alpine.data('input', input);
-    Alpine.data('tabs', tabs);
-    Alpine.data('accordion', accordion);
-    Alpine.data('commandPalette', commandPalette);
-    Alpine.data('drawer', drawer);
-    Alpine.data('datePicker', datePicker);
-    Alpine.data('fileUpload', fileUpload);
-    Alpine.data('dialog', dialog);
-    Alpine.data('rating', rating);
-    Alpine.data('toast', toast);
-    Alpine.data('popover', popover);
+    Alpine.data("input", input);
+    Alpine.data("tabs", tabs);
+    Alpine.data("accordion", accordion);
+    Alpine.data("commandPalette", commandPalette);
+    Alpine.data("drawer", drawer);
+    Alpine.data("datePicker", datePicker);
+    Alpine.data("fileUpload", fileUpload);
+    Alpine.data("dialog", dialog);
+    Alpine.data("rating", rating);
+    Alpine.data("toast", toast);
+    Alpine.data("popover", popover);
 });
+
+window.Alpine = Alpine;
+Alpine.start();

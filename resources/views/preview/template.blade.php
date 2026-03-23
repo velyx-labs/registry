@@ -16,7 +16,6 @@
               window.location.origin,
               {{ Illuminate\Support\Js::from(env('DOC_URL', [])) }}
           ].flat();
-          console.log('Allow', allowedOrigins)
 
           if (!allowedOrigins.includes(event.origin)) return;
 
@@ -40,7 +39,7 @@
             padding: 0;
             min-height: 100vh;
         }
- .preview-container {
+        .preview-container {
             width: 100%;
             min-height: 100vh;
             display: flex;
