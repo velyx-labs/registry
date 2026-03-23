@@ -4,7 +4,7 @@ export default (options = {}) => ({
 
     init() {
         setTimeout(() => {
-            this.shown = Object.keys(this.items);
+            this.shown = this.items.map((_, index) => index);
         }, 100);
     },
 });
