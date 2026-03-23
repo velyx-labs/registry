@@ -114,7 +114,7 @@ class RegistryValidate extends Command
         }
 
         if ($this->option('strict')) {
-            return (!empty($errors) || !empty($warnings)) ? 1 : 0;
+            return (! empty($errors) || ! empty($warnings)) ? 1 : 0;
         }
 
         return empty($errors) ? 0 : 1;
@@ -171,7 +171,7 @@ class RegistryValidate extends Command
                     $meta['requires']['composer'] ?? [],
                     $meta['requires']['npm'] ?? []
                 );
-                $duplicates = array_filter(array_count_values($allDependencies), fn($count) => $count > 1);
+                $duplicates = array_filter(array_count_values($allDependencies), fn ($count) => $count > 1);
                 foreach ($duplicates as $dep => $count) {
                     $warnings[] = "{$name}: Dependency '{$dep}' is declared {$count} times (should be unique)";
                 }
@@ -242,6 +242,7 @@ class RegistryValidate extends Command
                     foreach ($declaredFiles as $file) {
                         if (! is_array($file)) {
                             $errors[] = "{$name}: File entry in meta.json is not an object";
+
                             continue;
                         }
 
@@ -250,6 +251,7 @@ class RegistryValidate extends Command
 
                         if ($relativePath === '') {
                             $errors[] = "{$name}: One file entry in meta.json is missing a path";
+
                             continue;
                         }
 
