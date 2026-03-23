@@ -15,7 +15,11 @@
             "type": "blade"
         },
         {
-            "path": "sortable-list.js",
+            "path": "sortable-list/list.js",
+            "type": "js"
+        },
+        {
+            "path": "sortable-list/item.js",
             "type": "js"
         }
     ],
@@ -24,7 +28,8 @@
             "mallardduck/blade-lucide-icons@1.26.1"
         ],
         "npm": [
-            "alpinejs@^3.15.8"
+            "alpinejs@^3.15.8",
+            "sortablejs@^1.15.7"
         ]
     }
 }
