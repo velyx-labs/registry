@@ -11,14 +11,14 @@ class RegistryValidate extends Command
      *
      * @var string
      */
-    protected $signature = 'registry:validate {--component= : Validate specific component only}';
+    protected $signature = 'registry:validate {--component= : Validate specific component only} {--json : Output results in JSON format} {--strict : Treat warnings as errors}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Validate registry structure and component integrity';
+    protected $description = 'Validate registry structure and component integrity (use --json for machine-readable output)';
 
     /**
      * Execute the console command.
@@ -90,24 +90,32 @@ class RegistryValidate extends Command
             return 0;
         }
 
-        if (! empty($errors)) {
-            $this->newLine();
-            $this->error('  🔴 ERRORS ('.count($errors).'):');
-            foreach ($errors as $error) {
-                $this->line("    - {$error}");
+        if ($this->option('json')) {
+            $this->outputJsonResults($errors, $warnings, $validatedCount);
+        } else {
+            if (! empty($errors)) {
+                $this->newLine();
+                $this->error('  🔴 ERRORS ('.count($errors).'):');
+                foreach ($errors as $error) {
+                    $this->line("    - {$error}");
+                }
             }
+
+            if (! empty($warnings)) {
+                $this->newLine();
+                $this->warn('  🟡 WARNINGS ('.count($warnings).'):');
+                foreach ($warnings as $warning) {
+                    $this->line("    - {$warning}");
+                }
+            }
+
+            $this->newLine();
+            $this->info('🏁 Validation complete!');
         }
 
-        if (! empty($warnings)) {
-            $this->newLine();
-            $this->warn('  🟡 WARNINGS ('.count($warnings).'):');
-            foreach ($warnings as $warning) {
-                $this->line("    - {$warning}");
-            }
+        if ($this->option('strict')) {
+            return (!empty($errors) || !empty($warnings)) ? 1 : 0;
         }
-
-        $this->newLine();
-        $this->info('🏁 Validation complete!');
 
         return empty($errors) ? 0 : 1;
     }
@@ -156,6 +164,16 @@ class RegistryValidate extends Command
 
                 if (! array_key_exists('npm', $meta['requires']) || ! is_array($meta['requires']['npm'])) {
                     $errors[] = "{$name}: 'requires.npm' must be an array in meta.json";
+                }
+
+                // Check for duplicate dependencies
+                $allDependencies = array_merge(
+                    $meta['requires']['composer'] ?? [],
+                    $meta['requires']['npm'] ?? []
+                );
+                $duplicates = array_filter(array_count_values($allDependencies), fn($count) => $count > 1);
+                foreach ($duplicates as $dep => $count) {
+                    $warnings[] = "{$name}: Dependency '{$dep}' is declared {$count} times (should be unique)";
                 }
             }
         }
@@ -212,9 +230,18 @@ class RegistryValidate extends Command
                     $warnings[] = "{$name}: No files declared in meta.json";
                 } else {
                     $hasBladeFile = false;
+                    $actualFiles = [];
+
+                    // Scan actual files in version directory
+                    foreach (glob($versionPath.'/*') as $file) {
+                        if (is_file($file)) {
+                            $actualFiles[] = basename($file);
+                        }
+                    }
 
                     foreach ($declaredFiles as $file) {
                         if (! is_array($file)) {
+                            $errors[] = "{$name}: File entry in meta.json is not an object";
                             continue;
                         }
 
@@ -223,7 +250,6 @@ class RegistryValidate extends Command
 
                         if ($relativePath === '') {
                             $errors[] = "{$name}: One file entry in meta.json is missing a path";
-
                             continue;
                         }
 
@@ -234,6 +260,27 @@ class RegistryValidate extends Command
                         $expectedFile = $versionPath.'/'.$relativePath;
                         if (! file_exists($expectedFile)) {
                             $errors[] = "{$name}: Missing declared file '{$relativePath}' in version {$latestVersion}";
+                        } else {
+                            // Check file hash consistency
+                            $fileHash = md5_file($expectedFile);
+                            $expectedHash = $file['hash'] ?? null;
+                            if ($expectedHash && $fileHash !== $expectedHash) {
+                                $warnings[] = "{$name}: File '{$relativePath}' hash mismatch (expected: {$expectedHash}, actual: {$fileHash})";
+                            }
+                        }
+                    }
+
+                    // Check for undeclared files
+                    foreach ($actualFiles as $actualFile) {
+                        $isDeclared = false;
+                        foreach ($declaredFiles as $file) {
+                            if (isset($file['path']) && basename($file['path']) === $actualFile) {
+                                $isDeclared = true;
+                                break;
+                            }
+                        }
+                        if (! $isDeclared) {
+                            $warnings[] = "{$name}: Undeclared file '{$actualFile}' in version {$latestVersion}";
                         }
                     }
 
@@ -251,6 +298,23 @@ class RegistryValidate extends Command
         }
 
         return ['errors' => $errors, 'warnings' => $warnings];
+    }
+
+    private function outputJsonResults(array $errors, array $warnings, int $validatedCount): void
+    {
+        $result = [
+            'status' => empty($errors) ? 'success' : 'error',
+            'summary' => [
+                'total_components' => $validatedCount,
+                'errors_count' => count($errors),
+                'warnings_count' => count($warnings),
+            ],
+            'errors' => $errors,
+            'warnings' => $warnings,
+            'timestamp' => now()->toISOString(),
+        ];
+
+        $this->line(json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 
     /**
