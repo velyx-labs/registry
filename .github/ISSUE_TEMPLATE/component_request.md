@@ -1,9 +1,9 @@
 ---
 name: Component request
 about: Request a new component for the registry with enough detail to implement and validate it
-title: '[COMPONENT] '
+title: "[COMPONENT] "
 labels: enhancement, component, needs-triage
-assignees: ''
+assignees: ""
 ---
 
 ## Summary

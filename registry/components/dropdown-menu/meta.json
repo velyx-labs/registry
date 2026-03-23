@@ -2,11 +2,7 @@
     "name": "dropdown-menu",
     "version": "1.0.0",
     "description": "Dropdown menu primitives with groups, labels, items, shortcuts, separators, and nested submenus.",
-    "categories": [
-        "ui",
-        "overlay",
-        "interactive"
-    ],
+    "categories": ["ui", "overlay", "interactive"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -64,11 +60,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

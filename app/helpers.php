@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Utilities\LinkFinder;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Output\RenderedContentInterface;
@@ -36,7 +37,7 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
-        return (new \App\Utilities\LinkFinder([
+        return (new LinkFinder([
             'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
         ]))->processHtml($markdown);
     }

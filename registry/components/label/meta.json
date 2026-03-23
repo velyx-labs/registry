@@ -2,10 +2,7 @@
     "name": "label",
     "version": "1.0.0",
     "description": "Form label component with accessibility features and optional descriptions.",
-    "categories": [
-        "ui",
-        "forms"
-    ],
+    "categories": ["ui", "forms"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [

@@ -9,7 +9,7 @@ export default (options = {}) => ({
     },
 
     handleKeydown(event) {
-        if (event.key === 'Escape' && this.closeable) {
+        if (event.key === "Escape" && this.closeable) {
             this.close();
         }
     },

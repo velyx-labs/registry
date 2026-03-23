@@ -2,11 +2,7 @@
     "name": "input",
     "version": "1.0.0",
     "description": "Form input field with label, error handling, password toggle, and icons.",
-    "categories": [
-        "forms",
-        "ui",
-        "input"
-    ],
+    "categories": ["forms", "ui", "input"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -20,11 +16,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

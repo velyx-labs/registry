@@ -2,11 +2,7 @@
     "name": "tooltip",
     "version": "1.0.0",
     "description": "Tooltip component with configurable positioning and delay settings.",
-    "categories": [
-        "ui",
-        "overlay",
-        "feedback"
-    ],
+    "categories": ["ui", "overlay", "feedback"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -20,11 +16,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

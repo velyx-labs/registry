@@ -2,11 +2,7 @@
     "name": "skeleton",
     "version": "1.0.0",
     "description": "Skeleton loading component with multiple variants and customizable shapes.",
-    "categories": [
-        "ui",
-        "feedback",
-        "layout"
-    ],
+    "categories": ["ui", "feedback", "layout"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
@@ -16,9 +12,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
         "npm": []
     }
 }

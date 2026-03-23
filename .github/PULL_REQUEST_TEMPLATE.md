@@ -5,17 +5,17 @@ Describe what changed and why.
 ## Scope
 
 - Affected areas:
-  - [ ] Registry API
-  - [ ] Component metadata or validation
-  - [ ] Component delivery or file mapping
-  - [ ] Preview rendering
-  - [ ] Tests only
-  - [ ] Documentation only
+    - [ ] Registry API
+    - [ ] Component metadata or validation
+    - [ ] Component delivery or file mapping
+    - [ ] Preview rendering
+    - [ ] Tests only
+    - [ ] Documentation only
 - Runtime impact:
-  - [ ] Browser UI
-  - [ ] API responses
-  - [ ] Artisan commands
-  - [ ] Database
+    - [ ] Browser UI
+    - [ ] API responses
+    - [ ] Artisan commands
+    - [ ] Database
 
 ## Breaking Changes
 

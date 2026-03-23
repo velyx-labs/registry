@@ -5,8 +5,8 @@
 Security fixes are provided for the current maintained registry version.
 
 | Version | Supported |
-| --- | --- |
-| Latest | Yes |
+| ------- | --------- |
+| Latest  | Yes       |
 
 ## Reporting a Vulnerability
 

@@ -3,7 +3,7 @@ export default (options = {}) => ({
     selectedIndex: 0,
 
     init() {
-        this.$watch('open', (value) => {
+        this.$watch("open", (value) => {
             if (value) {
                 this.selectedIndex = 0;
             }
