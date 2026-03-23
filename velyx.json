@@ -1,15 +1,15 @@
 {
-  "version": "1.0.3",
-  "theme": "neutral",
-  "packageManager": "pnpm",
-  "css": {
-    "entry": "resources/css/app.css",
-    "velyx": "resources/css/velyx.css"
-  },
-  "js": {
-    "entry": "resources/js/app.js"
-  },
-  "components": {
-    "path": "resources/views/components/ui"
-  }
+    "version": "1.0.3",
+    "theme": "neutral",
+    "packageManager": "pnpm",
+    "css": {
+        "entry": "resources/css/app.css",
+        "velyx": "resources/css/velyx.css"
+    },
+    "js": {
+        "entry": "resources/js/app.js"
+    },
+    "components": {
+        "path": "resources/views/components/ui"
+    }
 }

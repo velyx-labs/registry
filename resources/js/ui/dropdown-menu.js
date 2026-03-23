@@ -1,15 +1,15 @@
 export default (options = {}) => ({
-  open: options.open ?? false,
+    open: options.open ?? false,
 
-  toggleMenu() {
-    this.open = !this.open;
-  },
+    toggleMenu() {
+        this.open = !this.open;
+    },
 
-  openMenu() {
-    this.open = true;
-  },
+    openMenu() {
+        this.open = true;
+    },
 
-  closeMenu() {
-    this.open = false;
-  },
+    closeMenu() {
+        this.open = false;
+    },
 });

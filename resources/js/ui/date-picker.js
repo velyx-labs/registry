@@ -102,18 +102,18 @@ export default (initialValue) => ({
 
     isSelected(day) {
         return (
-            day === this.selectedDay
-            && this.viewMonth === this.selectedMonth
-            && this.viewYear === this.selectedYear
+            day === this.selectedDay &&
+            this.viewMonth === this.selectedMonth &&
+            this.viewYear === this.selectedYear
         );
     },
 
     isToday(day) {
         const today = new Date();
         return (
-            day === today.getDate()
-            && this.viewMonth === today.getMonth()
-            && this.viewYear === today.getFullYear()
+            day === today.getDate() &&
+            this.viewMonth === today.getMonth() &&
+            this.viewYear === today.getFullYear()
         );
     },
 

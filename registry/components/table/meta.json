@@ -2,11 +2,7 @@
     "name": "table",
     "version": "1.0.0",
     "description": "Composable table primitives with caption, header, body, footer, row, head, and cell.",
-    "categories": [
-        "ui",
-        "data",
-        "forms"
-    ],
+    "categories": ["ui", "data", "forms"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [

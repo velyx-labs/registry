@@ -2,11 +2,7 @@
     "name": "carousel",
     "version": "1.0.0",
     "description": "Image carousel with autoplay, navigation arrows, dots indicator, and captions.",
-    "categories": [
-        "ui",
-        "media",
-        "interactive"
-    ],
+    "categories": ["ui", "media", "interactive"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -20,11 +16,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

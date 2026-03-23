@@ -2,11 +2,7 @@
     "name": "timeline",
     "version": "1.0.0",
     "description": "Timeline component with vertical/horizontal layouts, animations, and multiple event types.",
-    "categories": [
-        "ui",
-        "data",
-        "layout"
-    ],
+    "categories": ["ui", "data", "layout"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -20,11 +16,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

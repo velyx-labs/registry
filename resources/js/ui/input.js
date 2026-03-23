@@ -1,7 +1,7 @@
 export default (options = {}) => ({
-  showPassword: false,
+    showPassword: false,
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  },
+    togglePassword() {
+        this.showPassword = !this.showPassword;
+    },
 });

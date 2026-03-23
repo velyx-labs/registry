@@ -16,7 +16,7 @@ export default (options = {}) => ({
 
         if (this.isImage) {
             Array.from(files).forEach((file) => {
-                if (file.type.startsWith('image/')) {
+                if (file.type.startsWith("image/")) {
                     const url = URL.createObjectURL(file);
                     this.previews.push(url);
                 }

@@ -2,11 +2,7 @@
     "name": "date-picker",
     "version": "1.0.0",
     "description": "Date picker with calendar interface, date formatting, and validation.",
-    "categories": [
-        "ui",
-        "forms",
-        "input"
-    ],
+    "categories": ["ui", "forms", "input"],
     "laravel": ">=10",
     "requires_alpine": true,
     "files": [
@@ -28,11 +24,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
-        "npm": [
-            "alpinejs@^3.15.8"
-        ]
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
+        "npm": ["alpinejs@^3.15.8"]
     }
 }

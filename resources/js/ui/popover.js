@@ -1,6 +1,6 @@
 export default (options = {}) => ({
     open: false,
-    trigger: options.trigger || 'click',
+    trigger: options.trigger || "click",
 
     toggle() {
         this.open = !this.open;
@@ -11,13 +11,13 @@ export default (options = {}) => ({
     },
 
     handleHover() {
-        if (this.trigger === 'hover') {
+        if (this.trigger === "hover") {
             this.open = true;
         }
     },
 
     handleLeave() {
-        if (this.trigger === 'hover') {
+        if (this.trigger === "hover") {
             this.open = false;
         }
     },

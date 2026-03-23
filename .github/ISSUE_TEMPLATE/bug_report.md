@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Report a reproducible problem in the registry, API, previews, or component delivery flow
-title: '[BUG] '
+title: "[BUG] "
 labels: bug, needs-triage
-assignees: ''
+assignees: ""
 ---
 
 ## Summary

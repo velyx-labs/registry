@@ -2,11 +2,7 @@
     "name": "avatar",
     "version": "1.0.0",
     "description": "User avatar with image fallback, initials, and status indicators.",
-    "categories": [
-        "ui",
-        "media",
-        "feedback"
-    ],
+    "categories": ["ui", "media", "feedback"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
@@ -16,9 +12,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
         "npm": []
     }
 }

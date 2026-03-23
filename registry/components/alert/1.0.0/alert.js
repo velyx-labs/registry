@@ -1,10 +1,10 @@
 export default (options = {}) => ({
-  open: true,
-  dismissible: options.dismissible || false,
+    open: true,
+    dismissible: options.dismissible || false,
 
-  close() {
-    if (this.dismissible) {
-      this.open = false;
-    }
-  },
+    close() {
+        if (this.dismissible) {
+            this.open = false;
+        }
+    },
 });

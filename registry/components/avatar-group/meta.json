@@ -2,11 +2,7 @@
     "name": "avatar-group",
     "version": "1.0.0",
     "description": "Stacked avatar group for displaying multiple users with overflow indicator.",
-    "categories": [
-        "ui",
-        "media",
-        "layout"
-    ],
+    "categories": ["ui", "media", "layout"],
     "laravel": ">=10",
     "requires_alpine": false,
     "files": [
@@ -16,9 +12,7 @@
         }
     ],
     "requires": {
-        "composer": [
-            "mallardduck/blade-lucide-icons@1.26.1"
-        ],
+        "composer": ["mallardduck/blade-lucide-icons@1.26.1"],
         "npm": []
     }
 }

@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Propose a concrete improvement to the registry platform or contributor workflow
-title: '[FEATURE] '
+title: "[FEATURE] "
 labels: enhancement, needs-triage
-assignees: ''
+assignees: ""
 ---
 
 ## Summary
