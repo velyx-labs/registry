@@ -55,60 +55,108 @@
                 $icon = $isArray ? ($step['icon'] ?? null) : null;
             @endphp
 
-            <div class="{{ $variant === 'vertical' ? 'flex items-start' : 'flex flex-col items-center flex-1' }}">
-                {{-- Step with connector --}}
-                <div class="{{ $variant === 'vertical' ? 'flex flex-col items-center' : 'flex items-center w-full' }}">
-                    {{-- Step Indicator --}}
-                    <button
-                        type="button"
-                        @click="goToStep({{ $stepNumber }})"
-                        :class="{
-                            'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background': currentStep === {{ $stepNumber }},
-                            'bg-primary text-primary-foreground': currentStep > {{ $stepNumber }},
-                            'bg-muted text-muted-foreground': currentStep < {{ $stepNumber }},
-                            'cursor-pointer hover:ring-2 hover:ring-primary/50': clickable && {{ $stepNumber }} <= currentStep,
-                            'cursor-default': !clickable || {{ $stepNumber }} > currentStep
-                        }"
-                        class="{{ $sizeClasses['indicator'] }} rounded-full flex items-center justify-center font-medium transition-all duration-300 flex-shrink-0"
-                        :disabled="!clickable || {{ $stepNumber }} > currentStep"
-                    >
-                        <template x-if="currentStep > {{ $stepNumber }}">
-                            <x-lucide-check class="size-3 sm:size-4" />
-                        </template>
-                        <template x-if="currentStep <= {{ $stepNumber }}">
-                            @if($icon)
-                                <x-dynamic-component :component="'lucide-' . $icon" class="size-3 sm:size-4" />
-                            @elseif($showNumbers)
-                                <span>{{ $stepNumber }}</span>
-                            @else
-                                <span class="size-2 rounded-full bg-current"></span>
-                            @endif
-                        </template>
-                    </button>
+            @if($variant === 'vertical')
+                {{-- Vertical Step Layout --}}
+                <div class="flex items-start pb-8">
+                    {{-- Left: Indicator + Connector --}}
+                    <div class="flex flex-col items-center">
+                        <button
+                            type="button"
+                            @click="goToStep({{ $stepNumber }})"
+                            :class="{
+                                'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background': currentStep === {{ $stepNumber }},
+                                'bg-primary text-primary-foreground': currentStep > {{ $stepNumber }},
+                                'bg-muted text-muted-foreground': currentStep < {{ $stepNumber }},
+                                'cursor-pointer hover:ring-2 hover:ring-primary/50': clickable && {{ $stepNumber }} <= currentStep,
+                                'cursor-default': !clickable || {{ $stepNumber }} > currentStep
+                            }"
+                            class="{{ $sizeClasses['indicator'] }} rounded-full flex items-center justify-center font-medium transition-all duration-300 flex-shrink-0"
+                            :disabled="!clickable || {{ $stepNumber }} > currentStep"
+                        >
+                            <template x-if="currentStep > {{ $stepNumber }}">
+                                <x-lucide-check class="size-3 sm:size-4" />
+                            </template>
+                            <template x-if="currentStep <= {{ $stepNumber }}">
+                                @if($icon)
+                                    <x-dynamic-component :component="'lucide-' . $icon" class="size-3 sm:size-4" />
+                                @elseif($showNumbers)
+                                    <span>{{ $stepNumber }}</span>
+                                @else
+                                    <span class="size-2 rounded-full bg-current"></span>
+                                @endif
+                            </template>
+                        </button>
 
-                    {{-- Horizontal Connector --}}
-                    @if($variant === 'horizontal' && $stepNumber < count($steps))
-                        <div class="flex-1 mx-2 sm:mx-4 {{ $sizeClasses['connector'] }} rounded-full overflow-hidden bg-muted">
-                            <div
-                                class="h-full bg-primary transition-all duration-500"
-                                :style="`width: ${currentStep > {{ $stepNumber }} ? '100%' : '0%'}`"
-                            ></div>
-                        </div>
-                    @endif
-                </div>
-
-                {{-- Vertical Connector --}}
-                @if($variant === 'vertical' && $stepNumber < count($steps))
-                    <div class="ml-4 sm:ml-5 {{ $sizeClasses['connectorVertical'] }} rounded-full overflow-hidden bg-muted my-2">
-                        <div
-                            class="w-full bg-primary transition-all duration-500"
-                            :style="`height: ${currentStep > {{ $stepNumber }} ? '100%' : '0%'}`"
-                        ></div>
+                        {{-- Vertical Connector --}}
+                        @if($stepNumber < count($steps))
+                            <div class="{{ $sizeClasses['connectorVertical'] }} rounded-full overflow-hidden bg-muted mt-2">
+                                <div
+                                    class="w-full bg-primary transition-all duration-500"
+                                    :style="`height: ${currentStep > {{ $stepNumber }} ? '100%' : '0%'}`"
+                                ></div>
+                            </div>
+                        @endif
                     </div>
-                @endif
 
-                {{-- Step Content (Horizontal) --}}
-                @if($variant === 'horizontal')
+                    {{-- Right: Content --}}
+                    <div class="ml-3 sm:ml-4 flex-1 -mt-1">
+                        <p
+                            class="{{ $sizeClasses['label'] }} font-medium transition-colors"
+                            :class="currentStep >= {{ $stepNumber }} ? 'text-foreground' : 'text-muted-foreground'"
+                        >
+                            {{ $label }}
+                        </p>
+                        @if($description)
+                            <p class="{{ $sizeClasses['description'] }} text-muted-foreground mt-1">
+                                {{ $description }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            @else
+                {{-- Horizontal Step Layout --}}
+                <div class="flex flex-col items-center flex-1">
+                    <div class="flex items-center w-full">
+                        {{-- Step Indicator --}}
+                        <button
+                            type="button"
+                            @click="goToStep({{ $stepNumber }})"
+                            :class="{
+                                'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2 ring-offset-background': currentStep === {{ $stepNumber }},
+                                'bg-primary text-primary-foreground': currentStep > {{ $stepNumber }},
+                                'bg-muted text-muted-foreground': currentStep < {{ $stepNumber }},
+                                'cursor-pointer hover:ring-2 hover:ring-primary/50': clickable && {{ $stepNumber }} <= currentStep,
+                                'cursor-default': !clickable || {{ $stepNumber }} > currentStep
+                            }"
+                            class="{{ $sizeClasses['indicator'] }} rounded-full flex items-center justify-center font-medium transition-all duration-300 flex-shrink-0"
+                            :disabled="!clickable || {{ $stepNumber }} > currentStep"
+                        >
+                            <template x-if="currentStep > {{ $stepNumber }}">
+                                <x-lucide-check class="size-3 sm:size-4" />
+                            </template>
+                            <template x-if="currentStep <= {{ $stepNumber }}">
+                                @if($icon)
+                                    <x-dynamic-component :component="'lucide-' . $icon" class="size-3 sm:size-4" />
+                                @elseif($showNumbers)
+                                    <span>{{ $stepNumber }}</span>
+                                @else
+                                    <span class="size-2 rounded-full bg-current"></span>
+                                @endif
+                            </template>
+                        </button>
+
+                        {{-- Horizontal Connector --}}
+                        @if($stepNumber < count($steps))
+                            <div class="flex-1 mx-2 sm:mx-4 {{ $sizeClasses['connector'] }} rounded-full overflow-hidden bg-muted">
+                                <div
+                                    class="h-full bg-primary transition-all duration-500"
+                                    :style="`width: ${currentStep > {{ $stepNumber }} ? '100%' : '0%'}`"
+                                ></div>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Step Content (Horizontal) --}}
                     <div class="mt-2 text-center max-w-[100px] sm:max-w-[120px]">
                         <p
                             class="{{ $sizeClasses['label'] }} font-medium transition-colors truncate"
@@ -122,23 +170,6 @@
                             </p>
                         @endif
                     </div>
-                @endif
-            </div>
-
-            {{-- Step Content (Vertical) --}}
-            @if($variant === 'vertical')
-                <div class="ml-3 sm:ml-4 pb-6 sm:pb-8 flex-1">
-                    <p
-                        class="{{ $sizeClasses['label'] }} font-medium transition-colors"
-                        :class="currentStep >= {{ $stepNumber }} ? 'text-foreground' : 'text-muted-foreground'"
-                    >
-                        {{ $label }}
-                    </p>
-                    @if($description)
-                        <p class="{{ $sizeClasses['description'] }} text-muted-foreground mt-1">
-                            {{ $description }}
-                        </p>
-                    @endif
                 </div>
             @endif
         @endforeach
