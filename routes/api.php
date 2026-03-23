@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ComponentController;
+use App\Http\Controllers\Api\InstallationController;
 use App\Http\Controllers\Api\PreviewSourceController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,16 @@ Route::prefix('v1')->group(function () {
     Route::get('/components/{name}', [ComponentController::class, 'show']);
     Route::get('/components/{name}/versions', [ComponentController::class, 'versions']);
     Route::get('/previews/{component}/source', PreviewSourceController::class);
+
+    // Installation tracking endpoints
+    Route::prefix('installations')->group(function () {
+        Route::get('/', [InstallationController::class, 'index']);
+        Route::post('/', [InstallationController::class, 'store']);
+        Route::get('/stats', [InstallationController::class, 'stats']);
+        Route::get('/popular', [InstallationController::class, 'popular']);
+        Route::get('/trends', [InstallationController::class, 'trends']);
+        Route::get('/projects', [InstallationController::class, 'projects']);
+        Route::get('/projects/{project}', [InstallationController::class, 'projectHistory']);
+        Route::get('/components/{component}', [InstallationController::class, 'component']);
+    });
 });
