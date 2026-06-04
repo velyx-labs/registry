@@ -26,124 +26,156 @@ new class extends Component
 
 <div>
 
+    {{-- Hero section: warm DESIGN.md palette override, light-mode first per spec --}}
+    <style>
+        .velyx-hero {
+            --background: #f2f1ed;
+            --foreground: #26251e;
+            --muted: #ebeae5;
+            --muted-foreground: #6b6a62;
+            --border: #d5d3cc;
+            --card: #f9f8f4;
+        }
+        .dark .velyx-hero {
+            --background: oklch(0.145 0 0);
+            --foreground: oklch(0.985 0 0);
+            --muted: oklch(0.269 0 0);
+            --muted-foreground: oklch(0.708 0 0);
+            --border: oklch(1 0 0 / 10%);
+            --card: oklch(0.205 0 0);
+        }
+    </style>
+
     {{-- ─── HERO ──────────────────────────────────────────────────────────── --}}
-    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 lg:px-12 xl:px-24">
+    <section class="velyx-hero relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-24 lg:px-12 xl:px-24"
+             style="background: var(--background); color: var(--foreground);">
 
-        {{-- Ambient glow — upper right, barely visible --}}
-        <div class="pointer-events-none absolute -top-40 right-0 h-[600px] w-[600px] rounded-full opacity-[0.06] dark:opacity-[0.08]"
-             style="background: radial-gradient(circle, oklch(0.85 0.12 80) 0%, transparent 70%);"></div>
+        {{-- Dot grid background --}}
+        <div class="pointer-events-none absolute inset-0 opacity-[0.06]"
+             style="background-image: radial-gradient(var(--foreground) 1px, transparent 1px); background-size: 24px 24px;"></div>
+        {{-- Radial fade: dots visible in center, fade to background at edges --}}
+        <div class="pointer-events-none absolute inset-0"
+             style="background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, var(--background) 70%);"></div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-[1fr_480px] gap-16 xl:gap-24 items-center">
+        {{-- ── Text block ── --}}
+        <div class="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center text-center space-y-8">
 
-                {{-- ── Left: copy ── --}}
-                <div class="space-y-9">
-
-                    {{-- Eyebrow --}}
-                    <div class="flex items-center gap-3">
-                        <span class="block h-px w-6 bg-foreground/25"></span>
-                        <span class="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                            Laravel · Blade · Livewire
-                        </span>
-                    </div>
-
-                    {{-- Headline --}}
-                    <h1 class="text-[clamp(3.25rem,8vw,6.5rem)] font-bold leading-[0.88] tracking-tight text-foreground">
-                        Blade&nbsp;UI<br>
-                        <span class="font-light text-muted-foreground">you&nbsp;own.</span>
-                    </h1>
-
-                    {{-- Body --}}
-                    <p class="max-w-[44ch] text-lg leading-relaxed text-muted-foreground">
-                        Production-ready components for Laravel. Copy them into your codebase, adapt them freely.
-                        No vendor lock-in, no runtime surprises.
-                    </p>
-
-                    {{-- CTAs --}}
-                    <div class="flex flex-wrap items-center gap-3">
-                        <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate size="lg" iconRight="arrow-right">
-                            Get started
-                        </x-ui.button>
-                        <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" size="lg">
-                            Browse {{ count($this->components) }} components
-                        </x-ui.button>
-                    </div>
-
-                    {{-- GitHub stars --}}
-                    <a
-                        href="https://github.com/velyx-labs/registry"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-sm text-muted-foreground/70 transition-colors hover:text-muted-foreground"
-                    >
-                        <x-lucide-star class="size-3.5" />
-                        @if($stars > 0)
-                            <strong class="font-semibold text-foreground">{{ number_format($stars) }}</strong> stars on GitHub
-                        @else
-                            Star us on GitHub
-                        @endif
-                    </a>
-                </div>
-
-                {{-- ── Right: terminal ── --}}
-                <div class="hidden lg:block">
-                    <div class="rounded-xl overflow-hidden border border-border bg-card shadow-2xl">
-
-                        {{-- Terminal chrome --}}
-                        <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/30">
-                            <span class="size-2.5 rounded-full bg-border"></span>
-                            <span class="size-2.5 rounded-full bg-border"></span>
-                            <span class="size-2.5 rounded-full bg-border"></span>
-                            <span class="ml-3 font-mono text-xs text-muted-foreground/60">zsh</span>
-                        </div>
-
-                        {{-- Terminal output --}}
-                        <div class="p-5 font-mono text-sm leading-relaxed space-y-4">
-
-                            <div class="space-y-1">
-                                <div class="flex gap-2">
-                                    <span class="text-muted-foreground select-none">$</span>
-                                    <span class="text-foreground">npx velyx@latest init</span>
-                                </div>
-                                <div class="pl-5 space-y-0.5 text-xs">
-                                    <div class="text-green-500 dark:text-green-400">✓ Detected Laravel project</div>
-                                    <div class="text-green-500 dark:text-green-400">✓ Configuration saved to velyx.json</div>
-                                </div>
-                            </div>
-
-                            <div class="space-y-1">
-                                <div class="flex gap-2">
-                                    <span class="text-muted-foreground select-none">$</span>
-                                    <span class="text-foreground">npx velyx@latest add button field input</span>
-                                </div>
-                                <div class="pl-5 space-y-0.5 text-xs">
-                                    <div class="text-green-500 dark:text-green-400">✓ button.blade.php</div>
-                                    <div class="text-green-500 dark:text-green-400">✓ field/index.blade.php</div>
-                                    <div class="text-green-500 dark:text-green-400">✓ input/index.blade.php</div>
-                                    <div class="text-muted-foreground/60 pt-0.5">3 components copied. They're yours now.</div>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-2">
-                                <span class="text-muted-foreground select-none">$</span>
-                                <span class="inline-block w-1.5 h-4 bg-foreground/70 animate-pulse"></span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {{-- Support nudge below terminal --}}
-                    <p class="mt-4 text-xs text-muted-foreground/50 text-right">
-                        Built with care ·
-                        <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer"
-                           class="underline decoration-dotted underline-offset-2 transition-colors hover:text-muted-foreground/70">
-                            support the project
-                        </a>
-                    </p>
-                </div>
-
+            {{-- Eyebrow badge with brand orange --}}
+            <div class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium"
+                 style="border: 1px solid var(--border); background: var(--muted); color: var(--muted-foreground);">
+                <span class="size-1.5 rounded-full" style="background: #f54e00; box-shadow: 0 0 0 3px rgba(245,78,0,0.15);"></span>
+                Production-ready Blade components
             </div>
+
+            {{-- Headline: extrabold display + shadcn weight-contrast treatment --}}
+            <h1 class="text-[clamp(3.5rem,9vw,7.5rem)] font-extrabold leading-[0.88] tracking-[-0.03em]"
+                style="color: var(--foreground);">
+                Copy&nbsp;once.<br>
+                <span class="font-light" style="color: var(--foreground); opacity: 0.35;">own&nbsp;forever.</span>
+            </h1>
+
+            {{-- Body --}}
+            <p class="max-w-[46ch] text-lg leading-relaxed" style="color: var(--muted-foreground);">
+                Production-ready components for Laravel. Copy them into your codebase, adapt them freely.
+                No vendor lock-in, no runtime surprises.
+            </p>
+
+            {{-- CTAs --}}
+            <div class="flex flex-wrap justify-center items-center gap-3">
+                <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate size="lg" iconRight="arrow-right">
+                    Get started
+                </x-ui.button>
+                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" size="lg">
+                    Browse {{ count($this->components) }} components
+                </x-ui.button>
+            </div>
+
+            {{-- GitHub stars --}}
+            <a
+                href="https://github.com/velyx-labs/registry"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-sm transition-colors"
+                style="color: var(--muted-foreground); opacity: 0.65;"
+                onmouseover="this.style.opacity='1'"
+                onmouseout="this.style.opacity='0.65'"
+            >
+                <x-lucide-star class="size-3.5" />
+                @if($stars > 0)
+                    <strong class="font-semibold" style="color: var(--foreground);">{{ number_format($stars) }}</strong> stars on GitHub
+                @else
+                    Star us on GitHub
+                @endif
+            </a>
         </div>
+
+        {{-- ── Terminal: below text block, centered, max-width contained ── --}}
+        <div class="relative z-10 w-full max-w-xl mx-auto mt-14">
+            <div class="rounded-xl overflow-hidden"
+                 style="border: 1px solid var(--border); background: var(--card); box-shadow: 0 25px 50px -12px rgba(38,37,30,0.12), 0 0 0 1px rgba(38,37,30,0.04);">
+
+                {{-- Terminal chrome — macOS-style traffic lights --}}
+                <div class="flex items-center gap-2 px-4 py-3"
+                     style="border-bottom: 1px solid var(--border); background: var(--muted);">
+                    <span class="size-2.5 rounded-full bg-red-400/80"></span>
+                    <span class="size-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="size-2.5 rounded-full bg-green-400/80"></span>
+                    <span class="ml-3 font-mono text-xs" style="color: var(--muted-foreground); opacity: 0.6;">~/my-laravel-app</span>
+                </div>
+
+                {{-- Terminal output --}}
+                <div class="p-5 font-mono text-sm leading-relaxed space-y-4">
+
+                    <div class="space-y-1.5">
+                        <div class="flex gap-2">
+                            <span class="select-none" style="color: var(--foreground); opacity: 0.25;">❯</span>
+                            <span style="color: var(--foreground);">npx velyx@latest init</span>
+                        </div>
+                        <div class="pl-5 space-y-0.5 text-xs">
+                            <div class="text-green-600 dark:text-green-400">✓ Detected Laravel 12 project</div>
+                            <div class="text-green-600 dark:text-green-400">✓ Tailwind CSS v4 configured</div>
+                            <div class="text-green-600 dark:text-green-400">✓ Saved velyx.json</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <div class="flex gap-2">
+                            <span class="select-none" style="color: var(--foreground); opacity: 0.25;">❯</span>
+                            <span style="color: var(--foreground);">npx velyx@latest add button field</span>
+                        </div>
+                        <div class="pl-5 space-y-0.5 text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-600 dark:text-green-400">✓</span>
+                                <span style="color: var(--foreground);">button.blade.php</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-green-600 dark:text-green-400">✓</span>
+                                <span style="color: var(--foreground);">field/index.blade.php</span>
+                            </div>
+                            <div class="pt-1" style="color: var(--muted-foreground); opacity: 0.55;">2 components copied — they're yours now.</div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <span class="select-none" style="color: var(--foreground); opacity: 0.25;">❯</span>
+                        <span class="inline-block w-1.5 h-[1.1em] animate-pulse rounded-[1px]"
+                              style="background: var(--foreground); opacity: 0.45;"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Support nudge below terminal --}}
+            <p class="mt-3 text-xs text-center" style="color: var(--muted-foreground); opacity: 0.45;">
+                Built with care ·
+                <a href="https://gvcjmaad.mychariow.shop/velyx-dev" target="_blank" rel="noopener noreferrer"
+                   class="underline decoration-dotted underline-offset-2 transition-opacity hover:opacity-80"
+                   style="color: inherit;">
+                    support the project
+                </a>
+            </p>
+        </div>
+
     </section>
 
         <x-ui.separator />

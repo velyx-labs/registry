@@ -30,6 +30,21 @@ new class extends Component {
             {{-- Right actions --}}
             <div class="flex items-center gap-1.5">
 
+                {{-- Buy Me a Coffee --}}
+                <a
+                    href="https://gvcjmaad.mychariow.shop/velyx-dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-md px-2.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    style="background: rgba(245,78,0,0.08); color: #f54e00; border: 1px solid rgba(245,78,0,0.18);"
+                    onmouseover="this.style.background='rgba(245,78,0,0.14)'"
+                    onmouseout="this.style.background='rgba(245,78,0,0.08)'"
+                    aria-label="Support the project on Buy Me a Coffee"
+                >
+                    <x-lucide-coffee class="h-3.5 w-3.5 shrink-0" />
+                    <span class="hidden sm:inline">Support</span>
+                </a>
+
                 {{-- GitHub --}}
                 <a
                     href="https://github.com/velyx-labs/velyx"
