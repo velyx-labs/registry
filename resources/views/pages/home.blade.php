@@ -202,93 +202,156 @@ new class extends Component
     <x-ui.separator />
 
     {{-- ─── COMPONENT SHOWCASE ─────────────────────────────────────────────── --}}
-    <section class="py-24 px-6 lg:px-12 xl:px-24">
+    <style>
+        .velyx-showcase {
+            --bg-a: #f2f1ed;
+            --bg-b: #f9f8f4;
+            --hairline: #d5d3cc;
+            --label: #8c8b82;
+            --text: #26251e;
+        }
+        .dark .velyx-showcase {
+            --bg-a: oklch(0.205 0 0);
+            --bg-b: oklch(0.175 0 0);
+            --hairline: oklch(1 0 0 / 10%);
+            --label: oklch(0.556 0 0);
+            --text: oklch(0.985 0 0);
+        }
+    </style>
+
+    <section class="velyx-showcase py-24 px-6 lg:px-12 xl:px-24">
         <div class="max-w-7xl mx-auto">
 
-            <div class="flex items-end justify-between mb-10">
-                <div class="space-y-1.5">
-                    <p class="font-mono text-xs text-muted-foreground/50 tracking-wider uppercase">Library</p>
-                    <h2 class="text-3xl font-semibold tracking-tight text-foreground">Everything you need.</h2>
+            {{-- Section header: no kicker, strong headline, CTA right --}}
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-12">
+                <div>
+                    <h2 class="text-[clamp(1.75rem,3.5vw,2.75rem)] font-extrabold tracking-[-0.025em]"
+                        style="color: var(--text);">
+                        What ships.
+                    </h2>
+                    <p class="mt-2 text-sm leading-relaxed max-w-[52ch]" style="color: var(--label);">
+                        Every specimen below renders from the same Blade template you'd copy into your project.
+                    </p>
                 </div>
-                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" iconRight="arrow-right">
+                <x-ui.button href="{{ route('docs.page', 'components') }}" wire:navigate variant="outline" iconRight="arrow-right" class="shrink-0">
                     All {{ count($this->components) }} components
                 </x-ui.button>
             </div>
 
-            {{-- Flush grid of live component specimens --}}
-            <div class="border border-border rounded-xl overflow-hidden grid sm:grid-cols-2 lg:grid-cols-3 divide-y divide-border sm:divide-x">
+            {{-- Asymmetric specimen grid: gap-px hairlines, varied cell sizes --}}
+            {{-- Row 1: Buttons (wide) + Badges — Row 2: Field + Checkbox + Progress --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden"
+                 style="background: var(--hairline);">
 
-                {{-- Buttons --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Button</span>
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <x-ui.button size="sm">Primary</x-ui.button>
-                        <x-ui.button size="sm" variant="outline">Outline</x-ui.button>
-                        <x-ui.button size="sm" variant="ghost">Ghost</x-ui.button>
+                {{-- ── Buttons: col-span-2, more variants, generous padding ── --}}
+                <div class="sm:col-span-2 flex flex-col gap-6 p-8 lg:p-10"
+                     style="background: var(--bg-a);">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Button</span>
+                    <div class="flex flex-wrap gap-2.5">
+                        <x-ui.button>Primary</x-ui.button>
+                        <x-ui.button variant="outline">Outline</x-ui.button>
+                        <x-ui.button variant="ghost">Ghost</x-ui.button>
+                        <x-ui.button variant="secondary">Secondary</x-ui.button>
+                        <x-ui.button variant="destructive">Delete</x-ui.button>
+                        <x-ui.button size="sm" variant="outline">Small</x-ui.button>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <x-ui.button size="lg" iconRight="arrow-right">Get started</x-ui.button>
+                        <x-ui.button size="lg" variant="outline" icon="icons.github" :lucide="false">View on GitHub</x-ui.button>
                     </div>
                 </div>
 
-                {{-- Badges --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Badge</span>
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <x-ui.badge>Default</x-ui.badge>
-                        <x-ui.badge variant="secondary">Secondary</x-ui.badge>
-                        <x-ui.badge variant="success">New</x-ui.badge>
-                        <x-ui.badge variant="outline">Outline</x-ui.badge>
+                {{-- ── Badges + Avatar: stacked, single cell ── --}}
+                <div class="flex flex-col gap-6 p-8" style="background: var(--bg-b);">
+                    <div class="flex flex-col gap-3">
+                        <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Badge</span>
+                        <div class="flex flex-wrap gap-2">
+                            <x-ui.badge>Default</x-ui.badge>
+                            <x-ui.badge variant="secondary">Secondary</x-ui.badge>
+                            <x-ui.badge variant="success">Published</x-ui.badge>
+                            <x-ui.badge variant="destructive">Error</x-ui.badge>
+                            <x-ui.badge variant="outline">Draft</x-ui.badge>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 pt-2 border-t" style="border-color: var(--hairline);">
+                        <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Avatar</span>
+                        <div class="flex items-end gap-2">
+                            <x-ui.avatar size="lg">
+                                <x-ui.avatar.image src="https://i.pravatar.cc/80?img=3" alt="Jordan D." />
+                            </x-ui.avatar>
+                            <x-ui.avatar>
+                                <x-ui.avatar.image src="https://i.pravatar.cc/80?img=15" alt="Alex K." />
+                            </x-ui.avatar>
+                            <x-ui.avatar size="sm">
+                                <x-ui.avatar.image src="https://i.pravatar.cc/80?img=44" alt="Maria R." />
+                            </x-ui.avatar>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Field + Input --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Field</span>
-                    <div class="pt-1">
+                {{-- ── Field + Input: two fields, realistic form context ── --}}
+                <div class="flex flex-col gap-5 p-8" style="background: var(--bg-b);">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Field</span>
+                    <div class="space-y-4">
                         <x-ui.field>
                             <x-ui.field.label>Email address</x-ui.field.label>
                             <x-ui.field.content>
                                 <x-ui.input placeholder="you@example.com" />
                             </x-ui.field.content>
                         </x-ui.field>
+                        <x-ui.field>
+                            <x-ui.field.label>Password</x-ui.field.label>
+                            <x-ui.field.content>
+                                <x-ui.input type="password" placeholder="••••••••" />
+                            </x-ui.field.content>
+                        </x-ui.field>
                     </div>
                 </div>
 
-                {{-- Checkbox --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Checkbox</span>
-                    <div class="pt-1 space-y-3">
-                        <label class="flex items-center gap-2.5 cursor-pointer text-sm text-foreground">
+                {{-- ── Checkbox: three realistic options ── --}}
+                <div class="flex flex-col gap-5 p-8" style="background: var(--bg-a);">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Checkbox</span>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-sm" style="color: var(--text);">
                             <x-ui.checkbox checked />
                             <span>Email notifications</span>
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer text-sm text-muted-foreground">
+                        <label class="flex items-center gap-2.5 cursor-pointer text-sm" style="color: var(--label);">
                             <x-ui.checkbox />
                             <span>Marketing updates</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 cursor-pointer text-sm" style="color: var(--text);">
+                            <x-ui.checkbox checked />
+                            <span>Security alerts</span>
                         </label>
                     </div>
                 </div>
 
-                {{-- Progress --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Progress</span>
-                    <div class="pt-1 space-y-3">
-                        <x-ui.progress-bar :percentage="72" label="72%" />
-                        <x-ui.progress-bar :percentage="30" label="30%" />
-                    </div>
-                </div>
-
-                {{-- Avatar --}}
-                <div class="p-8 bg-card space-y-4">
-                    <span class="font-mono text-xs text-muted-foreground/50">Avatar</span>
-                    <div class="pt-1 flex items-center gap-2">
-                        <x-ui.avatar size="lg">
-                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=3" alt="Jordan D." />
-                        </x-ui.avatar>
-                        <x-ui.avatar>
-                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=15" alt="Alex K." />
-                        </x-ui.avatar>
-                        <x-ui.avatar size="sm">
-                            <x-ui.avatar.image src="https://i.pravatar.cc/80?img=44" alt="Maria R." />
-                        </x-ui.avatar>
+                {{-- ── Progress: labeled bars at different stages ── --}}
+                <div class="flex flex-col gap-5 p-8" style="background: var(--bg-b);">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--label);">Progress</span>
+                    <div class="space-y-4">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs" style="color: var(--label);">
+                                <span>Uploading assets</span>
+                                <span>72%</span>
+                            </div>
+                            <x-ui.progress-bar :percentage="72" />
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs" style="color: var(--label);">
+                                <span>Installing deps</span>
+                                <span>30%</span>
+                            </div>
+                            <x-ui.progress-bar :percentage="30" />
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs" style="color: var(--label);">
+                                <span>Build complete</span>
+                                <span>100%</span>
+                            </div>
+                            <x-ui.progress-bar :percentage="100" />
+                        </div>
                     </div>
                 </div>
 

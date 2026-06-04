@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-@import "./torchlight.css";
 @import "./ui/markdown-viewer.css";
 
 @source '../views';
@@ -368,9 +367,7 @@ pre[class*="language-"] {
 }
 code[class*="language-"],
 pre[class*="language-"] {
-  @apply text-shadow-[0_1px_white]! text-muted-foreground!; /* light mode */
-
-  @apply dark:text-shadow-[0_1px_#0000]! dark:text-muted-foreground!;
+  @apply  text-muted-foreground!;
 }
 
 .token.operator,

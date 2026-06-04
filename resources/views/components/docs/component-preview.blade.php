@@ -77,11 +77,13 @@
 
     {{-- Source code --}}
     <div x-show="mode === 'code'" x-cloak class="overflow-hidden rounded-b-lg border-t bg-muted/20">
-        <div class="border-b px-4 py-2">
-            <span class="truncate font-mono text-xs text-muted-foreground" x-text="sourcePath || 'preview source'"></span>
-        </div>
+        
         <div x-show="sourceLoading" class="p-4 text-sm text-muted-foreground">Loading source...</div>
         <div x-show="sourceError" class="p-4 text-sm text-destructive" x-text="sourceError"></div>
-        <pre x-show="source && !sourceLoading" class="max-h-[420px] overflow-auto bg-muted p-4 text-sm"><code class="language-php" x-text="source"></code></pre>
+        <pre x-show="source && !sourceLoading" 
+            class="max-h-[420px] overflow-auto  bg-transparent! border-none!"
+            x-ref="codeBlock">
+            <code class="language-php" x-text="source"></code>
+        </pre>
     </div>
 </div>
