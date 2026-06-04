@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+### Miscellaneous Tasks
+
+- Update CHANGELOG.md ([`593240c`](https://github.com/velyx-labs/registry/commit/593240c52d478e87c4429c1b75ce3e94f108ee43))
+
 ## [v2.1.3] - 2026-05-24
 
 ### Miscellaneous Tasks
