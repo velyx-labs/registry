@@ -81,7 +81,7 @@ new class extends Component {
             <p>&copy; {{ date('Y') }} Velyx. UI components for Laravel teams that value ownership.</p>
             <p class="flex items-center gap-1">
                 Inspired by
-                <x-ui.button href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer" variant="link" class="h-auto p-0 text-xs text-muted-foreground/60 hover:text-muted-foreground">
+                <x-ui.button href="https://ui.shadcn.com?utm_source={{ url()->current() }}" target="_blank" rel="noopener noreferrer" variant="link" class="h-auto p-0 text-xs text-muted-foreground/60 hover:text-muted-foreground">
                     shadcn/ui
                 </x-ui.button>
             </p>
