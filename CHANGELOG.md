@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Miscellaneous Tasks
 
 - Update CHANGELOG.md ([`593240c`](https://github.com/velyx-labs/registry/commit/593240c52d478e87c4429c1b75ce3e94f108ee43))
+- Update CHANGELOG.md ([`154243d`](https://github.com/velyx-labs/registry/commit/154243d7bcbc8a49e4b8e11449531f656fe53169))
 
 ## [v2.1.3] - 2026-05-24
 
