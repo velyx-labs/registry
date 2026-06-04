@@ -77,14 +77,33 @@ new class extends Component {
 
         <x-ui.separator class="my-8" />
 
-        <div class="flex flex-col gap-2 text-xs text-muted-foreground/60 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-col gap-3 text-xs text-muted-foreground/60 sm:flex-row sm:items-center sm:justify-between">
             <p>&copy; {{ date('Y') }} Velyx. UI components for Laravel teams that value ownership.</p>
-            <p class="flex items-center gap-1">
-                Inspired by
-                <x-ui.button href="https://ui.shadcn.com?utm_source={{ url()->current() }}" target="_blank" rel="noopener noreferrer" variant="link" class="h-auto p-0 text-xs text-muted-foreground/60 hover:text-muted-foreground">
-                    shadcn/ui
-                </x-ui.button>
-            </p>
+            <div class="flex items-center gap-5">
+                {{-- Dark mode switch --}}
+                <button
+                    type="button"
+                    class="dark-mode-toggle group inline-flex items-center gap-2 text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                    aria-label="Toggle dark mode"
+                >
+                    <x-lucide-sun class="h-3.5 w-3.5 dark:hidden shrink-0" />
+                    <x-lucide-moon class="hidden h-3.5 w-3.5 dark:block shrink-0" />
+                    <span class="relative inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-border bg-muted transition-colors duration-200">
+                        <span class="absolute size-4 rounded-full bg-foreground/70 shadow-sm transition-transform duration-200 ease-out translate-x-0.5 dark:translate-x-[1.125rem]"></span>
+                    </span>
+                    <span class="select-none">
+                        <span class="dark:hidden">Light</span>
+                        <span class="hidden dark:inline">Dark</span>
+                    </span>
+                </button>
+
+                <p class="flex items-center gap-1">
+                    Inspired by
+                    <x-ui.button href="https://ui.shadcn.com?utm_source={{ url()->current() }}" target="_blank" rel="noopener noreferrer" variant="link" class="h-auto p-0 text-xs text-muted-foreground/60 hover:text-muted-foreground">
+                        shadcn/ui
+                    </x-ui.button>
+                </p>
+            </div>
         </div>
 
         </div><!-- /.max-w-7xl -->

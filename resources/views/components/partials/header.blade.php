@@ -17,8 +17,8 @@ new class extends Component {
                 <span class="text-[15px] font-semibold tracking-tight text-foreground">Velyx</span>
             </x-ui.button>
 
-            {{-- Nav --}}
-            <nav class="flex flex-1 items-center gap-0.5" aria-label="Main navigation">
+            {{-- Nav — hidden on mobile --}}
+            <nav class="hidden sm:flex flex-1 items-center gap-0.5" aria-label="Main navigation">
                 <x-ui.button href="{{ route('docs.page', 'installation') }}" wire:navigate variant="ghost" size="sm" class="text-muted-foreground hover:text-foreground">
                     Docs
                 </x-ui.button>
@@ -56,15 +56,6 @@ new class extends Component {
                     <x-icons.github class="h-4 w-4" />
                 </a>
 
-                {{-- Dark mode toggle --}}
-                <button
-                    type="button"
-                    class="dark-mode-toggle inline-flex size-9 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    aria-label="Toggle dark mode"
-                >
-                    <x-lucide-sun class="h-4 w-4 dark:hidden" />
-                    <x-lucide-moon class="hidden h-4 w-4 dark:block" />
-                </button>
 
             </div>
         </div>
